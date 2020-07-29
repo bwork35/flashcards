@@ -1,0 +1,483 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		931441F524D1CB2E0005BE7B /* PencilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931441F424D1CB2E0005BE7B /* PencilViewController.swift */; };
+		93370DFA24CBE81B002371FD /* FlashButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93370DF924CBE81B002371FD /* FlashButton.swift */; };
+		93484A2E24C60EC0003850DD /* FlashcardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93484A2D24C60EBF003850DD /* FlashcardViewController.swift */; };
+		938215F324C7C79E00535B04 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 938215F224C7C79E00535B04 /* CloudKit.framework */; };
+		938215F524C7CA5000535B04 /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938215F424C7CA5000535B04 /* QuizViewController.swift */; };
+		93C6E5A824CE4D7400D613A3 /* FlashError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C6E5A724CE4D7400D613A3 /* FlashError.swift */; };
+		93D6245424CC03F000A65642 /* FlashcardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D6245324CC03F000A65642 /* FlashcardTableViewCell.swift */; };
+		93DE545424BF6DBF00B4924F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DE545324BF6DBF00B4924F /* AppDelegate.swift */; };
+		93DE545624BF6DBF00B4924F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DE545524BF6DBF00B4924F /* SceneDelegate.swift */; };
+		93DE545B24BF6DBF00B4924F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93DE545924BF6DBF00B4924F /* Main.storyboard */; };
+		93DE545D24BF6DC200B4924F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93DE545C24BF6DC200B4924F /* Assets.xcassets */; };
+		93DE546024BF6DC200B4924F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93DE545E24BF6DC200B4924F /* LaunchScreen.storyboard */; };
+		93DE546E24BF744C00B4924F /* Flashcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DE546D24BF744C00B4924F /* Flashcard.swift */; };
+		93DE547024C103C000B4924F /* FlashcardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DE546F24C103C000B4924F /* FlashcardController.swift */; };
+		93DE547224C1040F00B4924F /* FlashCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DE547124C1040F00B4924F /* FlashCollectionViewController.swift */; };
+		93DE547424C1054500B4924F /* MultiplicationTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DE547324C1054500B4924F /* MultiplicationTables.swift */; };
+		93DE547B24C3A10200B4924F /* FlashpileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DE547A24C3A10200B4924F /* FlashpileCollectionViewCell.swift */; };
+		93DE547D24C3B39200B4924F /* FlashcardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DE547C24C3B39200B4924F /* FlashcardDetailViewController.swift */; };
+		93DE547F24C4EB4A00B4924F /* Flashpile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DE547E24C4EB4A00B4924F /* Flashpile.swift */; };
+		93DE548124C4EC3600B4924F /* FlashpileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DE548024C4EC3600B4924F /* FlashpileController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		931441F424D1CB2E0005BE7B /* PencilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PencilViewController.swift; sourceTree = "<group>"; };
+		93370DF924CBE81B002371FD /* FlashButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashButton.swift; sourceTree = "<group>"; };
+		93484A2D24C60EBF003850DD /* FlashcardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardViewController.swift; sourceTree = "<group>"; };
+		938215F024C7C78E00535B04 /* flashcards.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = flashcards.entitlements; sourceTree = "<group>"; };
+		938215F224C7C79E00535B04 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		938215F424C7CA5000535B04 /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
+		93C6E5A724CE4D7400D613A3 /* FlashError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashError.swift; sourceTree = "<group>"; };
+		93D6245324CC03F000A65642 /* FlashcardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardTableViewCell.swift; sourceTree = "<group>"; };
+		93DE545024BF6DBF00B4924F /* flashcards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flashcards.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		93DE545324BF6DBF00B4924F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		93DE545524BF6DBF00B4924F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		93DE545A24BF6DBF00B4924F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		93DE545C24BF6DC200B4924F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		93DE545F24BF6DC200B4924F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		93DE546124BF6DC200B4924F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93DE546D24BF744C00B4924F /* Flashcard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flashcard.swift; sourceTree = "<group>"; };
+		93DE546F24C103C000B4924F /* FlashcardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardController.swift; sourceTree = "<group>"; };
+		93DE547124C1040F00B4924F /* FlashCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCollectionViewController.swift; sourceTree = "<group>"; };
+		93DE547324C1054500B4924F /* MultiplicationTables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplicationTables.swift; sourceTree = "<group>"; };
+		93DE547A24C3A10200B4924F /* FlashpileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashpileCollectionViewCell.swift; sourceTree = "<group>"; };
+		93DE547C24C3B39200B4924F /* FlashcardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardDetailViewController.swift; sourceTree = "<group>"; };
+		93DE547E24C4EB4A00B4924F /* Flashpile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flashpile.swift; sourceTree = "<group>"; };
+		93DE548024C4EC3600B4924F /* FlashpileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashpileController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		93DE544D24BF6DBF00B4924F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				938215F324C7C79E00535B04 /* CloudKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		93370DF824CBE7E4002371FD /* Custom UI */ = {
+			isa = PBXGroup;
+			children = (
+				93370DF924CBE81B002371FD /* FlashButton.swift */,
+			);
+			path = "Custom UI";
+			sourceTree = "<group>";
+		};
+		938215F124C7C79E00535B04 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				938215F224C7C79E00535B04 /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		93C6E5A624CE4D5A00D613A3 /* Helpers + Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				93C6E5A724CE4D7400D613A3 /* FlashError.swift */,
+			);
+			path = "Helpers + Extensions";
+			sourceTree = "<group>";
+		};
+		93DE544724BF6DBF00B4924F = {
+			isa = PBXGroup;
+			children = (
+				93DE545224BF6DBF00B4924F /* flashcards */,
+				93DE545124BF6DBF00B4924F /* Products */,
+				938215F124C7C79E00535B04 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		93DE545124BF6DBF00B4924F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				93DE545024BF6DBF00B4924F /* flashcards.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		93DE545224BF6DBF00B4924F /* flashcards */ = {
+			isa = PBXGroup;
+			children = (
+				938215F024C7C78E00535B04 /* flashcards.entitlements */,
+				93DE546C24BF6E8600B4924F /* Models */,
+				93DE546924BF6E5F00B4924F /* Controllers */,
+				93DE546824BF6E5500B4924F /* Views */,
+				93DE545924BF6DBF00B4924F /* Main.storyboard */,
+				93C6E5A624CE4D5A00D613A3 /* Helpers + Extensions */,
+				93DE546724BF6DDD00B4924F /* Resources */,
+			);
+			path = flashcards;
+			sourceTree = "<group>";
+		};
+		93DE546724BF6DDD00B4924F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				93DE545324BF6DBF00B4924F /* AppDelegate.swift */,
+				93DE545524BF6DBF00B4924F /* SceneDelegate.swift */,
+				93DE545C24BF6DC200B4924F /* Assets.xcassets */,
+				93DE545E24BF6DC200B4924F /* LaunchScreen.storyboard */,
+				93DE546124BF6DC200B4924F /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		93DE546824BF6E5500B4924F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				93370DF824CBE7E4002371FD /* Custom UI */,
+				93DE547924C3A0E500B4924F /* Custom Views */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		93DE546924BF6E5F00B4924F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				93DE546B24BF6E7700B4924F /* Model Controllers */,
+				93DE546A24BF6E6900B4924F /* View Controllers */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		93DE546A24BF6E6900B4924F /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				93DE547124C1040F00B4924F /* FlashCollectionViewController.swift */,
+				93484A2D24C60EBF003850DD /* FlashcardViewController.swift */,
+				93DE547C24C3B39200B4924F /* FlashcardDetailViewController.swift */,
+				938215F424C7CA5000535B04 /* QuizViewController.swift */,
+				931441F424D1CB2E0005BE7B /* PencilViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		93DE546B24BF6E7700B4924F /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				93DE548024C4EC3600B4924F /* FlashpileController.swift */,
+				93DE546F24C103C000B4924F /* FlashcardController.swift */,
+			);
+			path = "Model Controllers";
+			sourceTree = "<group>";
+		};
+		93DE546C24BF6E8600B4924F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				93DE547E24C4EB4A00B4924F /* Flashpile.swift */,
+				93DE546D24BF744C00B4924F /* Flashcard.swift */,
+				93DE547324C1054500B4924F /* MultiplicationTables.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		93DE547924C3A0E500B4924F /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				93DE547A24C3A10200B4924F /* FlashpileCollectionViewCell.swift */,
+				93D6245324CC03F000A65642 /* FlashcardTableViewCell.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		93DE544F24BF6DBF00B4924F /* flashcards */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 93DE546424BF6DC200B4924F /* Build configuration list for PBXNativeTarget "flashcards" */;
+			buildPhases = (
+				93DE544C24BF6DBF00B4924F /* Sources */,
+				93DE544D24BF6DBF00B4924F /* Frameworks */,
+				93DE544E24BF6DBF00B4924F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = flashcards;
+			productName = flashcards;
+			productReference = 93DE545024BF6DBF00B4924F /* flashcards.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		93DE544824BF6DBF00B4924F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1150;
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = "Bryan Workman";
+				TargetAttributes = {
+					93DE544F24BF6DBF00B4924F = {
+						CreatedOnToolsVersion = 11.5;
+					};
+				};
+			};
+			buildConfigurationList = 93DE544B24BF6DBF00B4924F /* Build configuration list for PBXProject "flashcards" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 93DE544724BF6DBF00B4924F;
+			productRefGroup = 93DE545124BF6DBF00B4924F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				93DE544F24BF6DBF00B4924F /* flashcards */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		93DE544E24BF6DBF00B4924F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93DE546024BF6DC200B4924F /* LaunchScreen.storyboard in Resources */,
+				93DE545D24BF6DC200B4924F /* Assets.xcassets in Resources */,
+				93DE545B24BF6DBF00B4924F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		93DE544C24BF6DBF00B4924F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93DE548124C4EC3600B4924F /* FlashpileController.swift in Sources */,
+				93DE547D24C3B39200B4924F /* FlashcardDetailViewController.swift in Sources */,
+				93DE547224C1040F00B4924F /* FlashCollectionViewController.swift in Sources */,
+				938215F524C7CA5000535B04 /* QuizViewController.swift in Sources */,
+				93DE547B24C3A10200B4924F /* FlashpileCollectionViewCell.swift in Sources */,
+				93DE547024C103C000B4924F /* FlashcardController.swift in Sources */,
+				93DE547424C1054500B4924F /* MultiplicationTables.swift in Sources */,
+				93DE545424BF6DBF00B4924F /* AppDelegate.swift in Sources */,
+				93DE546E24BF744C00B4924F /* Flashcard.swift in Sources */,
+				93DE545624BF6DBF00B4924F /* SceneDelegate.swift in Sources */,
+				93370DFA24CBE81B002371FD /* FlashButton.swift in Sources */,
+				93DE547F24C4EB4A00B4924F /* Flashpile.swift in Sources */,
+				93D6245424CC03F000A65642 /* FlashcardTableViewCell.swift in Sources */,
+				93C6E5A824CE4D7400D613A3 /* FlashError.swift in Sources */,
+				93484A2E24C60EC0003850DD /* FlashcardViewController.swift in Sources */,
+				931441F524D1CB2E0005BE7B /* PencilViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		93DE545924BF6DBF00B4924F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				93DE545A24BF6DBF00B4924F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		93DE545E24BF6DC200B4924F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				93DE545F24BF6DC200B4924F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		93DE546224BF6DC200B4924F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		93DE546324BF6DC200B4924F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		93DE546524BF6DC200B4924F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = flashcards/flashcards.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CYXP9477KA;
+				INFOPLIST_FILE = flashcards/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bryanworkman.flashcards;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		93DE546624BF6DC200B4924F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = flashcards/flashcards.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CYXP9477KA;
+				INFOPLIST_FILE = flashcards/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bryanworkman.flashcards;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		93DE544B24BF6DBF00B4924F /* Build configuration list for PBXProject "flashcards" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				93DE546224BF6DC200B4924F /* Debug */,
+				93DE546324BF6DC200B4924F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		93DE546424BF6DC200B4924F /* Build configuration list for PBXNativeTarget "flashcards" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				93DE546524BF6DC200B4924F /* Debug */,
+				93DE546624BF6DC200B4924F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 93DE544824BF6DBF00B4924F /* Project object */;
+}
