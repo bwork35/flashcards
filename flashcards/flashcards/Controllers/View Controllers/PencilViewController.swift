@@ -13,7 +13,8 @@ class PencilViewController: UIViewController, PKCanvasViewDelegate, PKToolPicker
     
     //MARK: - Outlets
     @IBOutlet weak var canvasView: PKCanvasView!
-    @IBOutlet weak var moveDrawButtonLabel: UIBarButtonItem!
+    @IBOutlet weak var moveDrawButtonLabel: UIButton!
+    
     
     
     let canvasWidth: CGFloat = 768
@@ -29,7 +30,7 @@ class PencilViewController: UIViewController, PKCanvasViewDelegate, PKToolPicker
         canvasView.delegate = self
         canvasView.drawing = drawing
         
-        //self.navigationController?.isToolbarHidden = false
+        self.navigationController?.isToolbarHidden = false
         
         canvasView.alwaysBounceVertical = true
         canvasView.allowsFingerDrawing = true
@@ -75,7 +76,8 @@ class PencilViewController: UIViewController, PKCanvasViewDelegate, PKToolPicker
     }
     @IBAction func toggleMoveOrDraw(_ sender: Any) {
         canvasView.allowsFingerDrawing.toggle()
-        moveDrawButtonLabel.title = canvasView.allowsFingerDrawing ? "Move" : "Draw"
+        let title = canvasView.allowsFingerDrawing ? "Move" : "Draw"
+        moveDrawButtonLabel.setTitle(title, for: .normal)
     }
     
     //MARK: - Methods
