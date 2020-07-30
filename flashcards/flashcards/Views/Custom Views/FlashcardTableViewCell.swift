@@ -27,27 +27,27 @@ class FlashcardTableViewCell: UITableViewCell {
     func updateViews() {
         guard let flashcard = flashcard else {return}
         
-        if flashcard.front is String {
+        if let frontString = flashcard.frontString {
             frontLabel.isHidden = false
             frontImageView.isHidden = true
-            frontLabel.text = flashcard.front as? String
-        } else if flashcard.front is UIImage {
+            frontLabel.text = frontString
+        } else if let frontPhoto = flashcard.frontPhoto {
             frontLabel.isHidden = true
             frontImageView.isHidden = false
-            frontImageView.image = flashcard.front as? UIImage
+            frontImageView.image = frontPhoto
         } else {
             frontLabel.isHidden = true
             frontImageView.isHidden = true
         }
         
-        if flashcard.back is String {
+        if let backString = flashcard.backString {
             backLabel.isHidden = false
             backImageView.isHidden = true
-            backLabel.text = flashcard.back as? String
-        } else if flashcard.back is UIImage {
+            backLabel.text = backString
+        } else if let backPhoto = flashcard.backPhoto {
             backLabel.isHidden = true
             backImageView.isHidden = false
-            backImageView.image = flashcard.back as? UIImage
+            backImageView.image = backPhoto
         } else {
             backLabel.isHidden = true
             backImageView.isHidden = true

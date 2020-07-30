@@ -14,15 +14,13 @@ class PencilViewController: UIViewController, PKCanvasViewDelegate, PKToolPicker
     //MARK: - Outlets
     @IBOutlet weak var canvasView: PKCanvasView!
     @IBOutlet weak var moveDrawButtonLabel: UIButton!
+    @IBOutlet weak var ButtonView: UIView!
     
-    
-    
+    //MARK: - Properties
     let canvasWidth: CGFloat = 768
     let canvasOverscrollHeight: CGFloat = 500
-    
-
     var drawing = PKDrawing()
-   // private weak var toolBar: UIToolbar?
+    var isFrontPencil: Bool?
     
     //MARK: - Lifecycles
     override func viewDidLoad() {
@@ -59,14 +57,19 @@ class PencilViewController: UIViewController, PKCanvasViewDelegate, PKToolPicker
         updateContentSizeForDrawing()
         canvasView.contentOffset = CGPoint(x: 0, y: -canvasView.adjustedContentInset.top)
         
-        
     }
-    
-    
-   
     
     //MARK: - Actions
     @IBAction func saveButtonTapped(_ sender: Any) {
+        //ButtonView.isHidden = true
+//        guard let view = view else {return}
+//        guard let imgVC = self.storyboard?.instantiateViewController(identifier: "DetailVC") as? FlashcardDetailViewController else {return}
+//        let img = UIGraphicsImageRenderer(bounds: view.safeAreaLayoutGuide.layoutFrame).image { _ in
+//            view.drawHierarchy(in: canvasView.bounds, afterScreenUpdates: true)
+//        }
+//        imgVC.frontImg = img
+//        self.navigationController?.pushViewController(imgVC, animated: true)
+        
     }
     @IBAction func cancelButtonTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -115,14 +118,23 @@ class PencilViewController: UIViewController, PKCanvasViewDelegate, PKToolPicker
     
     
     
-    /*
+    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        ButtonView.isHidden = true
+        let img = UIGraphicsImageRenderer(bounds: view.safeAreaLayoutGuide.layoutFrame).image { _ in
+            view.drawHierarchy(in: canvasView.bounds, afterScreenUpdates: true)
+        }
+        guard let isFrontPencil = isFrontPencil else {return}
+        guard let destinationVC = segue.destination as? FlashcardDetailViewController else {return}
+        
+        if isFrontPencil {
+            destinationVC.frontImg = img
+        } else {
+            destinationVC.backImg = img
+        }
+        
     }
-    */
+    
 
 } //End of class

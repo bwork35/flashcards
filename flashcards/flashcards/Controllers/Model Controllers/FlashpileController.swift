@@ -24,7 +24,7 @@ class FlashpileController {
 //
 //        let colorTables = createColorTables()
 //        totalFlashpiles.append(colorTables)
-//
+
 //        let fruitTables = createFruitTables()
 //        totalFlashpiles.append(fruitTables)
 //    }
@@ -61,7 +61,7 @@ class FlashpileController {
 //        let flashpileToReturn = Flashpile(subject: "Color Tables", flashcards: colorTableToReturn)
 //        return flashpileToReturn
 //    }
-//
+
 //    func createFruitTables() -> Flashpile {
 //        var fruitCard: [Flashcard] = []
 //

@@ -150,9 +150,9 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func filterContentForSearchText(_ searchText: String) {
         filteredFlashcards = FlashcardController.shared.totalFlashcards.filter { (flashcard: Flashcard) -> Bool in
-            guard let front = flashcard.front as? String else {return false}
-            guard let back = flashcard.back as? String else {return false}
-            return front.lowercased().contains(searchText.lowercased()) || back.lowercased().contains(searchText.lowercased())
+            guard let frontString = flashcard.frontString else {return false}
+            guard let backString = flashcard.backString else {return false}
+            return frontString.lowercased().contains(searchText.lowercased()) || backString.lowercased().contains(searchText.lowercased())
         }
         tableView.reloadData()
     }

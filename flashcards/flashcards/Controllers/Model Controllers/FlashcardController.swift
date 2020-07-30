@@ -8,6 +8,7 @@
 
 import Foundation
 import CloudKit
+import UIKit.UIImage
 
 class FlashcardController {
     
@@ -21,13 +22,11 @@ class FlashcardController {
     //MARK: - CRUD Methods
     
     //Create
-    func createFlashcard(front: Any, back: Any, flashpile: Flashpile, completion: @escaping (Result<Flashcard, FlashError>) -> Void) {
+    func createFlashcard(frontString: String?, backString: String?, frontPhoto: UIImage?, backPhoto: UIImage?, flashpile: Flashpile, completion: @escaping (Result<Flashcard, FlashError>) -> Void) {
         
         let pileReference = CKRecord.Reference(recordID: flashpile.recordID, action: .none)
         
-        let newFlashcard = Flashcard(front: front, back: back, pileReference: pileReference)
-        
-        flashpile.flashcards.append(newFlashcard)
+        let newFlashcard = Flashcard(frontString: frontString, backString: backString, frontPhoto: frontPhoto, backPhoto: backPhoto, pileReference: pileReference)
         
         let cardRecord = CKRecord(flashcard: newFlashcard)
         
@@ -41,6 +40,7 @@ class FlashcardController {
                 let flashcard = Flashcard(ckRecord: record) else {return completion(.failure(.couldNotUnwrap))}
             
             print("Flashcard Successfully Saved")
+            flashpile.flashcards.append(flashcard)
             completion(.success(flashcard))
         }
     }

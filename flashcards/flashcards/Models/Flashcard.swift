@@ -11,51 +11,139 @@ import CloudKit
 
 struct CardStrings {
     static let recordTypeKey = "Flashcard"
-    fileprivate static let frontKey = "Front"
-    fileprivate static let backKey = "Back"
+    fileprivate static let frontKey = "FrontString"
+    fileprivate static let backKey = "BackString"
+    fileprivate static let frontAsset = "frontPhotoAsset"
+    fileprivate static let backAsset = "backPhotoAsset"
     static let pileReferenceKey = "flashpile"
 }
 
 class Flashcard {
     
-    var front: Any
-    var back: Any
+    var frontString: String?
+    var backString: String?
+    var frontPhoto: UIImage? {
+        get {
+            guard let frontPhotoData = frontPhotoData else {return nil}
+            return UIImage(data: frontPhotoData)
+        } set {
+            frontPhotoData = newValue?.jpegData(compressionQuality: 0.5)
+        }
+    }
+    var backPhoto: UIImage? {
+        get {
+            guard let backPhotoData = backPhotoData else {return nil}
+            return UIImage(data: backPhotoData)
+        } set {
+            backPhotoData = newValue?.jpegData(compressionQuality: 0.5)
+        }
+    }
+    var frontPhotoData: Data? = nil
+    var backPhotoData: Data? = nil
+    var frontPhotoAsset: CKAsset? {
+        get {
+            let tempDir = NSTemporaryDirectory()
+            let tempDirURL = URL(fileURLWithPath: tempDir)
+            let fileURL = tempDirURL.appendingPathComponent(UUID().uuidString).appendingPathExtension("jpg")
+            do {
+                guard let data = frontPhotoData else {return nil}
+                try data.write(to: fileURL)
+                return CKAsset(fileURL: fileURL)
+            } catch {
+                print(error)
+                return nil
+            }
+        }
+    }
+    var backPhotoAsset: CKAsset? {
+        get {
+            let tempDir = NSTemporaryDirectory()
+            let tempDirURL = URL(fileURLWithPath: tempDir)
+            let fileURL = tempDirURL.appendingPathComponent(UUID().uuidString).appendingPathExtension("jpg")
+            do {
+                guard let data = backPhotoData else {return nil}
+                try data.write(to: fileURL)
+                return CKAsset(fileURL: fileURL)
+            } catch {
+                print(error)
+                return nil
+            }
+        }
+    }
     
     let recordID: CKRecord.ID
     var pileReference: CKRecord.Reference?
     
-    init (front: Any, back: Any, recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString), pileReference: CKRecord.Reference?) {
-        self.front = front
-        self.back = back
+    init (frontString: String?, backString: String?, frontPhoto: UIImage?, backPhoto: UIImage?, recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString), pileReference: CKRecord.Reference?) {
+        self.frontString = frontString
+        self.backString = backString
         self.recordID = recordID
         self.pileReference = pileReference
+        self.frontPhoto = frontPhoto
+        self.backPhoto = backPhoto
     }
 } //End of class
 
 extension Flashcard {
     convenience init?(ckRecord: CKRecord) {
 
-        guard let front = ckRecord[CardStrings.frontKey] as? Any,
-            let back = ckRecord[CardStrings.backKey] as? Any else {return nil}
+        let frontString = ckRecord[CardStrings.frontKey] as? String
+        let backString = ckRecord[CardStrings.backKey] as? String
         
         let pileReference = ckRecord[CardStrings.pileReferenceKey] as? CKRecord.Reference
-
-        self.init(front: front, back: back, recordID: ckRecord.recordID, pileReference: pileReference)
+        
+        var frontPhoto: UIImage?
+        
+        if let frontAsset = ckRecord[CardStrings.frontAsset] as? CKAsset {
+            do {
+                guard let url = frontAsset.fileURL else {return nil}
+                let data = try Data(contentsOf: url)
+                frontPhoto = UIImage(data: data)
+            } catch {
+                print("Could not transfrom asset to data.")
+            }
+        }
+        
+        var backPhoto: UIImage?
+        
+        if let backAsset = ckRecord[CardStrings.backAsset] as? CKAsset {
+            do {
+                guard let url = backAsset.fileURL else {return nil}
+                let data = try Data(contentsOf: url)
+                backPhoto = UIImage(data: data)
+            } catch {
+                print("Could not transfrom asset to data.")
+            }
+        }
+        
+        self.init(frontString: frontString, backString: backString, frontPhoto: frontPhoto, backPhoto: backPhoto, pileReference: pileReference)
     }
 } //End of extension
 
 extension CKRecord {
     convenience init(flashcard: Flashcard) {
         self.init(recordType: CardStrings.recordTypeKey, recordID: flashcard.recordID)
-
-        self.setValuesForKeys([
-            CardStrings.frontKey : flashcard.front,
-            CardStrings.backKey : flashcard.back
-        ])
+        
+        if let frontString = flashcard.frontString {
+            self.setValue(frontString, forKey: CardStrings.frontKey)
+        }
+        
+        if let backString = flashcard.backString {
+            self.setValue(backString, forKey: CardStrings.backKey)
+        }
+        
+        if let frontAsset = flashcard.frontPhotoAsset {
+            self.setValue(frontAsset, forKey: CardStrings.frontAsset)
+        }
+        
+        if let backAsset = flashcard.backPhotoAsset {
+            self.setValue(backAsset, forKey: CardStrings.backAsset)
+        }
         
         if let reference = flashcard.pileReference {
             self.setValue(reference, forKey: CardStrings.pileReferenceKey)
         }
+        
     }
 } //End of extension
 

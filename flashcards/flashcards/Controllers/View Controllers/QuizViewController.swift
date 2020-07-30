@@ -41,9 +41,11 @@ class QuizViewController: UIViewController {
     //MARK: - Actions
     @IBAction func answerButtonTapped(_ sender: Any) {
     
-        if quizCards[quizCount].back is String {
-           quizBackLabel.isHidden = false
-        } else if quizCards[quizCount].back is UIImage {
+        if quizCards[quizCount].backString != nil {
+            quizBackLabel.isHidden = false
+            quizBackImageView.isHidden = true
+        } else if quizCards[quizCount].backPhoto != nil {
+            quizBackLabel.isHidden = true
             quizBackImageView.isHidden = false
         }
         answerButtonLabel.isEnabled = false
@@ -70,26 +72,26 @@ class QuizViewController: UIViewController {
     //MARK: Helper Methods
     func updateViews() {
         
-        if quizCards[quizCount].front is String {
+        if quizCards[quizCount].frontString != nil {
             quizFrontLabel.isHidden = false
             quizFrontImageView.isHidden = true
-            guard let frontText = quizCards[quizCount].front as? String else {return}
+            guard let frontText = quizCards[quizCount].frontString else {return}
             quizFrontLabel.text = frontText
-        } else if quizCards[quizCount].front is UIImage {
+        } else if quizCards[quizCount].frontPhoto != nil {
             quizFrontLabel.isHidden = true
             quizFrontImageView.isHidden = false
-            guard let frontImage = quizCards[quizCount].front as? UIImage else {return}
+            guard let frontImage = quizCards[quizCount].frontPhoto else {return}
             quizFrontImageView.image = frontImage
         } else {
             quizFrontLabel.isHidden = true
             quizFrontImageView.isHidden = true
         }
         
-        if quizCards[quizCount].back is String {
-            guard let backText = quizCards[quizCount].back as? String else {return}
+        if quizCards[quizCount].backString != nil {
+            guard let backText = quizCards[quizCount].backString else {return}
             quizBackLabel.text = backText
-        } else if quizCards[quizCount].back is UIImage {
-            guard let backImage = quizCards[quizCount].back as? UIImage else {return}
+        } else if quizCards[quizCount].backPhoto != nil {
+            guard let backImage = quizCards[quizCount].backPhoto else {return}
             quizBackImageView.image = backImage
         } else {
             quizBackLabel.isHidden = true

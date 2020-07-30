@@ -8,12 +8,6 @@
 
 import UIKit
 
-//enum selectedFlashButtonType {
-//    case text
-//    case picture
-//    case pencil
-//}
-
 class FlashcardDetailViewController: UIViewController, UINavigationControllerDelegate {
     
     //MARK: - Outlets
@@ -29,10 +23,24 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
     @IBOutlet weak var backTextButtonOutlet: UIButton!
     @IBOutlet weak var backPictureButtonOutlet: UIButton!
     @IBOutlet weak var backPencilButtonOutlet: UIButton!
+    @IBOutlet weak var frontPencilKitImageView: UIImageView!
+    @IBOutlet weak var backPencilKitImageView: UIImageView!
     
     //MARK: - Properties
     var flashcard: Flashcard?
     var flashpile: Flashpile?
+    
+    var frontImg = UIImage() {
+        didSet {
+            frontPencilIsSelected = true
+        }
+    }
+    var backImg = UIImage() {
+        didSet {
+            backPencilIsSelected = true
+        }
+    }
+    var isFrontPencil = true
     
     var frontTextIsSelected = false
     var frontPictureIsSelected = false
@@ -43,98 +51,88 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
     var frontImagePickerSelected = true
     
     //MARK: - Lifecycles
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        frontPencilKitImageView.image = frontImg
+        backPencilKitImageView.image = backImg
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let flashcard = flashcard {
-            print("yes")
-        } else {
-            print("no")
-        }
         if let flashcard = flashcard {
             updateViews(flashcard: flashcard)
         } else {
             frontTextSelected()
             backTextSelected()
         }
-//        if let flashpile = flashpile {
-//            print("flashpile exists")
-//        } else {
-//            FlashpileController.shared.createFlashpile(subject: "") { (result) in
-//                DispatchQueue.main.async {
-//                    switch result {
-//                    case .success(_):
-//                        self.flashpile = FlashpileController.shared.totalFlashpiles.last
-//                        print("We fuckin did it!")
-//                        print(self.flashpile?.subject)
-//                    case .failure(let error):
-//                        print("There was an error creating a new flashpile -- \(error) -- \(error.localizedDescription)")
-//                    }
-//                }
-//            }
-//        }
     }
     
     //MARK: - Actions
+    @IBAction func unwindToDetail(_ sender: UIStoryboardSegue) {}
+    
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let flashpile = flashpile else {return}
-            var front: Any
-            var back: Any
+        var frontString: String?
+        var backString: String?
+        var frontPhoto: UIImage?
+        var backPhoto: UIImage?
         
-            if frontTextIsSelected {
-                guard let frontText = frontTextField.text, !frontText.isEmpty else {return}
-                front = frontText
-            } else if frontPictureIsSelected {
-                guard let frontImage = frontImageView.image else {return}
-                front = frontImage
-            } else {
-                front = ""
-            }
-            
-            if backTextIsSelected {
-                guard let backText = backTextField.text, !backText.isEmpty else {return}
-                back = backText
-            } else if backPictureIsSelected {
-                guard let backImage = backImageView.image else {return}
-                back = backImage
-            } else {
-                back = ""
-            }
-            
-            if let flashcard = flashcard {
-                print("it was a fc")
-                flashcard.front = front
-                flashcard.back = back
-                FlashcardController.shared.updateFlashcard(flashcard: flashcard) { (result) in
-                    DispatchQueue.main.async {
-                        switch result {
-                        case .success(_):
-                            print("updated :)")
-                        case .failure(let error):
-                            print("There was an error updating the flashcard -- \(error) -- \(error.localizedDescription)")
-                        }
-                    }
-                }
-            } else {
-                FlashcardController.shared.createFlashcard(front: front, back: back, flashpile: flashpile) { (result) in
-                    DispatchQueue.main.async {
-                        switch result {
-                        case .success(_):
-                            //self.navigationController?.popViewController(animated: true)
-                            print("saved flashcard")
-                             
-                        case .failure(let error):
-                            print("There was an error creating flashcard -- \(error) -- \(error.localizedDescription)")
-                        }
+        if frontTextIsSelected {
+            guard let frontText = frontTextField.text, !frontText.isEmpty else {return}
+            frontString = frontText
+        } else if frontPictureIsSelected {
+            guard let frontImage = frontImageView.image else {return}
+            frontPhoto = frontImage
+        } else {
+            guard let frontImage = frontPencilKitImageView.image else {return}
+            frontPhoto = frontImage
+        }
+        
+        if backTextIsSelected {
+            guard let backText = backTextField.text, !backText.isEmpty else {return}
+            backString = backText
+        } else if backPictureIsSelected {
+            guard let backImage = backImageView.image else {return}
+            backPhoto = backImage
+        } else {
+            guard let backImage = backPencilKitImageView.image else {return}
+            backPhoto = backImage
+        }
+        
+        if let flashcard = flashcard {
+            flashcard.frontString = frontString
+            flashcard.backString = backString
+            flashcard.frontPhoto = frontPhoto
+            flashcard.backPhoto = backPhoto
+            FlashcardController.shared.updateFlashcard(flashcard: flashcard) { (result) in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(_):
+                        print("updated :)")
+                    case .failure(let error):
+                        print("There was an error updating the flashcard -- \(error) -- \(error.localizedDescription)")
                     }
                 }
             }
+        } else {
+            FlashcardController.shared.createFlashcard(frontString: frontString, backString: backString, frontPhoto: frontPhoto, backPhoto: backPhoto, flashpile: flashpile) { (result) in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(_):
+                        //self.navigationController?.popViewController(animated: true)
+                        print("saved flashcard")
+                        
+                    case .failure(let error):
+                        print("There was an error creating flashcard -- \(error) -- \(error.localizedDescription)")
+                    }
+                }
+            }
+        }
         
         self.navigationController?.popViewController(animated: true)
     }
     
-    func saveButtonActions() {
-        
-    }
     @IBAction func cancelButtonTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -145,6 +143,7 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         frontPictureSelected()
     }
     @IBAction func frontPencilButtonTapped(_ sender: Any) {
+        isFrontPencil = true
         frontPencilSelected()
     }
     @IBAction func backTextButtonTapped(_ sender: Any) {
@@ -154,6 +153,7 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         backPictureSelected()
     }
     @IBAction func backPencilButtonTapped(_ sender: Any) {
+        isFrontPencil = false
         backPencilSelected()
     }
     @IBAction func frontSelectImageTapped(_ sender: Any) {
@@ -211,26 +211,28 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
     
     //MARK: - Helper Methods
     func updateViews(flashcard: Flashcard) {
-        if flashcard.front is String {
+        if let frontString = flashcard.frontString {
             frontTextSelected()
-            frontTextField.text = flashcard.front as? String
-        } else if flashcard.front is UIImage {
+            frontTextField.text = frontString
+        } else if let frontPhoto = flashcard.frontPhoto {
             frontPictureSelected()
             frontSelectImageLabel.setTitle("", for: .normal)
-            frontImageView.image = flashcard.front as? UIImage
+            frontImageView.image = frontPhoto
         } else {
             frontPencilSelected()
+            frontPencilKitImageView.image = flashcard.frontPhoto
         }
         
-        if flashcard.back is String {
+        if let backString = flashcard.backString {
             backTextSelected()
-            backTextField.text = flashcard.back as? String
-        } else if flashcard.back is UIImage {
+            backTextField.text = backString
+        } else if let backPhoto = flashcard.backPhoto {
             backPictureSelected()
             backSelectImageLabel.setTitle("", for: .normal)
-            backImageView.image = flashcard.back as? UIImage
+            backImageView.image = backPhoto
         } else {
             backPencilSelected()
+            backPencilKitImageView.image = flashcard.backPhoto
         }
         
     }
@@ -243,8 +245,9 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         frontTextField.isHidden = false
         frontImageView.isHidden = true
         frontSelectImageLabel.isHidden = true
+        frontPencilKitImageView.isHidden = true
         
-//        frontTextButtonOutlet = FlashSelectTypeButtonBold()
+        //        frontTextButtonOutlet = FlashSelectTypeButtonBold()
         frontTextButtonOutlet.tintColor = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
         frontTextButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 25.0, weight: .bold), forImageIn: .normal)
         frontPictureButtonOutlet.tintColor = .systemBlue
@@ -261,6 +264,7 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         frontTextField.isHidden = true
         frontImageView.isHidden = false
         frontSelectImageLabel.isHidden = false
+        frontPencilKitImageView.isHidden = true
         
         frontTextButtonOutlet.tintColor = .systemBlue
         frontTextButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 22.0, weight: .unspecified), forImageIn: .normal)
@@ -278,6 +282,7 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         frontTextField.isHidden = true
         frontImageView.isHidden = true
         frontSelectImageLabel.isHidden = true
+        frontPencilKitImageView.isHidden = false
         
         frontTextButtonOutlet.tintColor = .systemBlue
         frontTextButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 22.0, weight: .unspecified), forImageIn: .normal)
@@ -295,58 +300,64 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         backTextField.isHidden = false
         backImageView.isHidden = true
         backSelectImageLabel.isHidden = true
+        backPencilKitImageView.isHidden = true
         
-            backTextButtonOutlet.tintColor = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
-            backTextButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 25.0, weight: .bold), forImageIn: .normal)
-            backPictureButtonOutlet.tintColor = .systemBlue
-            backPictureButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 21.0, weight: .unspecified), forImageIn: .normal
-            )
-            backPencilButtonOutlet.tintColor = .systemBlue
-            backPencilButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 22.0, weight: .unspecified), forImageIn: .normal)
-        }
-        func backPictureSelected() {
-            backTextIsSelected = false
-            backPictureIsSelected = true
-            backPencilIsSelected = false
-            
-            backTextField.isHidden = true
-            backImageView.isHidden = false
-            backSelectImageLabel.isHidden = false
-            
-            backTextButtonOutlet.tintColor = .systemBlue
-            backTextButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 22.0, weight: .unspecified), forImageIn: .normal)
-            backPictureButtonOutlet.tintColor = #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)
-            backPictureButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 25.0, weight: .bold), forImageIn: .normal
-            )
-            backPencilButtonOutlet.tintColor = .systemBlue
-            backPencilButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 22.0, weight: .unspecified), forImageIn: .normal)
-        }
-        func backPencilSelected() {
-            backTextIsSelected = false
-            backPictureIsSelected = false
-            backPencilIsSelected = true
-            
-            backTextField.isHidden = true
-            backImageView.isHidden = true
-            backSelectImageLabel.isHidden = true
-            
-            backTextButtonOutlet.tintColor = .systemBlue
-            backTextButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 22.0, weight: .unspecified), forImageIn: .normal)
-            backPictureButtonOutlet.tintColor = .systemBlue
-            backPictureButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 21.0, weight: .unspecified), forImageIn: .normal
-            )
-            backPencilButtonOutlet.tintColor = #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)
-            backPencilButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 25.0, weight: .bold), forImageIn: .normal)
-        }
+        backTextButtonOutlet.tintColor = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
+        backTextButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 25.0, weight: .bold), forImageIn: .normal)
+        backPictureButtonOutlet.tintColor = .systemBlue
+        backPictureButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 21.0, weight: .unspecified), forImageIn: .normal
+        )
+        backPencilButtonOutlet.tintColor = .systemBlue
+        backPencilButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 22.0, weight: .unspecified), forImageIn: .normal)
+    }
+    func backPictureSelected() {
+        backTextIsSelected = false
+        backPictureIsSelected = true
+        backPencilIsSelected = false
+        
+        backTextField.isHidden = true
+        backImageView.isHidden = false
+        backSelectImageLabel.isHidden = false
+        backPencilKitImageView.isHidden = true
+        
+        backTextButtonOutlet.tintColor = .systemBlue
+        backTextButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 22.0, weight: .unspecified), forImageIn: .normal)
+        backPictureButtonOutlet.tintColor = #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)
+        backPictureButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 25.0, weight: .bold), forImageIn: .normal
+        )
+        backPencilButtonOutlet.tintColor = .systemBlue
+        backPencilButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 22.0, weight: .unspecified), forImageIn: .normal)
+    }
+    func backPencilSelected() {
+        backTextIsSelected = false
+        backPictureIsSelected = false
+        backPencilIsSelected = true
+        
+        backTextField.isHidden = true
+        backImageView.isHidden = true
+        backSelectImageLabel.isHidden = true
+        backPencilKitImageView.isHidden = false
+        
+        backTextButtonOutlet.tintColor = .systemBlue
+        backTextButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 22.0, weight: .unspecified), forImageIn: .normal)
+        backPictureButtonOutlet.tintColor = .systemBlue
+        backPictureButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 21.0, weight: .unspecified), forImageIn: .normal
+        )
+        backPencilButtonOutlet.tintColor = #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)
+        backPencilButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 25.0, weight: .bold), forImageIn: .normal)
+    }
     
     
     //MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //saveButtonActions()
-        
-        
         print("segue")
-    
+        
+        if segue.identifier == "toPencilKitView" {
+            guard let destinationVC = segue.destination as? PencilViewController else {return}
+            destinationVC.isFrontPencil = isFrontPencil
+        }
+        
         //guard let flashpile = flashpile else {return}
         //print(flashpile.flashcards.count)
         //guard let destinationVC = segue.destination as? FlashcardViewController else {return}

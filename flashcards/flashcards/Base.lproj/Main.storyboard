@@ -516,7 +516,7 @@
                                                         </state>
                                                         <connections>
                                                             <action selector="frontPencilButtonTapped:" destination="JKu-Cx-uhV" eventType="touchUpInside" id="Qsl-x4-Pxk"/>
-                                                            <segue destination="3vv-W8-IG8" kind="show" id="PLv-KW-Da8"/>
+                                                            <segue destination="3vv-W8-IG8" kind="show" identifier="toPencilKitView" id="PLv-KW-Da8"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -555,17 +555,26 @@
                                                     <action selector="frontSelectImageTapped:" destination="JKu-Cx-uhV" eventType="touchUpInside" id="zS0-ru-2sX"/>
                                                 </connections>
                                             </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hGz-jE-zKu">
+                                                <rect key="frame" x="67" y="0.0" width="135" height="179"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="hGz-jE-zKu" secondAttribute="height" multiplier="3:4" id="UQH-zN-GxC"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="Hwi-Jr-t6H" firstAttribute="width" secondItem="1BV-ur-IZg" secondAttribute="width" multiplier="0.5" id="3Gg-6A-tMw"/>
+                                            <constraint firstItem="hGz-jE-zKu" firstAttribute="centerX" secondItem="1BV-ur-IZg" secondAttribute="centerX" id="3nz-tm-qez"/>
                                             <constraint firstItem="Hwi-Jr-t6H" firstAttribute="centerX" secondItem="1BV-ur-IZg" secondAttribute="centerX" id="Itd-2C-L6a"/>
                                             <constraint firstItem="x7W-bH-Qz4" firstAttribute="leading" secondItem="1BV-ur-IZg" secondAttribute="leading" id="L5L-fO-ezA"/>
                                             <constraint firstItem="x7W-bH-Qz4" firstAttribute="top" secondItem="1BV-ur-IZg" secondAttribute="top" id="Nuc-9e-kFX"/>
                                             <constraint firstItem="LRa-Uv-zZu" firstAttribute="centerX" secondItem="1BV-ur-IZg" secondAttribute="centerX" id="VQJ-5d-tXH"/>
                                             <constraint firstItem="LRa-Uv-zZu" firstAttribute="top" secondItem="1BV-ur-IZg" secondAttribute="top" id="X2z-ww-WUa"/>
                                             <constraint firstAttribute="trailing" secondItem="x7W-bH-Qz4" secondAttribute="trailing" id="XXm-J0-1Sj"/>
+                                            <constraint firstItem="hGz-jE-zKu" firstAttribute="top" secondItem="1BV-ur-IZg" secondAttribute="top" id="bJZ-Vx-q2s"/>
                                             <constraint firstItem="Hwi-Jr-t6H" firstAttribute="top" secondItem="1BV-ur-IZg" secondAttribute="top" id="hgf-dh-lCC"/>
+                                            <constraint firstItem="hGz-jE-zKu" firstAttribute="width" secondItem="1BV-ur-IZg" secondAttribute="width" multiplier="0.5" id="iSl-m6-xCW"/>
                                             <constraint firstItem="LRa-Uv-zZu" firstAttribute="width" secondItem="1BV-ur-IZg" secondAttribute="width" multiplier="0.5" id="n2R-kO-372"/>
                                         </constraints>
                                     </view>
@@ -619,7 +628,7 @@
                                                         </state>
                                                         <connections>
                                                             <action selector="backPencilButtonTapped:" destination="JKu-Cx-uhV" eventType="touchUpInside" id="wXw-tz-qPI"/>
-                                                            <segue destination="3vv-W8-IG8" kind="show" id="bGC-pO-uf3"/>
+                                                            <segue destination="3vv-W8-IG8" kind="show" identifier="toPencilKitView" id="bGC-pO-uf3"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -658,9 +667,18 @@
                                                     <action selector="backSelectImageTapped:" destination="JKu-Cx-uhV" eventType="touchUpInside" id="cG3-zv-dEO"/>
                                                 </connections>
                                             </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fR4-4V-yHP">
+                                                <rect key="frame" x="67" y="0.0" width="135" height="179"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="fR4-4V-yHP" secondAttribute="height" multiplier="3:4" id="DxB-f1-rUw"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
+                                            <constraint firstItem="fR4-4V-yHP" firstAttribute="width" secondItem="HuY-j7-0qq" secondAttribute="width" multiplier="0.5" id="4bS-9I-sMo"/>
+                                            <constraint firstItem="fR4-4V-yHP" firstAttribute="centerX" secondItem="HuY-j7-0qq" secondAttribute="centerX" id="4nZ-gS-jbf"/>
+                                            <constraint firstItem="fR4-4V-yHP" firstAttribute="top" secondItem="HuY-j7-0qq" secondAttribute="top" id="Gnp-EA-vWo"/>
                                             <constraint firstItem="ovK-dj-21C" firstAttribute="leading" secondItem="HuY-j7-0qq" secondAttribute="leading" id="bte-AJ-r3P"/>
                                             <constraint firstItem="G12-Gl-393" firstAttribute="width" secondItem="HuY-j7-0qq" secondAttribute="width" multiplier="0.5" id="hWZ-f8-ccS"/>
                                             <constraint firstItem="ovK-dj-21C" firstAttribute="top" secondItem="HuY-j7-0qq" secondAttribute="top" id="hyD-w3-KWj"/>
@@ -708,12 +726,14 @@
                     <connections>
                         <outlet property="backImageView" destination="G12-Gl-393" id="0ll-Dy-MQ0"/>
                         <outlet property="backPencilButtonOutlet" destination="FA2-2S-QRB" id="fQu-T9-u6v"/>
+                        <outlet property="backPencilKitImageView" destination="fR4-4V-yHP" id="WwL-Wu-Jcm"/>
                         <outlet property="backPictureButtonOutlet" destination="xPT-mF-95D" id="PQK-Rz-zNS"/>
                         <outlet property="backSelectImageLabel" destination="fB5-ht-scW" id="QTi-F4-4S7"/>
                         <outlet property="backTextButtonOutlet" destination="miS-dE-S1C" id="p2r-Os-9gI"/>
                         <outlet property="backTextField" destination="ovK-dj-21C" id="C7Z-Wb-DK9"/>
                         <outlet property="frontImageView" destination="LRa-Uv-zZu" id="FpL-x0-o56"/>
                         <outlet property="frontPencilButtonOutlet" destination="CL0-bZ-12s" id="kqq-AS-P70"/>
+                        <outlet property="frontPencilKitImageView" destination="hGz-jE-zKu" id="5mC-ST-Ppl"/>
                         <outlet property="frontPictureButtonOutlet" destination="WFC-c1-gRk" id="S7F-cX-cnm"/>
                         <outlet property="frontSelectImageLabel" destination="Hwi-Jr-t6H" id="mSe-WU-tZm"/>
                         <outlet property="frontTextButtonOutlet" destination="5qx-Se-M9K" id="MXW-3w-xBt"/>
@@ -736,7 +756,7 @@
                                 <rect key="frame" x="0.0" y="121" width="414" height="692"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g18-vV-SuI">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g18-vV-SuI" userLabel="ButtonView">
                                 <rect key="frame" x="0.0" y="88" width="414" height="33"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="J0m-Qr-a8n">
@@ -793,8 +813,8 @@
                             <constraint firstItem="GK8-fz-z1a" firstAttribute="top" secondItem="g18-vV-SuI" secondAttribute="bottom" id="Ezf-4o-hEJ"/>
                             <constraint firstItem="oLt-Qd-RYW" firstAttribute="bottom" secondItem="GK8-fz-z1a" secondAttribute="bottom" id="N6t-3U-3Id"/>
                             <constraint firstAttribute="trailing" secondItem="g18-vV-SuI" secondAttribute="trailing" id="OgG-dJ-7Mz"/>
-                            <constraint firstAttribute="trailing" secondItem="GK8-fz-z1a" secondAttribute="trailing" id="UOf-ES-icz"/>
-                            <constraint firstItem="GK8-fz-z1a" firstAttribute="leading" secondItem="vA6-wN-E37" secondAttribute="leading" id="x9E-VV-L6S"/>
+                            <constraint firstItem="oLt-Qd-RYW" firstAttribute="trailing" secondItem="GK8-fz-z1a" secondAttribute="trailing" id="UOf-ES-icz"/>
+                            <constraint firstItem="GK8-fz-z1a" firstAttribute="leading" secondItem="oLt-Qd-RYW" secondAttribute="leading" id="x9E-VV-L6S"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oLt-Qd-RYW"/>
                     </view>
@@ -807,17 +827,19 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="xdu-VE-zuN">
                             <connections>
-                                <action selector="saveButtonTapped:" destination="3vv-W8-IG8" id="Lz4-Zl-fsP"/>
+                                <segue destination="rUn-nC-2sR" kind="unwind" unwindAction="unwindToDetail:" id="GR6-Gb-rP9"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="ButtonView" destination="g18-vV-SuI" id="3tL-4w-7hc"/>
                         <outlet property="canvasView" destination="GK8-fz-z1a" id="oJI-2A-NH5"/>
                         <outlet property="moveDrawButtonLabel" destination="4N7-gj-sxt" id="EnP-1z-277"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qbp-dP-gZC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="rUn-nC-2sR" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4147.826086956522" y="166.74107142857142"/>
         </scene>

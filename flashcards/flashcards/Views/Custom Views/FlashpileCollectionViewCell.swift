@@ -48,17 +48,17 @@ class FlashpileCollectionViewCell: UICollectionViewCell {
         flashpileNameLabel.text = flashpile.subject
         if flashpile.flashcards.count != 0 {
             guard let flashcard = flashpile.flashcards.first else {return}
-            if flashcard.front is String {
+            if let frontString = flashcard.frontString {
                 flashpileCoverLabel.isHidden = false
                 flashpileCoverImageView.isHidden = true
                 
-                let coverTitle = flashcard.front as? String
+                let coverTitle = frontString
                 flashpileCoverLabel.text = coverTitle
-            } else if flashcard.front is UIImage {
+            } else if let frontPhoto = flashcard.frontPhoto {
                 flashpileCoverLabel.isHidden = true
                 flashpileCoverImageView.isHidden = false
                 
-                let coverImage = flashcard.front as? UIImage
+                let coverImage = frontPhoto
                 flashpileCoverImageView.image = coverImage
             } else {
                 flashpileCoverLabel.isHidden = true
