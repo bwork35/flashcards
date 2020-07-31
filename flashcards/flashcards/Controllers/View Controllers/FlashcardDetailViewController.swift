@@ -11,13 +11,13 @@ import UIKit
 class FlashcardDetailViewController: UIViewController, UINavigationControllerDelegate {
     
     //MARK: - Outlets
-    @IBOutlet weak var frontTextField: UITextField!
+    @IBOutlet weak var frontTextView: UITextView!
     @IBOutlet weak var frontImageView: UIImageView!
     @IBOutlet weak var frontSelectImageLabel: UIButton!
     @IBOutlet weak var frontTextButtonOutlet: UIButton!
     @IBOutlet weak var frontPictureButtonOutlet: UIButton!
     @IBOutlet weak var frontPencilButtonOutlet: UIButton!
-    @IBOutlet weak var backTextField: UITextField!
+    @IBOutlet weak var backTextView: UITextView!
     @IBOutlet weak var backImageView: UIImageView!
     @IBOutlet weak var backSelectImageLabel: UIButton!
     @IBOutlet weak var backTextButtonOutlet: UIButton!
@@ -79,7 +79,7 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         var backPhoto: UIImage?
         
         if frontTextIsSelected {
-            guard let frontText = frontTextField.text, !frontText.isEmpty else {return}
+            guard let frontText = frontTextView.text, !frontText.isEmpty else {return}
             frontString = frontText
         } else if frontPictureIsSelected {
             guard let frontImage = frontImageView.image else {return}
@@ -90,7 +90,7 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         }
         
         if backTextIsSelected {
-            guard let backText = backTextField.text, !backText.isEmpty else {return}
+            guard let backText = backTextView.text, !backText.isEmpty else {return}
             backString = backText
         } else if backPictureIsSelected {
             guard let backImage = backImageView.image else {return}
@@ -213,7 +213,7 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
     func updateViews(flashcard: Flashcard) {
         if let frontString = flashcard.frontString {
             frontTextSelected()
-            frontTextField.text = frontString
+            frontTextView.text = frontString
         } else if let frontPhoto = flashcard.frontPhoto {
             frontPictureSelected()
             frontSelectImageLabel.setTitle("", for: .normal)
@@ -225,7 +225,7 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         
         if let backString = flashcard.backString {
             backTextSelected()
-            backTextField.text = backString
+            backTextView.text = backString
         } else if let backPhoto = flashcard.backPhoto {
             backPictureSelected()
             backSelectImageLabel.setTitle("", for: .normal)
@@ -242,7 +242,7 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         frontPictureIsSelected = false
         frontPencilIsSelected = false
         
-        frontTextField.isHidden = false
+        frontTextView.isHidden = false
         frontImageView.isHidden = true
         frontSelectImageLabel.isHidden = true
         frontPencilKitImageView.isHidden = true
@@ -261,7 +261,7 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         frontPictureIsSelected = true
         frontPencilIsSelected = false
         
-        frontTextField.isHidden = true
+        frontTextView.isHidden = true
         frontImageView.isHidden = false
         frontSelectImageLabel.isHidden = false
         frontPencilKitImageView.isHidden = true
@@ -279,7 +279,7 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         frontPictureIsSelected = false
         frontPencilIsSelected = true
         
-        frontTextField.isHidden = true
+        frontTextView.isHidden = true
         frontImageView.isHidden = true
         frontSelectImageLabel.isHidden = true
         frontPencilKitImageView.isHidden = false
@@ -297,7 +297,7 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         backPictureIsSelected = false
         backPencilIsSelected = false
         
-        backTextField.isHidden = false
+        backTextView.isHidden = false
         backImageView.isHidden = true
         backSelectImageLabel.isHidden = true
         backPencilKitImageView.isHidden = true
@@ -315,7 +315,7 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         backPictureIsSelected = true
         backPencilIsSelected = false
         
-        backTextField.isHidden = true
+        backTextView.isHidden = true
         backImageView.isHidden = false
         backSelectImageLabel.isHidden = false
         backPencilKitImageView.isHidden = true
@@ -333,7 +333,7 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         backPictureIsSelected = false
         backPencilIsSelected = true
         
-        backTextField.isHidden = true
+        backTextView.isHidden = true
         backImageView.isHidden = true
         backSelectImageLabel.isHidden = true
         backPencilKitImageView.isHidden = false

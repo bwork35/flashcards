@@ -53,8 +53,6 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         fetchFlashcards()
-        //updateFlashArray()
-        tableView.reloadData()
     }
     
     //MARK: - Actions
@@ -77,32 +75,6 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
             }
         }
-        
-//        if let flashpile = flashpile {
-//
-//            FlashpileController.shared.updateFlashpile(flashpile: flashpile) { (result) in
-//                DispatchQueue.main.async {
-//                    switch result {
-//                    case .success(_):
-//                        self.navigationController?.popViewController(animated: true)
-//                    case .failure(let error):
-//                        print("There was an error updating the flashpile -- \(error) -- \(error.localizedDescription)")
-//                    }
-//                }
-//            }
-//        } else {
-//
-//            FlashpileController.shared.createFlashpile(subject: text, flashcards: FlashcardController.shared.totalFlashcards) { (result) in
-//                DispatchQueue.main.async {
-//                    switch result {
-//                    case .success(_):
-//                        self.navigationController?.popViewController(animated: true)
-//                    case .failure(let error):
-//                        print("There was an error creating the flashpile -- \(error) -- \(error.localizedDescription)")
-//                    }
-//                }
-//            }
-//        }
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
@@ -117,7 +89,6 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
             DispatchQueue.main.async {
                 switch result {
                 case .success(_):
-                    print("fetchdFC")
                     self.tableView.reloadData()
                 case .failure(let error):
                     print("There was an error fetching flashcards for this flashpile -- \(error) -- \(error.localizedDescription)")
@@ -195,8 +166,8 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
                     switch result {
                     case .success(_):
                         flashpile.flashcards.remove(at: index)
-                        self.fetchFlashcards()
-                        
+                       // self.fetchFlashcards()
+                        self.tableView.reloadData()
                     case .failure(let error):
                         print("There was an error deleting this flashcard -- \(error) -- \(error.localizedDescription)")
                     }
@@ -209,11 +180,6 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let flashpile = flashpile {
-            print("yes")
-        } else {
-            print("no")
-        }
         
         if segue.identifier == "toDetailVC" {
             guard let indexPath = tableView.indexPathForSelectedRow else {return}

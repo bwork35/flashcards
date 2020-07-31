@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		931441F524D1CB2E0005BE7B /* PencilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931441F424D1CB2E0005BE7B /* PencilViewController.swift */; };
-		93370DFA24CBE81B002371FD /* FlashButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93370DF924CBE81B002371FD /* FlashButton.swift */; };
 		93484A2E24C60EC0003850DD /* FlashcardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93484A2D24C60EBF003850DD /* FlashcardViewController.swift */; };
 		938215F324C7C79E00535B04 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 938215F224C7C79E00535B04 /* CloudKit.framework */; };
 		938215F524C7CA5000535B04 /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938215F424C7CA5000535B04 /* QuizViewController.swift */; };
@@ -31,7 +30,6 @@
 
 /* Begin PBXFileReference section */
 		931441F424D1CB2E0005BE7B /* PencilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PencilViewController.swift; sourceTree = "<group>"; };
-		93370DF924CBE81B002371FD /* FlashButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashButton.swift; sourceTree = "<group>"; };
 		93484A2D24C60EBF003850DD /* FlashcardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardViewController.swift; sourceTree = "<group>"; };
 		938215F024C7C78E00535B04 /* flashcards.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = flashcards.entitlements; sourceTree = "<group>"; };
 		938215F224C7C79E00535B04 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -70,7 +68,6 @@
 		93370DF824CBE7E4002371FD /* Custom UI */ = {
 			isa = PBXGroup;
 			children = (
-				93370DF924CBE81B002371FD /* FlashButton.swift */,
 			);
 			path = "Custom UI";
 			sourceTree = "<group>";
@@ -273,7 +270,6 @@
 				93DE545424BF6DBF00B4924F /* AppDelegate.swift in Sources */,
 				93DE546E24BF744C00B4924F /* Flashcard.swift in Sources */,
 				93DE545624BF6DBF00B4924F /* SceneDelegate.swift in Sources */,
-				93370DFA24CBE81B002371FD /* FlashButton.swift in Sources */,
 				93DE547F24C4EB4A00B4924F /* Flashpile.swift in Sources */,
 				93D6245424CC03F000A65642 /* FlashcardTableViewCell.swift in Sources */,
 				93C6E5A824CE4D7400D613A3 /* FlashError.swift in Sources */,
