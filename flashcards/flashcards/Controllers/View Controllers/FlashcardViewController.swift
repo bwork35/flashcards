@@ -139,7 +139,6 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         //return FlashcardController.shared.totalFlashcards.count
         guard let flashpile = flashpile else {return 0}
-        print("rowsD: \(flashpile.flashcards.count)")
         return flashpile.flashcards.count
     }
     

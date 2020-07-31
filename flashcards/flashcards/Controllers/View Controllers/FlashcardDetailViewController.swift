@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FlashcardDetailViewController: UIViewController, UINavigationControllerDelegate {
+class FlashcardDetailViewController: UIViewController, UINavigationControllerDelegate, UITextViewDelegate {
     
     //MARK: - Outlets
     @IBOutlet weak var frontTextView: UITextView!
@@ -60,12 +60,15 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         if let flashcard = flashcard {
             updateViews(flashcard: flashcard)
         } else {
             frontTextSelected()
             backTextSelected()
         }
+        setupTextViews()
     }
     
     //MARK: - Actions
@@ -206,6 +209,52 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
     }
     
     //MARK: - Helper Methods
+    
+    func setupTextViews() {
+        frontTextView.delegate = self
+        backTextView.delegate = self
+        
+        if frontTextView.text.isEmpty {
+            frontTextView.text = "front text..."
+            frontTextView.textColor = UIColor.lightGray
+        }
+        if backTextView.text.isEmpty {
+            backTextView.text = "back text..."
+            backTextView.textColor = UIColor.lightGray
+        }
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            if textView == frontTextView {
+                textView.text = "front text..."
+            } else if textView == backTextView {
+                textView.text = "back text..."
+            }
+            textView.textColor = UIColor.lightGray
+        }
+    }
+    
+//    func textViewDidBeginEditing(_ frontTextView: UITextView) {
+//        frontTextView.textColor = .blue
+//        if frontTextView.textColor == UIColor.lightGray {
+//            frontTextView.text = nil
+//            frontTextView.textColor = UIColor.black
+//        }
+//    }
+//
+//    func textViewShouldBeginEditing(_ frontTextView: UITextView) -> Bool {
+//        frontTextView.textColor = .blue
+//
+//        return true
+//    }
+    
     func updateViews(flashcard: Flashcard) {
         if let frontString = flashcard.frontString {
             frontTextSelected()
