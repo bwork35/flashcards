@@ -130,7 +130,7 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="Ycg-0A-rmC">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="edit" id="Sy2-7Q-lVd"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="Sy2-7Q-lVd"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="oMC-1C-p2B">
                             <connections>
                                 <segue destination="90n-uL-X3k" kind="show" id="4yA-3r-46T"/>
@@ -554,7 +554,7 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" red="0.10196078431372549" green="0.46274509803921571" blue="1" alpha="0.26000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="Hwi-Jr-t6H" firstAttribute="width" secondItem="1BV-ur-IZg" secondAttribute="width" multiplier="0.5" id="3Gg-6A-tMw"/>
                                             <constraint firstItem="hGz-jE-zKu" firstAttribute="centerX" secondItem="1BV-ur-IZg" secondAttribute="centerX" id="3nz-tm-qez"/>
@@ -669,7 +669,7 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" red="0.10196078431372549" green="0.46274509803921571" blue="1" alpha="0.26000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstItem="fR4-4V-yHP" firstAttribute="width" secondItem="HuY-j7-0qq" secondAttribute="width" multiplier="0.5" id="4bS-9I-sMo"/>
                                             <constraint firstItem="fR4-4V-yHP" firstAttribute="centerX" secondItem="HuY-j7-0qq" secondAttribute="centerX" id="4nZ-gS-jbf"/>

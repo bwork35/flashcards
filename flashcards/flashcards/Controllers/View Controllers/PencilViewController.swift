@@ -61,16 +61,8 @@ class PencilViewController: UIViewController, PKCanvasViewDelegate, PKToolPicker
     
     //MARK: - Actions
     @IBAction func saveButtonTapped(_ sender: Any) {
-        //ButtonView.isHidden = true
-//        guard let view = view else {return}
-//        guard let imgVC = self.storyboard?.instantiateViewController(identifier: "DetailVC") as? FlashcardDetailViewController else {return}
-//        let img = UIGraphicsImageRenderer(bounds: view.safeAreaLayoutGuide.layoutFrame).image { _ in
-//            view.drawHierarchy(in: canvasView.bounds, afterScreenUpdates: true)
-//        }
-//        imgVC.frontImg = img
-//        self.navigationController?.pushViewController(imgVC, animated: true)
-        
     }
+    
     @IBAction func cancelButtonTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -112,18 +104,18 @@ class PencilViewController: UIViewController, PKCanvasViewDelegate, PKToolPicker
         
     }
   
-    
-    
-    
-    
-    
-    
-    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         ButtonView.isHidden = true
-        let img = UIGraphicsImageRenderer(bounds: view.safeAreaLayoutGuide.layoutFrame).image { _ in
+        
+        //let setBounds = view.safeAreaLayoutGuide.layoutFrame
+        let topBounds = canvasView.bounds.offsetBy(dx: 0, dy: 90)
+        let bottomBounds = canvasView.bounds.offsetBy(dx: 0, dy: -65)
+        let setBounds = topBounds.intersection(bottomBounds)
+        
+        let img = UIGraphicsImageRenderer(bounds: setBounds).image { _ in
             view.drawHierarchy(in: canvasView.bounds, afterScreenUpdates: true)
+            
         }
         guard let isFrontPencil = isFrontPencil else {return}
         guard let destinationVC = segue.destination as? FlashcardDetailViewController else {return}

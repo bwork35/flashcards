@@ -94,12 +94,10 @@ class FlashpileController {
     //Create
     func createFlashpile(subject: String, completion: @escaping (Result<Bool, FlashError>) -> Void) {
         
-        //flashcard: Flashcard on both these ^ v
         let newFlashpile = Flashpile(subject: subject)
         let newFlashRecord = CKRecord(flashpile: newFlashpile)
         
         privateDB.save(newFlashRecord) { (record, error) in
-            print("saveFP")
             if let error = error {
                 print("There was an error saving the flashpile -- \(error) -- \(error.localizedDescription)")
                 return completion(.failure(.ckError(error)))

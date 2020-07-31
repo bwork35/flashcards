@@ -175,7 +175,7 @@ extension FlashCollectionViewController: FlashpileCellDelegate {
             //let flashpileToDelete = FlashpileController.shared.totalFlashpiles[indexPath.row]
            // let flashpileToDelete = collectionView.cellForItem(at: indexPath)
             let flashpileToDelete = FlashpileController.shared.totalFlashpiles[indexPath.row]
-            guard let index = FlashpileController.shared.totalFlashpiles.firstIndex(of: flashpileToDelete) else {return}
+//            guard let index = FlashpileController.shared.totalFlashpiles.firstIndex(of: flashpileToDelete) else {return}
             
             FlashpileController.shared.deleteFlashpile(flashpile: flashpileToDelete) { (result) in
                 DispatchQueue.main.async {

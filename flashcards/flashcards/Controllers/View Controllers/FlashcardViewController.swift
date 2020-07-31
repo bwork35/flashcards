@@ -33,6 +33,7 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.delegate = self
         tableView.dataSource = self
         setupSearchBar()
+        fetchFlashcards()
        
         if let flashpile = flashpile {
             updateViews(flashpile: flashpile)
@@ -52,7 +53,7 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        fetchFlashcards()
+        self.tableView.reloadData()
     }
     
     //MARK: - Actions
@@ -64,7 +65,9 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
         guard let text = flashpileSubjectTextField.text, !text.isEmpty else {return}
         
         guard let flashpile = flashpile else {return}
+        //let flashcards = flashpile.flashcards
         flashpile.subject = text
+        //flashpile.flashcards = flashcards
         FlashpileController.shared.updateFlashpile(flashpile: flashpile) { (result) in
             DispatchQueue.main.async {
                 switch result {
@@ -158,6 +161,7 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             guard let flashpile = flashpile else {return}
+             print("before: \(flashpile.flashcards.count)")
             let flashcardToDelete = flashpile.flashcards[indexPath.row]
             guard let index = flashpile.flashcards.firstIndex(of: flashcardToDelete) else {return}
             
@@ -168,12 +172,12 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
                         flashpile.flashcards.remove(at: index)
                        // self.fetchFlashcards()
                         self.tableView.reloadData()
+                        print("after: \(flashpile.flashcards.count)")
                     case .failure(let error):
                         print("There was an error deleting this flashcard -- \(error) -- \(error.localizedDescription)")
                     }
                 }
             }
-            //tableView.reloadData()
         }
         //updateFlashArray()
     }

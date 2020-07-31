@@ -120,17 +120,13 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
                 DispatchQueue.main.async {
                     switch result {
                     case .success(_):
-                        //self.navigationController?.popViewController(animated: true)
-                        print("saved flashcard")
-                        
+                        self.navigationController?.popViewController(animated: true)
                     case .failure(let error):
                         print("There was an error creating flashcard -- \(error) -- \(error.localizedDescription)")
                     }
                 }
             }
         }
-        
-        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
@@ -350,8 +346,6 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
     
     //MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //saveButtonActions()
-        print("segue")
         
         if segue.identifier == "toPencilKitView" {
             guard let destinationVC = segue.destination as? PencilViewController else {return}
