@@ -115,7 +115,7 @@ class FlashcardController {
             }
             
             if records?.count == 0 {
-                print("Successfully delete flashcard from CloudKit")
+                print("Successfully deleted flashcard from CloudKit")
                 completion(.success(true))
             } else {
                 return completion(.failure(.unableToDeleteRecord))

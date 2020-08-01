@@ -13,6 +13,7 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
     //MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var flashpileSubjectTextField: UITextField!
+    @IBOutlet weak var quizButtonOutlet: UIButton!
     
     //MARK: - Properties
     var flashpile: Flashpile?
@@ -30,6 +31,8 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
     //MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.view.backgroundColor = .bgTan
+        tableView.separatorColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 0.1969980736)
         tableView.delegate = self
         tableView.dataSource = self
         setupSearchBar()
@@ -54,12 +57,16 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.tableView.reloadData()
+        
+        guard let flashpile = flashpile else {return}
+        if flashpile.flashcards.count == 0 {
+            quizButtonOutlet.isEnabled = false
+        } else {
+            quizButtonOutlet.isEnabled = true
+        }
     }
     
     //MARK: - Actions
-    @IBAction func unwindToTableView(_ sender: UIStoryboardSegue) {
-        print("unwind")
-    }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let text = flashpileSubjectTextField.text, !text.isEmpty else {return}
@@ -83,6 +90,11 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBAction func cancelButtonTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
+    @IBAction func quizButtonTapped(_ sender: Any) {
+        guard let flashpile = flashpile else {return}
+        FlashcardController.shared.totalFlashcards = flashpile.flashcards
+        
+    }
     
     //MARK: - Helper Methods
     
@@ -93,6 +105,7 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
                 switch result {
                 case .success(_):
                     self.tableView.reloadData()
+                    FlashcardController.shared.totalFlashcards = flashpile.flashcards
                 case .failure(let error):
                     print("There was an error fetching flashcards for this flashpile -- \(error) -- \(error.localizedDescription)")
                 }
@@ -187,8 +200,8 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
                     }
                 }
             }
+            FlashcardController.shared.totalFlashcards = flashpile.flashcards
         }
-        //updateFlashArray()
     }
     
     // MARK: - Navigation
@@ -220,8 +233,12 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
 //            }
 //            destinationVC.flashcard = flashcard
             destinationVC.flashpile = flashpile
-            
         }
+//        else if segue.identifier == "toQuizVC" {
+//            guard let destinationVC = segue.destination as? QuizViewController else {return}
+//            guard let flashpile = flashpile else {return}
+//            destinationVC.flashpile = flashpile
+//        }
     }
     
 } //End of Class

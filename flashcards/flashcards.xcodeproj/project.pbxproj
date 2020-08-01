@@ -13,6 +13,9 @@
 		938215F524C7CA5000535B04 /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938215F424C7CA5000535B04 /* QuizViewController.swift */; };
 		93C6E5A824CE4D7400D613A3 /* FlashError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C6E5A724CE4D7400D613A3 /* FlashError.swift */; };
 		93D6245424CC03F000A65642 /* FlashcardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D6245324CC03F000A65642 /* FlashcardTableViewCell.swift */; };
+		93D8EBA524D6117C003104CE /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93D8EBA424D6117C003104CE /* Colors.xcassets */; };
+		93D8EBA724D6126A003104CE /* FlashLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D8EBA624D6126A003104CE /* FlashLabel.swift */; };
+		93D8EBA924D61436003104CE /* StyleGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D8EBA824D61436003104CE /* StyleGuide.swift */; };
 		93DE545424BF6DBF00B4924F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DE545324BF6DBF00B4924F /* AppDelegate.swift */; };
 		93DE545624BF6DBF00B4924F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DE545524BF6DBF00B4924F /* SceneDelegate.swift */; };
 		93DE545B24BF6DBF00B4924F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93DE545924BF6DBF00B4924F /* Main.storyboard */; };
@@ -36,6 +39,9 @@
 		938215F424C7CA5000535B04 /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		93C6E5A724CE4D7400D613A3 /* FlashError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashError.swift; sourceTree = "<group>"; };
 		93D6245324CC03F000A65642 /* FlashcardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardTableViewCell.swift; sourceTree = "<group>"; };
+		93D8EBA424D6117C003104CE /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		93D8EBA624D6126A003104CE /* FlashLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashLabel.swift; sourceTree = "<group>"; };
+		93D8EBA824D61436003104CE /* StyleGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleGuide.swift; sourceTree = "<group>"; };
 		93DE545024BF6DBF00B4924F /* flashcards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flashcards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93DE545324BF6DBF00B4924F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93DE545524BF6DBF00B4924F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +74,7 @@
 		93370DF824CBE7E4002371FD /* Custom UI */ = {
 			isa = PBXGroup;
 			children = (
+				93D8EBA624D6126A003104CE /* FlashLabel.swift */,
 			);
 			path = "Custom UI";
 			sourceTree = "<group>";
@@ -84,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				93C6E5A724CE4D7400D613A3 /* FlashError.swift */,
+				93D8EBA824D61436003104CE /* StyleGuide.swift */,
 			);
 			path = "Helpers + Extensions";
 			sourceTree = "<group>";
@@ -125,6 +133,7 @@
 				93DE545324BF6DBF00B4924F /* AppDelegate.swift */,
 				93DE545524BF6DBF00B4924F /* SceneDelegate.swift */,
 				93DE545C24BF6DC200B4924F /* Assets.xcassets */,
+				93D8EBA424D6117C003104CE /* Colors.xcassets */,
 				93DE545E24BF6DC200B4924F /* LaunchScreen.storyboard */,
 				93DE546124BF6DC200B4924F /* Info.plist */,
 			);
@@ -248,6 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				93DE546024BF6DC200B4924F /* LaunchScreen.storyboard in Resources */,
+				93D8EBA524D6117C003104CE /* Colors.xcassets in Resources */,
 				93DE545D24BF6DC200B4924F /* Assets.xcassets in Resources */,
 				93DE545B24BF6DBF00B4924F /* Main.storyboard in Resources */,
 			);
@@ -260,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93D8EBA924D61436003104CE /* StyleGuide.swift in Sources */,
 				93DE548124C4EC3600B4924F /* FlashpileController.swift in Sources */,
 				93DE547D24C3B39200B4924F /* FlashcardDetailViewController.swift in Sources */,
 				93DE547224C1040F00B4924F /* FlashCollectionViewController.swift in Sources */,
@@ -269,6 +280,7 @@
 				93DE547424C1054500B4924F /* MultiplicationTables.swift in Sources */,
 				93DE545424BF6DBF00B4924F /* AppDelegate.swift in Sources */,
 				93DE546E24BF744C00B4924F /* Flashcard.swift in Sources */,
+				93D8EBA724D6126A003104CE /* FlashLabel.swift in Sources */,
 				93DE545624BF6DBF00B4924F /* SceneDelegate.swift in Sources */,
 				93DE547F24C4EB4A00B4924F /* Flashpile.swift in Sources */,
 				93D6245424CC03F000A65642 /* FlashcardTableViewCell.swift in Sources */,

@@ -28,6 +28,21 @@ class FlashCollectionViewController: UICollectionViewController {
     //MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
+      
+        //navigationController?.navigationBar.barTintColor = .topYellow
+        //navigationController?.navigationBar.backgroundColor = .topYellow
+        
+        self.collectionView.backgroundColor = .bgTan
+        
+        
+        
+/* possible colors:
+-bg:
+         f6f4ee
+         e5ddcd
+        eee9de
+*/
+        
         navigationItem.leftBarButtonItem = editButtonItem
         setupSearchBar()
 //        fetchFlashpiles()
@@ -36,8 +51,7 @@ class FlashCollectionViewController: UICollectionViewController {
         super.viewWillAppear(true)
         fetchFlashpiles()
         collectionView.reloadData()
-        print("VWA: \(FlashpileController.shared.totalFlashpiles.count)")
-        //FlashcardController.shared.totalFlashcards = []
+        FlashcardController.shared.totalFlashcards = []
     }
     
     //MARK: - Helper Methods
@@ -47,7 +61,6 @@ class FlashCollectionViewController: UICollectionViewController {
                 switch result {
                 case .success(_):
                     self.collectionView.reloadData()
-                    print("fetched")
                 case .failure(let error):
                     print("There was an error fetching flashpiles -- \(error) -- \(error.localizedDescription)")
                 }
@@ -89,7 +102,6 @@ class FlashCollectionViewController: UICollectionViewController {
         if isFiltering {
             return filteredFlashpiles.count
         }
-        print("rows: \(FlashpileController.shared.totalFlashpiles.count)")
         return FlashpileController.shared.totalFlashpiles.count
     }
 
@@ -122,7 +134,6 @@ class FlashCollectionViewController: UICollectionViewController {
             } else {
                 flashpile = FlashpileController.shared.totalFlashpiles[indexPath.row]
             }
-            print("")
             destinationVC.flashpile = flashpile
         }
     }

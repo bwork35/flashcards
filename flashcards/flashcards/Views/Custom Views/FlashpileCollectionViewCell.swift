@@ -15,13 +15,32 @@ protocol FlashpileCellDelegate: AnyObject {
 class FlashpileCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Outlets
+    @IBOutlet weak var flashCoverImageView: UIImageView!
     @IBOutlet weak var deleteButtonBackgroundView: UIVisualEffectView!
-    @IBOutlet weak var flashpileCoverLabel: UILabel!
     @IBOutlet weak var flashpileNameLabel: UILabel!
-    @IBOutlet weak var flashpileCoverImageView: UIImageView!
     
     //MARK: - Properties
     weak var delegate: FlashpileCellDelegate?
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        flashCoverImageView.layer.cornerRadius = flashCoverImageView.bounds.width / 8.0
+        flashCoverImageView.clipsToBounds = true
+        
+        self.contentView.layer.cornerRadius = 15.0
+        self.contentView.layer.borderWidth = 5.0
+        self.contentView.layer.borderColor = UIColor.clear.cgColor
+        self.contentView.layer.masksToBounds = true
+        
+        self.layer.shadowColor = UIColor.gray.cgColor
+        self.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        self.layer.shadowRadius = 2.0
+        self.layer.shadowOpacity = 1.0
+        self.layer.masksToBounds = false
+        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.contentView.layer.cornerRadius).cgPath
+        
+    }
     
     var flashpile: Flashpile? {
         didSet {
@@ -29,6 +48,7 @@ class FlashpileCollectionViewCell: UICollectionViewCell {
             deleteButtonBackgroundView.layer.cornerRadius = deleteButtonBackgroundView.bounds.width / 2.0
             deleteButtonBackgroundView.layer.masksToBounds = true
             deleteButtonBackgroundView.isHidden = !isEditing
+            
         }
     }
     var isEditing: Bool = false {
@@ -46,29 +66,30 @@ class FlashpileCollectionViewCell: UICollectionViewCell {
     func updateViews() {
         guard let flashpile = flashpile else {return}
         flashpileNameLabel.text = flashpile.subject
-        if flashpile.flashcards.count != 0 {
-            guard let flashcard = flashpile.flashcards.first else {return}
-            if let frontString = flashcard.frontString {
-                flashpileCoverLabel.isHidden = false
-                flashpileCoverImageView.isHidden = true
-                
-                let coverTitle = frontString
-                flashpileCoverLabel.text = coverTitle
-            } else if let frontPhoto = flashcard.frontPhoto {
-                flashpileCoverLabel.isHidden = true
-                flashpileCoverImageView.isHidden = false
-                
-                let coverImage = frontPhoto
-                flashpileCoverImageView.image = coverImage
-            } else {
-                flashpileCoverLabel.isHidden = true
-                flashpileCoverImageView.isHidden = true
-            }
-        } else {
-            flashpileCoverLabel.isHidden = true
-            flashpileCoverImageView.isHidden = true
-            //flashpileCoverLabel.text = ""
-        }
+        
+//        if flashpile.flashcards.count != 0 {
+//            guard let flashcard = flashpile.flashcards.first else {return}
+//            if let frontString = flashcard.frontString {
+//                flashpileCoverLabel.isHidden = false
+//                flashpileCoverImageView.isHidden = true
+//
+//                let coverTitle = frontString
+//                flashpileCoverLabel.text = coverTitle
+//            } else if let frontPhoto = flashcard.frontPhoto {
+//                flashpileCoverLabel.isHidden = true
+//                flashpileCoverImageView.isHidden = false
+//
+//                let coverImage = frontPhoto
+//                flashpileCoverImageView.image = coverImage
+//            } else {
+//                flashpileCoverLabel.isHidden = true
+//                flashpileCoverImageView.isHidden = true
+//            }
+//        } else {
+//            flashpileCoverLabel.isHidden = true
+//            flashpileCoverImageView.isHidden = true
+//            //flashpileCoverLabel.text = ""
+//        }
         
     }
     

@@ -60,7 +60,7 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.backgroundColor = .bgTan
         
         if let flashcard = flashcard {
             updateViews(flashcard: flashcard)
@@ -108,11 +108,12 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
             flashcard.backString = backString
             flashcard.frontPhoto = frontPhoto
             flashcard.backPhoto = backPhoto
+            
             FlashcardController.shared.updateFlashcard(flashcard: flashcard) { (result) in
                 DispatchQueue.main.async {
                     switch result {
                     case .success(_):
-                        print("updated :)")
+                        self.navigationController?.popViewController(animated: true)
                     case .failure(let error):
                         print("There was an error updating the flashcard -- \(error) -- \(error.localizedDescription)")
                     }
@@ -123,6 +124,8 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
                 DispatchQueue.main.async {
                     switch result {
                     case .success(_):
+                        guard let flashcard = flashpile.flashcards.last else {return}
+                        FlashcardController.shared.totalFlashcards.append(flashcard)
                         self.navigationController?.popViewController(animated: true)
                     case .failure(let error):
                         print("There was an error creating flashcard -- \(error) -- \(error.localizedDescription)")

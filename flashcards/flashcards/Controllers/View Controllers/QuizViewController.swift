@@ -23,6 +23,8 @@ class QuizViewController: UIViewController {
     @IBOutlet weak var redProgressBar: UIProgressView!
     
     //MARK: - Properties
+    //var flashpile: Flashpile?
+    
     var quizCards = FlashcardController.shared.totalFlashcards.shuffled()
     var quizCount = 0
     var cardCount = 0
@@ -35,6 +37,10 @@ class QuizViewController: UIViewController {
     //MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .bgTan
+        print(FlashcardController.shared.totalFlashcards.shuffled().count)
+        print(quizCards.count)
+        print(FlashcardController.shared.totalFlashcards.shuffled().count)
         updateViews()
     }
     
@@ -71,7 +77,7 @@ class QuizViewController: UIViewController {
     
     //MARK: Helper Methods
     func updateViews() {
-        
+        print(FlashcardController.shared.totalFlashcards.count)
         if quizCards[quizCount].frontString != nil {
             quizFrontLabel.isHidden = false
             quizFrontImageView.isHidden = true
