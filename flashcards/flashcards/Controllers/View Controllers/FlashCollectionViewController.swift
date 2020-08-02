@@ -75,6 +75,7 @@ class FlashCollectionViewController: UICollectionViewController {
         navigationItem.searchController = searchController
         definesPresentationContext = true
         searchController.hidesNavigationBarDuringPresentation = false
+        //navigationItem.hidesSearchBarWhenScrolling = false
     }
     func filterContentForSearchText(_ searchText: String) {
         filteredFlashpiles = FlashpileController.shared.totalFlashpiles.filter { (flashpile: Flashpile) -> Bool in

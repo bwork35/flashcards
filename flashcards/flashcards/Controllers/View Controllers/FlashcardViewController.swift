@@ -13,7 +13,10 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
     //MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var flashpileSubjectTextField: UITextField!
-    @IBOutlet weak var quizButtonOutlet: UIButton!
+    @IBOutlet weak var flashpileSubjectLabel: UILabel!
+    @IBOutlet weak var editButtonLabel: UIButton!
+    @IBOutlet weak var quizButtonOutlet: UIButton! 
+    @IBOutlet weak var subjectViewView: UIView!
     
     //MARK: - Properties
     var flashpile: Flashpile?
@@ -31,12 +34,20 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
     //MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.view.backgroundColor = .bgTan
-        tableView.separatorColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 0.1969980736)
         tableView.delegate = self
         tableView.dataSource = self
         setupSearchBar()
         fetchFlashcards()
+        
+        self.view.backgroundColor = .bgTan
+        tableView.separatorColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 0.2607020548)
+        tableView.layer.cornerRadius = 15.0
+        tableView.clipsToBounds = true
+        
+        let containerView:UIView = UIView(frame: self.tableView.frame)
+        self.view.addSubview(containerView)
+        self.view.addSubview(subjectViewView)
+        self.view.addSubview(tableView)
        
         if let flashpile = flashpile {
             updateViews(flashpile: flashpile)
@@ -86,6 +97,25 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         }
     }
+    @IBAction func editButtonTapped(_ sender: Any) {
+        guard let flashpile = flashpile else {return}
+        tableView.isEditing = !tableView.isEditing
+        
+        if tableView.isEditing {
+            editButtonLabel.setTitle("Done", for: .normal)
+            flashpileSubjectTextField.isHidden = false
+            flashpileSubjectTextField.text = flashpile.subject
+            flashpileSubjectLabel.isHidden = true
+        } else {
+            guard let text = flashpileSubjectTextField.text, !text.isEmpty else {return}
+            editButtonLabel.setTitle("Edit", for: .normal)
+            flashpileSubjectTextField.isHidden = true
+            flashpile.subject = text
+            flashpileSubjectLabel.text = flashpile.subject
+            flashpileSubjectLabel.isHidden = false
+        }
+        
+    }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -120,6 +150,7 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
         navigationItem.searchController = searchController
         definesPresentationContext = true
         searchController.hidesNavigationBarDuringPresentation = false
+        //navigationItem.hidesSearchBarWhenScrolling = false
     }
     
 //    func updateFlashArray(){
@@ -128,10 +159,12 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
 //    }
     
     func updateViews(flashpile: Flashpile) {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-            self.flashpileSubjectTextField.text = flashpile.subject
-        }
+        flashpileSubjectLabel.text = flashpile.subject
+        flashpileSubjectTextField.isHidden = true
+        tableView.reloadData()
+        
+        //self.flashpileSubjectTextField.text = flashpile.subject
+        
         //FlashcardController.shared.totalFlashcards = flashpile.flashcards
     }
     
@@ -202,6 +235,17 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
             }
             FlashcardController.shared.totalFlashcards = flashpile.flashcards
         }
+    }
+    
+    
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        guard let flashpile = flashpile else {return}
+        
+        let movedObject = flashpile.flashcards[sourceIndexPath.row]
+        flashpile.flashcards.remove(at: sourceIndexPath.row)
+        flashpile.flashcards.insert(movedObject, at: destinationIndexPath.row)
+        
     }
     
     // MARK: - Navigation

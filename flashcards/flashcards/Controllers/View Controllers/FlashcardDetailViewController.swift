@@ -25,6 +25,8 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
     @IBOutlet weak var backPencilButtonOutlet: UIButton!
     @IBOutlet weak var frontPencilKitImageView: UIImageView!
     @IBOutlet weak var backPencilKitImageView: UIImageView!
+    @IBOutlet weak var frontViewView: UIView!
+    @IBOutlet weak var backViewView: UIView!
     
     //MARK: - Properties
     var flashcard: Flashcard?
@@ -69,6 +71,32 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
             backTextSelected()
         }
         setupTextViews()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        frontViewView.layer.cornerRadius = 15.0
+        frontViewView.clipsToBounds = true
+        backViewView.layer.cornerRadius = 15.0
+        backViewView.clipsToBounds = true
+        
+        frontViewView.layer.shadowColor = UIColor.gray.cgColor
+        frontViewView.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        frontViewView.layer.shadowRadius = 2.0
+        frontViewView.layer.shadowOpacity = 1.0
+        frontViewView.layer.masksToBounds = false
+        frontViewView.layer.shadowPath = UIBezierPath(roundedRect: frontViewView.bounds, cornerRadius: frontViewView.layer.cornerRadius).cgPath
+        
+        backViewView.layer.shadowColor = UIColor.gray.cgColor
+        backViewView.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        backViewView.layer.shadowRadius = 2.0
+        backViewView.layer.shadowOpacity = 1.0
+        backViewView.layer.masksToBounds = false
+        backViewView.layer.shadowPath = UIBezierPath(roundedRect: backViewView.bounds, cornerRadius: backViewView.layer.cornerRadius).cgPath
+        
+//        frontTextView.layer.cornerRadius = 40.0
+//        frontTextView.clipsToBounds = true
+//        backTextView.layer.cornerRadius = 40.0
+//        backTextView.clipsToBounds = true
     }
     
     //MARK: - Actions
