@@ -28,21 +28,8 @@ class FlashCollectionViewController: UICollectionViewController {
     //MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
-      
-        //navigationController?.navigationBar.barTintColor = .topYellow
-        //navigationController?.navigationBar.backgroundColor = .topYellow
         
         self.collectionView.backgroundColor = .bgTan
-        
-        
-        
-/* possible colors:
--bg:
-         f6f4ee
-         e5ddcd
-        eee9de
-*/
-        
         navigationItem.leftBarButtonItem = editButtonItem
         setupSearchBar()
 //        fetchFlashpiles()
@@ -183,25 +170,31 @@ extension FlashCollectionViewController: UISearchResultsUpdating {
 extension FlashCollectionViewController: FlashpileCellDelegate {
     func delete(cell: FlashpileCollectionViewCell) {
         if let indexPath = collectionView?.indexPath(for: cell) {
-            //FlashpileController.shared.totalFlashpiles.remove(at: indexPath.row)
-            //let flashpileToDelete = FlashpileController.shared.totalFlashpiles[indexPath.row]
-           // let flashpileToDelete = collectionView.cellForItem(at: indexPath)
             let flashpileToDelete = FlashpileController.shared.totalFlashpiles[indexPath.row]
-//            guard let index = FlashpileController.shared.totalFlashpiles.firstIndex(of: flashpileToDelete) else {return}
+            
+            for flashcard in flashpileToDelete.flashcards {
+                FlashcardController.shared.deleteFlashcard(flashcard: flashcard) { (result) in
+                    switch result {
+                    case .success(_):
+                        print("deleted flashcard")
+                    case .failure(let error):
+                        print("There was an error deleting a flashcard from this flashpile -- \(error) -- \(error.localizedDescription)")
+                    }
+                }
+            }
             
             FlashpileController.shared.deleteFlashpile(flashpile: flashpileToDelete) { (result) in
                 DispatchQueue.main.async {
                     switch result {
                     case .success(_):
-                        self.collectionView?.deleteItems(at: [indexPath])
+                        //self.collectionView?.deleteItems(at: [indexPath])
+                        
                         self.fetchFlashpiles()
                     case .failure(let error):
                         print("There was an error deleting the flashpile -- \(error) -- \(error.localizedDescription)")
                     }
                 }
             }
-            //collectionView.reloadData()
-           //collectionView?.deleteItems(at: [indexPath])
         }
     }
 } //End of Extension

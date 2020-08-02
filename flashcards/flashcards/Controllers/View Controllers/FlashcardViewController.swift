@@ -57,42 +57,54 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
                     switch result {
                     case .success(_):
                         self.flashpile = FlashpileController.shared.totalFlashpiles.last
+                        self.enableQuizButton()
                     case .failure(let error):
                         print("There was an error creating a new flashpile -- \(error) -- \(error.localizedDescription)")
                     }
                 }
             }
+            flashpileSubjectTextField.isHidden = true
+            flashpileSubjectLabel.text = "Subject"
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.tableView.reloadData()
-        
-        guard let flashpile = flashpile else {return}
-        if flashpile.flashcards.count == 0 {
-            quizButtonOutlet.isEnabled = false
-        } else {
-            quizButtonOutlet.isEnabled = true
-        }
+        enableQuizButton()
     }
     
     //MARK: - Actions
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        guard let text = flashpileSubjectTextField.text, !text.isEmpty else {return}
+//        guard let text = flashpileSubjectTextField.text, !text.isEmpty else {return}
+        guard let text = flashpileSubjectLabel.text else {return}
         
         guard let flashpile = flashpile else {return}
-        //let flashcards = flashpile.flashcards
         flashpile.subject = text
-        //flashpile.flashcards = flashcards
-        FlashpileController.shared.updateFlashpile(flashpile: flashpile) { (result) in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(_):
-                    self.navigationController?.popViewController(animated: true)
-                case .failure(let error):
-                    print("There was an error creating a new flashpile -- \(error) -- \(error.localizedDescription)")
+        
+        if flashpile.flashcards.count == 0 && flashpile.subject == "Subject" {
+            FlashpileController.shared.deleteFlashpile(flashpile: flashpile) { (result) in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(_):
+                        self.navigationController?.popViewController(animated: true)
+                    case .failure(let error):
+                        print("There was an error deleting flashpile -- \(error) -- \(error.localizedDescription)")
+                    }
+                }
+            }
+            
+        } else {
+            //flashpile.flashcards = flashcards
+            FlashpileController.shared.updateFlashpile(flashpile: flashpile) { (result) in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(_):
+                        self.navigationController?.popViewController(animated: true)
+                    case .failure(let error):
+                        print("There was an error creating a new flashpile -- \(error) -- \(error.localizedDescription)")
+                    }
                 }
             }
         }
@@ -107,19 +119,20 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
             flashpileSubjectTextField.text = flashpile.subject
             flashpileSubjectLabel.isHidden = true
         } else {
-            guard let text = flashpileSubjectTextField.text, !text.isEmpty else {return}
+            guard let text = flashpileSubjectTextField.text else {return}
             editButtonLabel.setTitle("Edit", for: .normal)
             flashpileSubjectTextField.isHidden = true
-            flashpile.subject = text
-            flashpileSubjectLabel.text = flashpile.subject
+            if text == "" {
+                flashpile.subject = "Subject"
+            } else {
+                flashpile.subject = text
+                flashpileSubjectLabel.text = flashpile.subject
+            }
             flashpileSubjectLabel.isHidden = false
         }
         
     }
     
-    @IBAction func cancelButtonTapped(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-    }
     @IBAction func quizButtonTapped(_ sender: Any) {
         guard let flashpile = flashpile else {return}
         FlashcardController.shared.totalFlashcards = flashpile.flashcards
@@ -127,6 +140,16 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     //MARK: - Helper Methods
+    
+    func enableQuizButton() {
+        guard let flashpile = flashpile else {return}
+        print(flashpile.flashcards.count)
+        if flashpile.flashcards.count == 0 {
+            quizButtonOutlet.isEnabled = false
+        } else {
+            quizButtonOutlet.isEnabled = true
+        }
+    }
     
     func fetchFlashcards() {
         guard let flashpile = flashpile else {return}
@@ -136,6 +159,7 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
                 case .success(_):
                     self.tableView.reloadData()
                     FlashcardController.shared.totalFlashcards = flashpile.flashcards
+                    self.enableQuizButton()
                 case .failure(let error):
                     print("There was an error fetching flashcards for this flashpile -- \(error) -- \(error.localizedDescription)")
                 }
@@ -153,19 +177,10 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
         //navigationItem.hidesSearchBarWhenScrolling = false
     }
     
-//    func updateFlashArray(){
-//        guard let flashpile = flashpile else {return}
-//        flashpile.flashcards = FlashcardController.shared.totalFlashcards
-//    }
-    
     func updateViews(flashpile: Flashpile) {
         flashpileSubjectLabel.text = flashpile.subject
         flashpileSubjectTextField.isHidden = true
         tableView.reloadData()
-        
-        //self.flashpileSubjectTextField.text = flashpile.subject
-        
-        //FlashcardController.shared.totalFlashcards = flashpile.flashcards
     }
     
     func filterContentForSearchText(_ searchText: String) {
@@ -226,6 +241,7 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
                     case .success(_):
                         flashpile.flashcards.remove(at: index)
                        // self.fetchFlashcards()
+                        self.enableQuizButton()
                         self.tableView.reloadData()
                         print("after: \(flashpile.flashcards.count)")
                     case .failure(let error):
@@ -278,11 +294,6 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
 //            destinationVC.flashcard = flashcard
             destinationVC.flashpile = flashpile
         }
-//        else if segue.identifier == "toQuizVC" {
-//            guard let destinationVC = segue.destination as? QuizViewController else {return}
-//            guard let flashpile = flashpile else {return}
-//            destinationVC.flashpile = flashpile
-//        }
     }
     
 } //End of Class

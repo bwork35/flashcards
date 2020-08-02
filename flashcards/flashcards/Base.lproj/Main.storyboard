@@ -291,23 +291,16 @@
                         <viewLayoutGuide key="safeArea" id="W5g-D0-utP"/>
                     </view>
                     <navigationItem key="navigationItem" id="IW6-FU-k6S">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="7tB-dI-V2d">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="Vdg-NR-LhL">
                             <connections>
-                                <action selector="cancelButtonTapped:" destination="90n-uL-X3k" id="VVV-L6-UJa"/>
+                                <action selector="saveButtonTapped:" destination="90n-uL-X3k" id="AZR-gA-d0o"/>
                             </connections>
                         </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="vOB-iU-SUK">
-                                <connections>
-                                    <segue destination="JKu-Cx-uhV" kind="show" identifier="toAddFC" id="ea1-eu-IIi"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="save" id="Vdg-NR-LhL">
-                                <connections>
-                                    <action selector="saveButtonTapped:" destination="90n-uL-X3k" id="AZR-gA-d0o"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="vOB-iU-SUK">
+                            <connections>
+                                <segue destination="JKu-Cx-uhV" kind="show" identifier="toAddFC" id="ea1-eu-IIi"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="editButtonLabel" destination="yta-Fz-CZI" id="Xib-fn-1m9"/>
