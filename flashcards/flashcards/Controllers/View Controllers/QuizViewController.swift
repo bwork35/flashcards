@@ -21,6 +21,9 @@ class QuizViewController: UIViewController {
     @IBOutlet weak var correctButtonLabel: UIButton!
     @IBOutlet weak var quizProgressBar: UIProgressView!
     @IBOutlet weak var redProgressBar: UIProgressView!
+    @IBOutlet weak var finishViewView: UIView!
+    @IBOutlet weak var frontViewView: UIView!
+    @IBOutlet weak var backViewView: UIView!
     
     //MARK: - Properties
     //var flashpile: Flashpile?
@@ -41,7 +44,36 @@ class QuizViewController: UIViewController {
         print(FlashcardController.shared.totalFlashcards.shuffled().count)
         print(quizCards.count)
         print(FlashcardController.shared.totalFlashcards.shuffled().count)
+        layoutSubviews()
         updateViews()
+    }
+    
+    func layoutSubviews() {
+        //super.layoutSubviews()
+        
+        frontViewView.layer.cornerRadius = 15.0
+        frontViewView.layer.borderWidth = 5.0
+        frontViewView.layer.borderColor = UIColor.clear.cgColor
+        frontViewView.layer.masksToBounds = true
+        frontViewView.layer.shadowColor = UIColor.gray.cgColor
+        frontViewView.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        frontViewView.layer.shadowRadius = 2.0
+        frontViewView.layer.shadowOpacity = 1.0
+        frontViewView.layer.masksToBounds = false
+        frontViewView.layer.shadowPath = UIBezierPath(roundedRect: frontViewView.bounds, cornerRadius: frontViewView.layer.cornerRadius).cgPath
+        
+        
+        backViewView.layer.cornerRadius = 15.0
+        backViewView.layer.borderWidth = 5.0
+        backViewView.layer.borderColor = UIColor.clear.cgColor
+        backViewView.layer.masksToBounds = true
+        backViewView.layer.shadowColor = UIColor.gray.cgColor
+        backViewView.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        backViewView.layer.shadowRadius = 2.0
+        backViewView.layer.shadowOpacity = 1.0
+        backViewView.layer.masksToBounds = false
+        backViewView.layer.shadowPath = UIBezierPath(roundedRect: backViewView.bounds, cornerRadius: backViewView.layer.cornerRadius).cgPath
+        
     }
     
     
@@ -58,6 +90,7 @@ class QuizViewController: UIViewController {
         }
         answerButtonLabel.isEnabled = false
         skipButtonLabel.isEnabled = false
+        backViewView.isHidden = false
         incorrectButtonLabel.isHidden = false
         correctButtonLabel.isHidden = false
     }
@@ -76,6 +109,27 @@ class QuizViewController: UIViewController {
         cardCount += 1
         nextCard()
     }
+    @IBAction func restartButtonTapped(_ sender: Any) {
+        quizCards = FlashcardController.shared.totalFlashcards.shuffled()
+        quizCount = 0
+        cardCount = 0
+        totalCount = FlashcardController.shared.totalFlashcards.count
+        skippedCards = []
+        incorrectCards = []
+        round = 1
+        redProgressBarIsOn = false
+        
+        answerButtonLabel.isHidden = false
+        skipButtonLabel.isHidden = false 
+        
+        frontViewView.isHidden = false
+        backViewView.isHidden = false
+        finishViewView.isHidden = true
+        
+        updateViews()
+    }
+    
+    
     
     //MARK: Helper Methods
     func updateViews() {
@@ -114,6 +168,8 @@ class QuizViewController: UIViewController {
         quizBackImageView.isHidden = true
         incorrectButtonLabel.isHidden = true
         correctButtonLabel.isHidden = true
+        backViewView.isHidden = true
+        finishViewView.isHidden = true
     }
     
     func nextCard() {
@@ -178,6 +234,10 @@ class QuizViewController: UIViewController {
         skipButtonLabel.isHidden = true
         incorrectButtonLabel.isHidden = true
         correctButtonLabel.isHidden = true
+        
+        finishViewView.isHidden = false
+        frontViewView.isHidden = true
+        backViewView.isHidden = true
     }
     
     func updateProgressBar() {

@@ -43,6 +43,8 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.separatorColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 0.2607020548)
         tableView.layer.cornerRadius = 15.0
         tableView.clipsToBounds = true
+        quizButtonOutlet.layer.cornerRadius = 22.0
+        quizButtonOutlet.clipsToBounds = true
         
         let containerView:UIView = UIView(frame: self.tableView.frame)
         self.view.addSubview(containerView)
@@ -78,12 +80,12 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBAction func saveButtonTapped(_ sender: Any) {
 //        guard let text = flashpileSubjectTextField.text, !text.isEmpty else {return}
-        guard let text = flashpileSubjectLabel.text else {return}
         
         guard let flashpile = flashpile else {return}
-        flashpile.subject = text
+        //guard let text = flashpileSubjectLabel.text else {return}
+        //flashpile.subject = text
         
-        if flashpile.flashcards.count == 0 && flashpile.subject == "Subject" {
+        if flashpile.flashcards.count == 0 && (flashpile.subject == "" || flashpile.subject == "Subject") {
             FlashpileController.shared.deleteFlashpile(flashpile: flashpile) { (result) in
                 DispatchQueue.main.async {
                     switch result {
@@ -116,7 +118,11 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
         if tableView.isEditing {
             editButtonLabel.setTitle("Done", for: .normal)
             flashpileSubjectTextField.isHidden = false
-            flashpileSubjectTextField.text = flashpile.subject
+            if flashpile.subject == "Subject" {
+                flashpileSubjectTextField.text = ""
+            } else {
+                flashpileSubjectTextField.text = flashpile.subject
+            }
             flashpileSubjectLabel.isHidden = true
         } else {
             guard let text = flashpileSubjectTextField.text else {return}
@@ -178,7 +184,11 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func updateViews(flashpile: Flashpile) {
-        flashpileSubjectLabel.text = flashpile.subject
+        if flashpile.subject == "" {
+            flashpileSubjectLabel.text = "Subject"
+        } else {
+            flashpileSubjectLabel.text = flashpile.subject
+        }
         flashpileSubjectTextField.isHidden = true
         tableView.reloadData()
     }

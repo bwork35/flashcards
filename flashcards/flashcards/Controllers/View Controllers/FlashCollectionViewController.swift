@@ -40,6 +40,8 @@ class FlashCollectionViewController: UICollectionViewController {
         collectionView.reloadData()
         FlashcardController.shared.totalFlashcards = []
     }
+    //MARK: - Actions
+     @IBAction func unwindToHome(_ sender: UIStoryboardSegue) {}
     
     //MARK: - Helper Methods
     func fetchFlashpiles() {
@@ -171,17 +173,27 @@ extension FlashCollectionViewController: FlashpileCellDelegate {
     func delete(cell: FlashpileCollectionViewCell) {
         if let indexPath = collectionView?.indexPath(for: cell) {
             let flashpileToDelete = FlashpileController.shared.totalFlashpiles[indexPath.row]
-            
-            for flashcard in flashpileToDelete.flashcards {
-                FlashcardController.shared.deleteFlashcard(flashcard: flashcard) { (result) in
-                    switch result {
-                    case .success(_):
-                        print("deleted flashcard")
-                    case .failure(let error):
-                        print("There was an error deleting a flashcard from this flashpile -- \(error) -- \(error.localizedDescription)")
+            //let tempArray: [Flashcard] = []
+            FlashcardController.shared.fetchFlashcards(for: flashpileToDelete) { (result) in
+                switch result {
+                case .success(_):
+                    
+                    for flashcard in flashpileToDelete.flashcards {
+                        FlashcardController.shared.deleteFlashcard(flashcard: flashcard) { (result) in
+                            switch result {
+                            case .success(_):
+                                print("Deleted all flashcards from this flashpile")
+                            case .failure(let error):
+                                print("There was an error deleting a flashcard from this flashpile -- \(error) -- \(error.localizedDescription)")
+                            }
+                        }
                     }
+                    
+                case .failure(let error):
+                    print("There was an error fetching these flashcards -- \(error) -- \(error.localizedDescription)")
                 }
             }
+            
             
             FlashpileController.shared.deleteFlashpile(flashpile: flashpileToDelete) { (result) in
                 DispatchQueue.main.async {
