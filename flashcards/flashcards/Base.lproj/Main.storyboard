@@ -268,7 +268,7 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOa-Xy-Ogl">
                                 <rect key="frame" x="134.5" y="821" width="145" height="41"/>
-                                <color key="backgroundColor" red="0.91885019239909604" green="0.91767267247606665" blue="0.93824101250788883" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" name="buttonGray"/>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="21"/>
                                 <state key="normal" title="Quiz Me"/>
                                 <connections>
@@ -333,48 +333,6 @@
                                 <rect key="frame" x="12" y="114" width="390" height="2"/>
                                 <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </progressView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gv1-Ao-ntg" userLabel="finishView">
-                                <rect key="frame" x="41.5" y="251" width="331" height="448"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="45" translatesAutoresizingMaskIntoConstraints="NO" id="vPx-Hq-5P3">
-                                        <rect key="frame" x="12" y="181" width="307" height="40"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vc3-b1-Hhm">
-                                                <rect key="frame" x="0.0" y="0.0" width="131" height="40"/>
-                                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
-                                                <state key="normal" title="Restart Quiz"/>
-                                                <connections>
-                                                    <action selector="restartButtonTapped:" destination="enc-vl-aj7" eventType="touchUpInside" id="IEa-jD-DxZ"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgh-F4-FxD">
-                                                <rect key="frame" x="176" y="0.0" width="131" height="40"/>
-                                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
-                                                <state key="normal" title="Home"/>
-                                                <connections>
-                                                    <segue destination="Rex-oz-PlR" kind="unwind" unwindAction="unwindToHome:" id="rrV-0Z-H24"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You made it through all flashcards in this pile." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4St-vP-oVR" customClass="FlashLabel" customModule="flashcards" customModuleProvider="target">
-                                        <rect key="frame" x="30" y="40" width="271" height="41"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                        <size key="shadowOffset" width="0.0" height="0.0"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" name="bgTan"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="4St-vP-oVR" secondAttribute="trailing" constant="30" id="4vM-ER-TeO"/>
-                                    <constraint firstItem="vPx-Hq-5P3" firstAttribute="top" secondItem="4St-vP-oVR" secondAttribute="bottom" constant="100" id="8FC-y7-OYp"/>
-                                    <constraint firstAttribute="trailing" secondItem="vPx-Hq-5P3" secondAttribute="trailing" constant="12" id="J30-nb-x8r"/>
-                                    <constraint firstItem="4St-vP-oVR" firstAttribute="leading" secondItem="Gv1-Ao-ntg" secondAttribute="leading" constant="30" id="Oh5-8W-smY"/>
-                                    <constraint firstItem="vPx-Hq-5P3" firstAttribute="leading" secondItem="Gv1-Ao-ntg" secondAttribute="leading" constant="12" id="R2C-zY-d9D"/>
-                                    <constraint firstItem="4St-vP-oVR" firstAttribute="top" secondItem="Gv1-Ao-ntg" secondAttribute="top" constant="40" id="eT2-UM-3oI"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UFg-Oo-4ev" userLabel="frontView">
                                 <rect key="frame" x="62" y="166" width="290" height="232"/>
                                 <subviews>
@@ -483,12 +441,67 @@
                                     <constraint firstItem="JWY-CZ-b1i" firstAttribute="width" secondItem="Mf3-Dd-rbb" secondAttribute="width" multiplier="0.55" id="zb7-GK-r3e"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gv1-Ao-ntg" userLabel="finishView">
+                                <rect key="frame" x="41.5" y="227.5" width="331" height="448"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="62" translatesAutoresizingMaskIntoConstraints="NO" id="vPx-Hq-5P3">
+                                        <rect key="frame" x="12" y="284" width="307" height="41"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vc3-b1-Hhm" customClass="FlashButton" customModule="flashcards" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="122.5" height="41"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="21"/>
+                                                <state key="normal" title="Restart"/>
+                                                <connections>
+                                                    <action selector="restartButtonTapped:" destination="enc-vl-aj7" eventType="touchUpInside" id="IEa-jD-DxZ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgh-F4-FxD" customClass="FlashButton" customModule="flashcards" customModuleProvider="target">
+                                                <rect key="frame" x="184.5" y="0.0" width="122.5" height="41"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="21"/>
+                                                <state key="normal" title="Home"/>
+                                                <connections>
+                                                    <segue destination="Rex-oz-PlR" kind="unwind" unwindAction="unwindToHome:" id="rrV-0Z-H24"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DZg-hy-EPw">
+                                        <rect key="frame" x="20" y="20" width="291" height="224"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You made it through all flashcards in this pile." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4St-vP-oVR" customClass="FlashLabel" customModule="flashcards" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="69" width="275" height="41"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstItem="4St-vP-oVR" firstAttribute="centerY" secondItem="DZg-hy-EPw" secondAttribute="centerY" multiplier="0.8" id="3Nj-DP-T0b"/>
+                                            <constraint firstItem="4St-vP-oVR" firstAttribute="leading" secondItem="DZg-hy-EPw" secondAttribute="leading" constant="8" id="Cqq-4Q-KrU"/>
+                                            <constraint firstAttribute="trailing" secondItem="4St-vP-oVR" secondAttribute="trailing" constant="8" id="uae-cO-cyC"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" name="bgTan"/>
+                                <constraints>
+                                    <constraint firstItem="DZg-hy-EPw" firstAttribute="top" secondItem="Gv1-Ao-ntg" secondAttribute="top" constant="20" id="B4i-Qm-lfG"/>
+                                    <constraint firstAttribute="trailing" secondItem="DZg-hy-EPw" secondAttribute="trailing" constant="20" id="BD2-FE-lxh"/>
+                                    <constraint firstItem="DZg-hy-EPw" firstAttribute="height" secondItem="Gv1-Ao-ntg" secondAttribute="height" multiplier="0.5" id="BZH-AM-j14"/>
+                                    <constraint firstAttribute="trailing" secondItem="vPx-Hq-5P3" secondAttribute="trailing" constant="12" id="J30-nb-x8r"/>
+                                    <constraint firstItem="vPx-Hq-5P3" firstAttribute="top" secondItem="DZg-hy-EPw" secondAttribute="bottom" constant="40" id="Opa-KG-JEj"/>
+                                    <constraint firstItem="vPx-Hq-5P3" firstAttribute="leading" secondItem="Gv1-Ao-ntg" secondAttribute="leading" constant="12" id="R2C-zY-d9D"/>
+                                    <constraint firstItem="DZg-hy-EPw" firstAttribute="leading" secondItem="Gv1-Ao-ntg" secondAttribute="leading" constant="20" id="q1W-vr-Ndx"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Gv1-Ao-ntg" firstAttribute="height" secondItem="LWO-7A-Rji" secondAttribute="height" multiplier="0.5" id="2kl-MD-veo"/>
                             <constraint firstItem="UFg-Oo-4ev" firstAttribute="centerX" secondItem="idc-D2-S2u" secondAttribute="centerX" id="4qQ-tB-1KB"/>
-                            <constraint firstItem="Gv1-Ao-ntg" firstAttribute="centerY" secondItem="idc-D2-S2u" secondAttribute="centerY" id="53c-Bk-c8O"/>
+                            <constraint firstItem="Gv1-Ao-ntg" firstAttribute="centerY" secondItem="idc-D2-S2u" secondAttribute="centerY" multiplier="0.95" id="53c-Bk-c8O"/>
                             <constraint firstAttribute="trailing" secondItem="aZO-qz-iAR" secondAttribute="trailing" constant="12" id="Dv8-VY-TkX"/>
                             <constraint firstItem="wPl-BN-g2i" firstAttribute="top" secondItem="aZO-qz-iAR" secondAttribute="bottom" constant="12" id="HqR-Yo-7M7"/>
                             <constraint firstItem="Gv1-Ao-ntg" firstAttribute="centerX" secondItem="idc-D2-S2u" secondAttribute="centerX" id="I7o-87-T3i"/>
@@ -513,6 +526,7 @@
                         <outlet property="backViewView" destination="Mf3-Dd-rbb" id="p66-8k-e1S"/>
                         <outlet property="correctButtonLabel" destination="vem-HL-E1M" id="v7S-Yw-qXM"/>
                         <outlet property="finishViewView" destination="Gv1-Ao-ntg" id="Kug-58-37p"/>
+                        <outlet property="finishedLabelView" destination="DZg-hy-EPw" id="qJN-fq-qJj"/>
                         <outlet property="frontViewView" destination="UFg-Oo-4ev" id="BsP-xI-7fD"/>
                         <outlet property="incorrectButtonLabel" destination="4ns-09-sQb" id="Mj8-kx-dig"/>
                         <outlet property="quizBackImageView" destination="JWY-CZ-b1i" id="7cp-zb-KlK"/>
@@ -947,6 +961,9 @@
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="bgTan">
             <color red="0.96470588235294119" green="0.95686274509803926" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="buttonGray">
+            <color red="0.91764705882352937" green="0.91764705882352937" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

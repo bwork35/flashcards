@@ -24,6 +24,8 @@ class QuizViewController: UIViewController {
     @IBOutlet weak var finishViewView: UIView!
     @IBOutlet weak var frontViewView: UIView!
     @IBOutlet weak var backViewView: UIView!
+    @IBOutlet weak var finishedLabelView: UIView!
+    
     
     //MARK: - Properties
     //var flashpile: Flashpile?
@@ -50,6 +52,15 @@ class QuizViewController: UIViewController {
     
     func layoutSubviews() {
         //super.layoutSubviews()
+        
+        finishedLabelView.layer.cornerRadius = 20.0
+        finishedLabelView.clipsToBounds = true
+        finishedLabelView.layer.shadowColor = UIColor.gray.cgColor
+        finishedLabelView.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        finishedLabelView.layer.shadowRadius = 2.0
+        finishedLabelView.layer.shadowOpacity = 1.0
+        finishedLabelView.layer.masksToBounds = false
+        finishedLabelView.layer.shadowPath = UIBezierPath(roundedRect: finishedLabelView.bounds, cornerRadius: finishedLabelView.layer.cornerRadius).cgPath
         
         frontViewView.layer.cornerRadius = 15.0
         frontViewView.layer.borderWidth = 5.0

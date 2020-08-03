@@ -29,6 +29,7 @@
 		93DE547D24C3B39200B4924F /* FlashcardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DE547C24C3B39200B4924F /* FlashcardDetailViewController.swift */; };
 		93DE547F24C4EB4A00B4924F /* Flashpile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DE547E24C4EB4A00B4924F /* Flashpile.swift */; };
 		93DE548124C4EC3600B4924F /* FlashpileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DE548024C4EC3600B4924F /* FlashpileController.swift */; };
+		93EFDCD324D7BC1600B15C5D /* FlashButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EFDCD224D7BC1600B15C5D /* FlashButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		93DE547C24C3B39200B4924F /* FlashcardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardDetailViewController.swift; sourceTree = "<group>"; };
 		93DE547E24C4EB4A00B4924F /* Flashpile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flashpile.swift; sourceTree = "<group>"; };
 		93DE548024C4EC3600B4924F /* FlashpileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashpileController.swift; sourceTree = "<group>"; };
+		93EFDCD224D7BC1600B15C5D /* FlashButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +76,8 @@
 		93370DF824CBE7E4002371FD /* Custom UI */ = {
 			isa = PBXGroup;
 			children = (
-				93D8EBA624D6126A003104CE /* FlashLabel.swift */,
+				93EFDCD124D7BC0500B15C5D /* Custom Buttons */,
+				93EFDCD024D7BBFC00B15C5D /* Custom Labels */,
 			);
 			path = "Custom UI";
 			sourceTree = "<group>";
@@ -198,6 +201,22 @@
 			path = "Custom Views";
 			sourceTree = "<group>";
 		};
+		93EFDCD024D7BBFC00B15C5D /* Custom Labels */ = {
+			isa = PBXGroup;
+			children = (
+				93D8EBA624D6126A003104CE /* FlashLabel.swift */,
+			);
+			path = "Custom Labels";
+			sourceTree = "<group>";
+		};
+		93EFDCD124D7BC0500B15C5D /* Custom Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				93EFDCD224D7BC1600B15C5D /* FlashButton.swift */,
+			);
+			path = "Custom Buttons";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -272,6 +291,7 @@
 			files = (
 				93D8EBA924D61436003104CE /* StyleGuide.swift in Sources */,
 				93DE548124C4EC3600B4924F /* FlashpileController.swift in Sources */,
+				93EFDCD324D7BC1600B15C5D /* FlashButton.swift in Sources */,
 				93DE547D24C3B39200B4924F /* FlashcardDetailViewController.swift in Sources */,
 				93DE547224C1040F00B4924F /* FlashCollectionViewController.swift in Sources */,
 				938215F524C7CA5000535B04 /* QuizViewController.swift in Sources */,
