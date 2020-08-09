@@ -50,6 +50,11 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
         self.view.addSubview(containerView)
         self.view.addSubview(subjectViewView)
         self.view.addSubview(tableView)
+        self.view.addSubview(quizButtonOutlet)
+        
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
+        tap.cancelsTouchesInView = false
        
         if let flashpile = flashpile {
             updateViews(flashpile: flashpile)
@@ -314,5 +319,6 @@ extension FlashcardViewController: UISearchResultsUpdating {
         guard let text = searchBar.text else {return}
         filterContentForSearchText(text)
     }
-}
+} //End of extension
+
 

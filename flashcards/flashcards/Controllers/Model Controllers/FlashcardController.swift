@@ -24,7 +24,7 @@ class FlashcardController {
     //Create
     func createFlashcard(frontString: String?, backString: String?, frontPhoto: UIImage?, backPhoto: UIImage?, flashpile: Flashpile, completion: @escaping (Result<Flashcard, FlashError>) -> Void) {
         
-        let pileReference = CKRecord.Reference(recordID: flashpile.recordID, action: .none)
+        let pileReference = CKRecord.Reference(recordID: flashpile.recordID, action: .deleteSelf)
         
         let newFlashcard = Flashcard(frontString: frontString, backString: backString, frontPhoto: frontPhoto, backPhoto: backPhoto, pileReference: pileReference)
         

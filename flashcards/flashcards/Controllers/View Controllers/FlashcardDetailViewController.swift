@@ -52,6 +52,7 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
     var backPencilIsSelected = false
     var frontImagePickerSelected = true
     
+    
     //MARK: - Lifecycles
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,6 +64,13 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .bgTan
+        
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
+         view.addGestureRecognizer(tap)
+        
+//         NotificationCenter.default.addObserver(self, selector: #selector(FlashcardDetailViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+//
+//         NotificationCenter.default.addObserver(self, selector: #selector(FlashcardDetailViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         if let flashcard = flashcard {
             updateViews(flashcard: flashcard)
@@ -256,12 +264,14 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
+        
         if textView.textColor == UIColor.lightGray {
             textView.text = nil
             textView.textColor = UIColor.black
         }
     }
     func textViewDidEndEditing(_ textView: UITextView) {
+        
         if textView.text.isEmpty {
             if textView == frontTextView {
                 textView.text = "front text..."
@@ -272,18 +282,14 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         }
     }
     
-//    func textViewDidBeginEditing(_ frontTextView: UITextView) {
-//        frontTextView.textColor = .blue
-//        if frontTextView.textColor == UIColor.lightGray {
-//            frontTextView.text = nil
-//            frontTextView.textColor = UIColor.black
-//        }
+//    @objc func keyboardWillShow(notification: NSNotification) {
+//        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {return}
+//
+//        self.view.frame.origin.y = 0 - keyboardSize.height
 //    }
 //
-//    func textViewShouldBeginEditing(_ frontTextView: UITextView) -> Bool {
-//        frontTextView.textColor = .blue
-//
-//        return true
+//    @objc func keyboardWillHide(notification: NSNotification) {
+//      self.view.frame.origin.y = 0
 //    }
     
     func updateViews(flashcard: Flashcard) {
@@ -455,4 +461,6 @@ extension FlashcardDetailViewController: UIImagePickerControllerDelegate {
         }
         dismiss(animated: true, completion: nil)
     }
-}
+} //End of extension
+
+

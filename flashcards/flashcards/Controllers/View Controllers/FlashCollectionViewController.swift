@@ -31,6 +31,10 @@ class FlashCollectionViewController: UICollectionViewController {
         
         self.collectionView.backgroundColor = .bgTan
         navigationItem.leftBarButtonItem = editButtonItem
+        
+//        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
+//        view.addGestureRecognizer(tap)
+        
         setupSearchBar()
 //        fetchFlashpiles()
     }

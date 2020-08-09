@@ -62,22 +62,24 @@ class QuizViewController: UIViewController {
         finishedLabelView.layer.masksToBounds = false
         finishedLabelView.layer.shadowPath = UIBezierPath(roundedRect: finishedLabelView.bounds, cornerRadius: finishedLabelView.layer.cornerRadius).cgPath
         
+        
         frontViewView.layer.cornerRadius = 15.0
-        frontViewView.layer.borderWidth = 5.0
-        frontViewView.layer.borderColor = UIColor.clear.cgColor
-        frontViewView.layer.masksToBounds = true
+        frontViewView.clipsToBounds = true
+        //frontViewView.layer.borderWidth = 5.0
+        //frontViewView.layer.borderColor = UIColor.clear.cgColor
         frontViewView.layer.shadowColor = UIColor.gray.cgColor
         frontViewView.layer.shadowOffset = CGSize(width: 0, height: 2.0)
         frontViewView.layer.shadowRadius = 2.0
         frontViewView.layer.shadowOpacity = 1.0
         frontViewView.layer.masksToBounds = false
         frontViewView.layer.shadowPath = UIBezierPath(roundedRect: frontViewView.bounds, cornerRadius: frontViewView.layer.cornerRadius).cgPath
+        //print(frontViewView.bounds.height)
         
         
         backViewView.layer.cornerRadius = 15.0
-        backViewView.layer.borderWidth = 5.0
-        backViewView.layer.borderColor = UIColor.clear.cgColor
         backViewView.layer.masksToBounds = true
+        //backViewView.layer.borderWidth = 5.0
+        //backViewView.layer.borderColor = UIColor.clear.cgColor
         backViewView.layer.shadowColor = UIColor.gray.cgColor
         backViewView.layer.shadowOffset = CGSize(width: 0, height: 2.0)
         backViewView.layer.shadowRadius = 2.0

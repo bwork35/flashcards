@@ -30,6 +30,11 @@
 		93DE547F24C4EB4A00B4924F /* Flashpile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DE547E24C4EB4A00B4924F /* Flashpile.swift */; };
 		93DE548124C4EC3600B4924F /* FlashpileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DE548024C4EC3600B4924F /* FlashpileController.swift */; };
 		93EFDCD324D7BC1600B15C5D /* FlashButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EFDCD224D7BC1600B15C5D /* FlashButton.swift */; };
+		93EFDD1724DE7C1900B15C5D /* StatesAndCapitals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EFDD1624DE7C1800B15C5D /* StatesAndCapitals.swift */; };
+		93EFDD1924DF5A3500B15C5D /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EFDD1824DF5A3400B15C5D /* Element.swift */; };
+		93EFDD1B24DF5E0400B15C5D /* ElementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EFDD1A24DF5E0400B15C5D /* ElementController.swift */; };
+		93EFDD1D24DF5EF400B15C5D /* ElementError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EFDD1C24DF5EF400B15C5D /* ElementError.swift */; };
+		93EFDD1F24DF7B7300B15C5D /* ElementTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EFDD1E24DF7B7300B15C5D /* ElementTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +64,11 @@
 		93DE547E24C4EB4A00B4924F /* Flashpile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flashpile.swift; sourceTree = "<group>"; };
 		93DE548024C4EC3600B4924F /* FlashpileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashpileController.swift; sourceTree = "<group>"; };
 		93EFDCD224D7BC1600B15C5D /* FlashButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashButton.swift; sourceTree = "<group>"; };
+		93EFDD1624DE7C1800B15C5D /* StatesAndCapitals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatesAndCapitals.swift; sourceTree = "<group>"; };
+		93EFDD1824DF5A3400B15C5D /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
+		93EFDD1A24DF5E0400B15C5D /* ElementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementController.swift; sourceTree = "<group>"; };
+		93EFDD1C24DF5EF400B15C5D /* ElementError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementError.swift; sourceTree = "<group>"; };
+		93EFDD1E24DF7B7300B15C5D /* ElementTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +105,7 @@
 			children = (
 				93C6E5A724CE4D7400D613A3 /* FlashError.swift */,
 				93D8EBA824D61436003104CE /* StyleGuide.swift */,
+				93EFDD1C24DF5EF400B15C5D /* ElementError.swift */,
 			);
 			path = "Helpers + Extensions";
 			sourceTree = "<group>";
@@ -169,6 +180,7 @@
 				93DE547C24C3B39200B4924F /* FlashcardDetailViewController.swift */,
 				938215F424C7CA5000535B04 /* QuizViewController.swift */,
 				931441F424D1CB2E0005BE7B /* PencilViewController.swift */,
+				93EFDD1E24DF7B7300B15C5D /* ElementTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -178,6 +190,7 @@
 			children = (
 				93DE548024C4EC3600B4924F /* FlashpileController.swift */,
 				93DE546F24C103C000B4924F /* FlashcardController.swift */,
+				93EFDD1A24DF5E0400B15C5D /* ElementController.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -188,6 +201,8 @@
 				93DE547E24C4EB4A00B4924F /* Flashpile.swift */,
 				93DE546D24BF744C00B4924F /* Flashcard.swift */,
 				93DE547324C1054500B4924F /* MultiplicationTables.swift */,
+				93EFDD1624DE7C1800B15C5D /* StatesAndCapitals.swift */,
+				93EFDD1824DF5A3400B15C5D /* Element.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -289,9 +304,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93EFDD1F24DF7B7300B15C5D /* ElementTableViewController.swift in Sources */,
 				93D8EBA924D61436003104CE /* StyleGuide.swift in Sources */,
 				93DE548124C4EC3600B4924F /* FlashpileController.swift in Sources */,
 				93EFDCD324D7BC1600B15C5D /* FlashButton.swift in Sources */,
+				93EFDD1D24DF5EF400B15C5D /* ElementError.swift in Sources */,
 				93DE547D24C3B39200B4924F /* FlashcardDetailViewController.swift in Sources */,
 				93DE547224C1040F00B4924F /* FlashCollectionViewController.swift in Sources */,
 				938215F524C7CA5000535B04 /* QuizViewController.swift in Sources */,
@@ -299,10 +316,13 @@
 				93DE547024C103C000B4924F /* FlashcardController.swift in Sources */,
 				93DE547424C1054500B4924F /* MultiplicationTables.swift in Sources */,
 				93DE545424BF6DBF00B4924F /* AppDelegate.swift in Sources */,
+				93EFDD1B24DF5E0400B15C5D /* ElementController.swift in Sources */,
 				93DE546E24BF744C00B4924F /* Flashcard.swift in Sources */,
 				93D8EBA724D6126A003104CE /* FlashLabel.swift in Sources */,
 				93DE545624BF6DBF00B4924F /* SceneDelegate.swift in Sources */,
 				93DE547F24C4EB4A00B4924F /* Flashpile.swift in Sources */,
+				93EFDD1924DF5A3500B15C5D /* Element.swift in Sources */,
+				93EFDD1724DE7C1900B15C5D /* StatesAndCapitals.swift in Sources */,
 				93D6245424CC03F000A65642 /* FlashcardTableViewCell.swift in Sources */,
 				93C6E5A824CE4D7400D613A3 /* FlashError.swift in Sources */,
 				93484A2E24C60EC0003850DD /* FlashcardViewController.swift in Sources */,

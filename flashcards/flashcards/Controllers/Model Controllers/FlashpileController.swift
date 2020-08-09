@@ -18,76 +18,46 @@ class FlashpileController {
     
     let privateDB = CKContainer.default().privateCloudDatabase
     
-//    init() {
-//        let multiplicationTables = createMultTables()
-//        totalFlashpiles.append(multiplicationTables)
-//
-//        let colorTables = createColorTables()
-//        totalFlashpiles.append(colorTables)
+    init() {
+        //createMultTables()
+       
 
-//        let fruitTables = createFruitTables()
-//        totalFlashpiles.append(fruitTables)
-//    }
-//
-//    func createMultTables() -> Flashpile {
-//        var multTablesToReturn: [Flashcard] = []
-//        for prompt in MultiplicationTables.prompts {
-//            guard let index = MultiplicationTables.prompts.firstIndex(of: prompt) else {return Flashpile(subject: "", flashcards: [])}
-//            let answer = MultiplicationTables.answers[index]
-//            let flashcard = Flashcard(front: prompt, back: answer)
-//            multTablesToReturn.append(flashcard)
-//        }
-//        let flashpileToReturn = Flashpile(subject: "Multiplication", flashcards: multTablesToReturn)
-//        return flashpileToReturn
-//    }
-//
-//    func createColorTables() -> Flashpile {
-//        var colorTableToReturn: [Flashcard] = []
-//
-//        let yellowCard = Flashcard(front: "yellow", back: "yellow")
-//        let greenCard = Flashcard(front: "green", back: "green")
-//        let blueCard = Flashcard(front: "blue", back: "blue")
-//        let purpleCard = Flashcard(front: "purple", back: "purple")
-//        let redCard = Flashcard(front: "red", back: "red")
-//        let orangeCard = Flashcard(front: "orange", back: "orange")
-//
-//        colorTableToReturn.append(yellowCard)
-//        colorTableToReturn.append(greenCard)
-//        colorTableToReturn.append(blueCard)
-//        colorTableToReturn.append(purpleCard)
-//        colorTableToReturn.append(redCard)
-//        colorTableToReturn.append(orangeCard)
-//
-//        let flashpileToReturn = Flashpile(subject: "Color Tables", flashcards: colorTableToReturn)
-//        return flashpileToReturn
-//    }
+       // let statesTables = createColorTables()
+        //totalFlashpiles.append(statesTables)
 
-//    func createFruitTables() -> Flashpile {
-//        var fruitCard: [Flashcard] = []
-//
-//        let apple = Flashcard(front: UIImage(named: "apple"), back: "apple")
-//        let banana = Flashcard(front: UIImage(named: "banana"), back: "banana")
-//        let orange = Flashcard(front: UIImage(named: "orange"), back: "orange")
-//        let grapes = Flashcard(front: UIImage(named: "grapes"), back: "grapes")
-//        let strawberry = Flashcard(front: UIImage(named: "strawberry"), back: "strawberry")
-//        let watermelon = Flashcard(front: UIImage(named: "watermelon"), back: "watermelon")
-//        let coconut = Flashcard(front: UIImage(named: "coconut"), back: UIImage(named: "coconutWord"))
-//        let pineapple = Flashcard(front: UIImage(named: "pineapple"), back: UIImage(named: "pineappleWord"))
-//        let cherries = Flashcard(front: UIImage(named: "cherries"), back: UIImage(named: "cherriesWord"))
-//
-//        fruitCard.append(apple)
-//        fruitCard.append(banana)
-//        fruitCard.append(orange)
-//        fruitCard.append(grapes)
-//        fruitCard.append(strawberry)
-//        fruitCard.append(watermelon)
-//        fruitCard.append(coconut)
-//        fruitCard.append(pineapple)
-//        fruitCard.append(cherries)
-//
-//        let flashpileToReturn = Flashpile(subject: "Fruits", flashcards: fruitCard)
-//        return flashpileToReturn
-//    }
+        //let periodicTables = createFruitTables()
+        //totalFlashpiles.append(periodicTables)
+    }
+
+    func createMultTables(){
+        createFlashpile(subject: "Multiplication") { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(_):
+                    print("")
+                case .failure(let error):
+                    print("There was an error creating new flashpile -- \(error) -- \(error.localizedDescription)")
+                }
+            }
+        }
+        
+        guard let lastFlash = self.totalFlashpiles.last else {return}
+        
+        for prompt in MultiplicationTables.prompts {
+            guard let index = MultiplicationTables.prompts.firstIndex(of: prompt) else {return}
+            let answer = MultiplicationTables.answers[index]
+            FlashcardController.shared.createFlashcard(frontString: prompt, backString: answer, frontPhoto: nil, backPhoto: nil, flashpile: lastFlash) { (result) in
+                switch result {
+                case .success(_):
+                    print("yes")
+                case .failure(let error):
+                    print("There was an error creating a new flashcard -- \(error) -- \(error.localizedDescription)")
+                }
+            }
+        }
+    }
+
+
     
     //MARK: - CRUD
     
