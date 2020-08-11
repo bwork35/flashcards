@@ -671,12 +671,6 @@
                                                     <view contentMode="scaleToFill" horizontalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="HuY-j7-0qq">
                                                         <rect key="frame" x="0.0" y="47.5" width="269" height="246.5"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fR4-4V-yHP">
-                                                                <rect key="frame" x="65.5" y="31.5" width="138" height="183.5"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="fR4-4V-yHP" secondAttribute="height" multiplier="3:4" id="DxB-f1-rUw"/>
-                                                                </constraints>
-                                                            </imageView>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rectangle.on.rectangle.angled" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="G12-Gl-393">
                                                                 <rect key="frame" x="38" y="26" width="193" height="193"/>
                                                                 <color key="tintColor" white="0.78417522829999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -698,11 +692,17 @@
                                                                     <action selector="backSelectImageTapped:" destination="JKu-Cx-uhV" eventType="touchUpInside" id="cG3-zv-dEO"/>
                                                                 </connections>
                                                             </button>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fR4-4V-yHP">
+                                                                <rect key="frame" x="65.5" y="31.5" width="138" height="183.5"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="fR4-4V-yHP" secondAttribute="height" multiplier="3:4" id="DxB-f1-rUw"/>
+                                                                </constraints>
+                                                            </imageView>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="VVR-U6-BSV">
                                                                 <rect key="frame" x="5" y="0.0" width="259" height="246.5"/>
                                                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" spellCheckingType="no"/>
                                                             </textView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -791,12 +791,6 @@
                                                     <view contentMode="scaleToFill" horizontalHuggingPriority="248" translatesAutoresizingMaskIntoConstraints="NO" id="1BV-ur-IZg">
                                                         <rect key="frame" x="0.0" y="47.5" width="269" height="246.5"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hGz-jE-zKu">
-                                                                <rect key="frame" x="65.5" y="31.5" width="138" height="183.5"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="hGz-jE-zKu" secondAttribute="height" multiplier="3:4" id="UQH-zN-GxC"/>
-                                                                </constraints>
-                                                            </imageView>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rectangle.on.rectangle.angled" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="LRa-Uv-zZu">
                                                                 <rect key="frame" x="38" y="26" width="193" height="193"/>
                                                                 <color key="tintColor" white="0.78417522829999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -818,11 +812,17 @@
                                                                     <action selector="frontSelectImageTapped:" destination="JKu-Cx-uhV" eventType="touchUpInside" id="zS0-ru-2sX"/>
                                                                 </connections>
                                                             </button>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hGz-jE-zKu">
+                                                                <rect key="frame" x="65.5" y="31.5" width="138" height="183.5"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="hGz-jE-zKu" secondAttribute="height" multiplier="3:4" id="UQH-zN-GxC"/>
+                                                                </constraints>
+                                                            </imageView>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xel-FW-9zT">
                                                                 <rect key="frame" x="5" y="0.0" width="259" height="246.5"/>
                                                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" spellCheckingType="no"/>
                                                             </textView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -22,11 +22,11 @@ class FlashcardController {
     //MARK: - CRUD Methods
     
     //Create
-    func createFlashcard(frontString: String?, backString: String?, frontPhoto: UIImage?, backPhoto: UIImage?, flashpile: Flashpile, completion: @escaping (Result<Flashcard, FlashError>) -> Void) {
+    func createFlashcard(frontString: String?, backString: String?, frontIsPKImage: Bool, backIsPKImage: Bool, frontPhoto: UIImage?, backPhoto: UIImage?, flashpile: Flashpile, completion: @escaping (Result<Flashcard, FlashError>) -> Void) {
         
         let pileReference = CKRecord.Reference(recordID: flashpile.recordID, action: .deleteSelf)
         
-        let newFlashcard = Flashcard(frontString: frontString, backString: backString, frontPhoto: frontPhoto, backPhoto: backPhoto, pileReference: pileReference)
+        let newFlashcard = Flashcard(frontString: frontString, backString: backString, frontIsPKImage: frontIsPKImage, backIsPKImage: backIsPKImage, frontPhoto: frontPhoto, backPhoto: backPhoto, pileReference: pileReference)
         
         let cardRecord = CKRecord(flashcard: newFlashcard)
         

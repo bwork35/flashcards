@@ -35,11 +35,13 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
     var frontImg = UIImage() {
         didSet {
             frontPencilIsSelected = true
+            frontPKImageSelected = true
         }
     }
     var backImg = UIImage() {
         didSet {
             backPencilIsSelected = true
+            backPKImageSelected = true
         }
     }
     var isFrontPencil = true
@@ -52,13 +54,18 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
     var backPencilIsSelected = false
     var frontImagePickerSelected = true
     
+    var frontPKImageSelected = false
+    var backPKImageSelected = false
+    
     
     //MARK: - Lifecycles
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        frontPencilKitImageView.image = frontImg
-        backPencilKitImageView.image = backImg
+        
+        guard let flashcard = flashcard else {return}
+        print(flashcard.frontIsPKImage)
+        print(flashcard.backIsPKImage)
     }
     
     override func viewDidLoad() {
@@ -108,7 +115,10 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
     }
     
     //MARK: - Actions
-    @IBAction func unwindToDetail(_ sender: UIStoryboardSegue) {}
+    @IBAction func unwindToDetail(_ sender: UIStoryboardSegue) {
+        frontPencilKitImageView.image = frontImg
+        backPencilKitImageView.image = backImg
+    }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let flashpile = flashpile else {return}
@@ -116,27 +126,35 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         var backString: String?
         var frontPhoto: UIImage?
         var backPhoto: UIImage?
+        var frontIsPKImage: Bool = frontPKImageSelected
+        var backIsPKImage: Bool = backPKImageSelected
         
         if frontTextIsSelected {
             guard let frontText = frontTextView.text, !frontText.isEmpty else {return}
             frontString = frontText
+            frontIsPKImage = false
         } else if frontPictureIsSelected {
             guard let frontImage = frontImageView.image else {return}
             frontPhoto = frontImage
+            frontIsPKImage = false
         } else {
             guard let frontImage = frontPencilKitImageView.image else {return}
             frontPhoto = frontImage
+            frontIsPKImage = true
         }
         
         if backTextIsSelected {
             guard let backText = backTextView.text, !backText.isEmpty else {return}
             backString = backText
+            backIsPKImage = false
         } else if backPictureIsSelected {
             guard let backImage = backImageView.image else {return}
             backPhoto = backImage
+            backIsPKImage = false
         } else {
             guard let backImage = backPencilKitImageView.image else {return}
             backPhoto = backImage
+            backIsPKImage = true
         }
         
         if let flashcard = flashcard {
@@ -144,6 +162,8 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
             flashcard.backString = backString
             flashcard.frontPhoto = frontPhoto
             flashcard.backPhoto = backPhoto
+            flashcard.frontIsPKImage = frontIsPKImage
+            flashcard.backIsPKImage = backIsPKImage
             
             FlashcardController.shared.updateFlashcard(flashcard: flashcard) { (result) in
                 DispatchQueue.main.async {
@@ -156,7 +176,7 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
                 }
             }
         } else {
-            FlashcardController.shared.createFlashcard(frontString: frontString, backString: backString, frontPhoto: frontPhoto, backPhoto: backPhoto, flashpile: flashpile) { (result) in
+            FlashcardController.shared.createFlashcard(frontString: frontString, backString: backString, frontIsPKImage: frontIsPKImage, backIsPKImage: backIsPKImage, frontPhoto: frontPhoto, backPhoto: backPhoto, flashpile: flashpile) { (result) in
                 DispatchQueue.main.async {
                     switch result {
                     case .success(_):
@@ -293,29 +313,60 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
 //    }
     
     func updateViews(flashcard: Flashcard) {
+        
         if let frontString = flashcard.frontString {
             frontTextSelected()
             frontTextView.text = frontString
         } else if let frontPhoto = flashcard.frontPhoto {
-            frontPictureSelected()
-            frontSelectImageLabel.setTitle("", for: .normal)
-            frontImageView.image = frontPhoto
-        } else {
-            frontPencilSelected()
-            frontPencilKitImageView.image = flashcard.frontPhoto
+            if flashcard.frontIsPKImage == false {
+                frontPictureSelected()
+                frontSelectImageLabel.setTitle("", for: .normal)
+                frontImageView.image = frontPhoto
+            } else {
+                frontImg = frontPhoto
+                frontPencilSelected()
+                frontPencilKitImageView.image = frontPhoto
+            }
         }
         
         if let backString = flashcard.backString {
             backTextSelected()
             backTextView.text = backString
         } else if let backPhoto = flashcard.backPhoto {
-            backPictureSelected()
-            backSelectImageLabel.setTitle("", for: .normal)
-            backImageView.image = backPhoto
-        } else {
-            backPencilSelected()
-            backPencilKitImageView.image = flashcard.backPhoto
+            if flashcard.backIsPKImage == false {
+                backPictureSelected()
+                backSelectImageLabel.setTitle("", for: .normal)
+                backImageView.image = backPhoto
+            } else {
+                backImg = backPhoto
+                backPencilSelected()
+                backPencilKitImageView.image = backPhoto
+            }
         }
+        
+//        if let frontString = flashcard.frontString {
+//            frontTextSelected()
+//            frontTextView.text = frontString
+//        } else if let frontPhoto = flashcard.frontPhoto {
+//            frontPictureSelected()
+//            frontSelectImageLabel.setTitle("", for: .normal)
+//            frontImageView.image = frontPhoto
+//        } else {
+//            frontPencilSelected()
+//            frontPencilKitImageView.image = flashcard.frontPhoto
+//        }
+//
+//        if let backString = flashcard.backString {
+//            backTextSelected()
+//            backTextView.text = backString
+//        } else if let backPhoto = flashcard.backPhoto {
+//            backPictureSelected()
+//            backSelectImageLabel.setTitle("", for: .normal)
+//            backImageView.image = backPhoto
+//        } else {
+//            backPencilSelected()
+//            backPencilKitImageView.image = flashcard.backPhoto
+//        }
         
     }
     
@@ -323,6 +374,8 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         frontTextIsSelected = true
         frontPictureIsSelected = false
         frontPencilIsSelected = false
+        
+        frontPKImageSelected = false
         
         frontTextView.isHidden = false
         frontImageView.isHidden = true
@@ -343,6 +396,8 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         frontPictureIsSelected = true
         frontPencilIsSelected = false
         
+        frontPKImageSelected = false
+        
         frontTextView.isHidden = true
         frontImageView.isHidden = false
         frontSelectImageLabel.isHidden = false
@@ -360,6 +415,8 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         frontTextIsSelected = false
         frontPictureIsSelected = false
         frontPencilIsSelected = true
+        
+        frontPKImageSelected = true
         
         frontTextView.isHidden = true
         frontImageView.isHidden = true
@@ -379,6 +436,8 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         backPictureIsSelected = false
         backPencilIsSelected = false
         
+        backPKImageSelected = false
+        
         backTextView.isHidden = false
         backImageView.isHidden = true
         backSelectImageLabel.isHidden = true
@@ -397,6 +456,8 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         backPictureIsSelected = true
         backPencilIsSelected = false
         
+        backPKImageSelected = false
+        
         backTextView.isHidden = true
         backImageView.isHidden = false
         backSelectImageLabel.isHidden = false
@@ -414,6 +475,8 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         backTextIsSelected = false
         backPictureIsSelected = false
         backPencilIsSelected = true
+        
+        backPKImageSelected = true
         
         backTextView.isHidden = true
         backImageView.isHidden = true

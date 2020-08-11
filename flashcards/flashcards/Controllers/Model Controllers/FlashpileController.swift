@@ -46,7 +46,7 @@ class FlashpileController {
         for prompt in MultiplicationTables.prompts {
             guard let index = MultiplicationTables.prompts.firstIndex(of: prompt) else {return}
             let answer = MultiplicationTables.answers[index]
-            FlashcardController.shared.createFlashcard(frontString: prompt, backString: answer, frontPhoto: nil, backPhoto: nil, flashpile: lastFlash) { (result) in
+            FlashcardController.shared.createFlashcard(frontString: prompt, backString: answer, frontIsPKImage: false, backIsPKImage: false, frontPhoto: nil, backPhoto: nil, flashpile: lastFlash) { (result) in
                 switch result {
                 case .success(_):
                     print("yes")

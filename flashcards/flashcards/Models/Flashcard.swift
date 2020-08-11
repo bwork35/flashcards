@@ -13,6 +13,8 @@ struct CardStrings {
     static let recordTypeKey = "Flashcard"
     fileprivate static let frontKey = "FrontString"
     fileprivate static let backKey = "BackString"
+    fileprivate static let frontPKBoolKey = "frontIsPKImage"
+    fileprivate static let backPKBoolKey = "backIsPKImage"
     fileprivate static let frontAsset = "frontPhotoAsset"
     fileprivate static let backAsset = "backPhotoAsset"
     static let pileReferenceKey = "flashpile"
@@ -22,6 +24,8 @@ class Flashcard {
     
     var frontString: String?
     var backString: String?
+    var frontIsPKImage: Bool
+    var backIsPKImage: Bool
     var frontPhoto: UIImage? {
         get {
             guard let frontPhotoData = frontPhotoData else {return nil}
@@ -74,9 +78,11 @@ class Flashcard {
     let recordID: CKRecord.ID
     var pileReference: CKRecord.Reference?
     
-    init (frontString: String?, backString: String?, frontPhoto: UIImage?, backPhoto: UIImage?, recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString), pileReference: CKRecord.Reference?) {
+    init (frontString: String?, backString: String?, frontIsPKImage: Bool = false, backIsPKImage: Bool, frontPhoto: UIImage?, backPhoto: UIImage?, recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString), pileReference: CKRecord.Reference?) {
         self.frontString = frontString
         self.backString = backString
+        self.frontIsPKImage = frontIsPKImage
+        self.backIsPKImage = backIsPKImage
         self.recordID = recordID
         self.pileReference = pileReference
         self.frontPhoto = frontPhoto
@@ -86,9 +92,12 @@ class Flashcard {
 
 extension Flashcard {
     convenience init?(ckRecord: CKRecord) {
-
+        guard let frontIsPKImage = ckRecord[CardStrings.frontPKBoolKey] as? Bool,
+            let backIsPKImage = ckRecord[CardStrings.backPKBoolKey] as? Bool else {return nil}
+        
         let frontString = ckRecord[CardStrings.frontKey] as? String
         let backString = ckRecord[CardStrings.backKey] as? String
+        
         
         let pileReference = ckRecord[CardStrings.pileReferenceKey] as? CKRecord.Reference
         
@@ -116,13 +125,18 @@ extension Flashcard {
             }
         }
         
-        self.init(frontString: frontString, backString: backString, frontPhoto: frontPhoto, backPhoto: backPhoto, pileReference: pileReference)
+        self.init(frontString: frontString, backString: backString, frontIsPKImage: frontIsPKImage, backIsPKImage: backIsPKImage, frontPhoto: frontPhoto, backPhoto: backPhoto, pileReference: pileReference)
     }
 } //End of extension
 
 extension CKRecord {
     convenience init(flashcard: Flashcard) {
         self.init(recordType: CardStrings.recordTypeKey, recordID: flashcard.recordID)
+        
+        self.setValuesForKeys([
+            CardStrings.frontPKBoolKey : flashcard.frontIsPKImage,
+            CardStrings.backPKBoolKey : flashcard.backIsPKImage
+        ])
         
         if let frontString = flashcard.frontString {
             self.setValue(frontString, forKey: CardStrings.frontKey)

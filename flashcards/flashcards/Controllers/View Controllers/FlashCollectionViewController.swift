@@ -64,7 +64,7 @@ class FlashCollectionViewController: UICollectionViewController {
     func setupSearchBar() {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Seach Flashpiles"
+        searchController.searchBar.placeholder = "Search Flashpiles"
         navigationItem.searchController = searchController
         definesPresentationContext = true
         searchController.hidesNavigationBarDuringPresentation = false
