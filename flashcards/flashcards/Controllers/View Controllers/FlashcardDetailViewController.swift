@@ -25,6 +25,8 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
     @IBOutlet weak var backPencilButtonOutlet: UIButton!
     @IBOutlet weak var frontPencilKitImageView: UIImageView!
     @IBOutlet weak var backPencilKitImageView: UIImageView!
+    @IBOutlet weak var frontDrawSomethingButton: UIButton!
+    @IBOutlet weak var backDrawSomethingButton: UIButton!
     @IBOutlet weak var frontViewView: UIView!
     @IBOutlet weak var backViewView: UIView!
     
@@ -112,8 +114,13 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
     
     //MARK: - Actions
     @IBAction func unwindToDetail(_ sender: UIStoryboardSegue) {
-        frontPencilKitImageView.image = frontImg
-        backPencilKitImageView.image = backImg
+        if isFrontPencil {
+            frontPencilKitImageView.image = frontImg
+            frontDrawSomethingButton.setTitle("", for: .normal)
+        } else {
+            backPencilKitImageView.image = backImg
+            backDrawSomethingButton.setTitle("", for: .normal)
+        }
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
@@ -197,7 +204,6 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         frontPictureSelected()
     }
     @IBAction func frontPencilButtonTapped(_ sender: Any) {
-        isFrontPencil = true
         frontPencilSelected()
     }
     @IBAction func backTextButtonTapped(_ sender: Any) {
@@ -207,9 +213,15 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         backPictureSelected()
     }
     @IBAction func backPencilButtonTapped(_ sender: Any) {
-        isFrontPencil = false
         backPencilSelected()
     }
+    @IBAction func frontDrawSomethingTapped(_ sender: Any) {
+        isFrontPencil = true
+    }
+    @IBAction func backDrawSomethingTapped(_ sender: Any) {
+        isFrontPencil = false
+    }
+    
     @IBAction func frontSelectImageTapped(_ sender: Any) {
         frontImagePickerSelected = true
         
@@ -322,6 +334,7 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
                 frontImg = frontPhoto
                 frontPencilSelected()
                 frontPencilKitImageView.image = frontPhoto
+                frontDrawSomethingButton.setTitle("", for: .normal)
             }
         }
         
@@ -337,6 +350,7 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
                 backImg = backPhoto
                 backPencilSelected()
                 backPencilKitImageView.image = backPhoto
+                backDrawSomethingButton.setTitle("", for: .normal)
             }
         }
         
@@ -377,8 +391,9 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         frontImageView.isHidden = true
         frontSelectImageLabel.isHidden = true
         frontPencilKitImageView.isHidden = true
+        frontDrawSomethingButton.isHidden = true
         
-        //        frontTextButtonOutlet = FlashSelectTypeButtonBold()
+        //frontTextButtonOutlet = FlashSelectTypeButtonBold()
         frontTextButtonOutlet.tintColor = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
         frontTextButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 25.0, weight: .bold), forImageIn: .normal)
         frontPictureButtonOutlet.tintColor = .systemBlue
@@ -398,6 +413,7 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         frontImageView.isHidden = false
         frontSelectImageLabel.isHidden = false
         frontPencilKitImageView.isHidden = true
+        frontDrawSomethingButton.isHidden = true
         
         frontTextButtonOutlet.tintColor = .systemBlue
         frontTextButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 22.0, weight: .unspecified), forImageIn: .normal)
@@ -418,6 +434,7 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         frontImageView.isHidden = true
         frontSelectImageLabel.isHidden = true
         frontPencilKitImageView.isHidden = false
+        frontDrawSomethingButton.isHidden = false
         
         frontTextButtonOutlet.tintColor = .systemBlue
         frontTextButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 22.0, weight: .unspecified), forImageIn: .normal)
@@ -438,6 +455,7 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         backImageView.isHidden = true
         backSelectImageLabel.isHidden = true
         backPencilKitImageView.isHidden = true
+        backDrawSomethingButton.isHidden = true
         
         backTextButtonOutlet.tintColor = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
         backTextButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 25.0, weight: .bold), forImageIn: .normal)
@@ -458,6 +476,7 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         backImageView.isHidden = false
         backSelectImageLabel.isHidden = false
         backPencilKitImageView.isHidden = true
+        backDrawSomethingButton.isHidden = true
         
         backTextButtonOutlet.tintColor = .systemBlue
         backTextButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 22.0, weight: .unspecified), forImageIn: .normal)
@@ -478,6 +497,7 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         backImageView.isHidden = true
         backSelectImageLabel.isHidden = true
         backPencilKitImageView.isHidden = false
+        backDrawSomethingButton.isHidden = false
         
         backTextButtonOutlet.tintColor = .systemBlue
         backTextButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 22.0, weight: .unspecified), forImageIn: .normal)

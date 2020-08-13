@@ -660,7 +660,6 @@
                                                                         </state>
                                                                         <connections>
                                                                             <action selector="backPencilButtonTapped:" destination="JKu-Cx-uhV" eventType="touchUpInside" id="wXw-tz-qPI"/>
-                                                                            <segue destination="3vv-W8-IG8" kind="show" identifier="toPencilKitView" id="bGC-pO-uf3"/>
                                                                         </connections>
                                                                     </button>
                                                                 </subviews>
@@ -675,7 +674,7 @@
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rectangle.on.rectangle.angled" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="G12-Gl-393">
                                                                 <rect key="frame" x="38" y="26" width="193" height="193"/>
-                                                                <color key="tintColor" white="0.78417522829999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="tintColor" red="0.92156862745098034" green="0.91764705882352937" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="G12-Gl-393" secondAttribute="height" multiplier="1:1" id="cze-BK-dyr"/>
                                                                 </constraints>
@@ -694,12 +693,27 @@
                                                                     <action selector="backSelectImageTapped:" destination="JKu-Cx-uhV" eventType="touchUpInside" id="cG3-zv-dEO"/>
                                                                 </connections>
                                                             </button>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fR4-4V-yHP">
-                                                                <rect key="frame" x="65.5" y="31.5" width="138" height="183.5"/>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scribble" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="fR4-4V-yHP">
+                                                                <rect key="frame" x="65.5" y="30.5" width="138" height="181.5"/>
+                                                                <color key="tintColor" red="0.92156862745098034" green="0.91764705882352937" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="fR4-4V-yHP" secondAttribute="height" multiplier="3:4" id="DxB-f1-rUw"/>
                                                                 </constraints>
                                                             </imageView>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k75-4a-ZmB">
+                                                                <rect key="frame" x="43" y="31.5" width="183" height="183.5"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="k75-4a-ZmB" secondAttribute="height" multiplier="3:3" id="Ppi-5V-kGo"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                                <state key="normal" title="Draw Something">
+                                                                    <color key="titleColor" red="0.02888428535" green="0.061768546010000001" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="backDrawSomethingTapped:" destination="JKu-Cx-uhV" eventType="touchUpInside" id="m14-OR-Vkz"/>
+                                                                    <segue destination="3vv-W8-IG8" kind="show" identifier="toPencilKitView" id="rgS-ti-WTo"/>
+                                                                </connections>
+                                                            </button>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="VVR-U6-BSV">
                                                                 <rect key="frame" x="5" y="0.0" width="259" height="246.5"/>
                                                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -720,8 +734,11 @@
                                                             <constraint firstItem="VVR-U6-BSV" firstAttribute="leading" secondItem="HuY-j7-0qq" secondAttribute="leading" constant="5" id="WQI-ic-y4A"/>
                                                             <constraint firstItem="fR4-4V-yHP" firstAttribute="centerY" secondItem="HuY-j7-0qq" secondAttribute="centerY" id="hjA-Yz-yL3"/>
                                                             <constraint firstItem="fB5-ht-scW" firstAttribute="width" secondItem="HuY-j7-0qq" secondAttribute="width" multiplier="0.7" id="jWW-iq-StK"/>
+                                                            <constraint firstItem="k75-4a-ZmB" firstAttribute="height" secondItem="HuY-j7-0qq" secondAttribute="height" multiplier="0.743271" id="jsv-hq-noe"/>
+                                                            <constraint firstItem="k75-4a-ZmB" firstAttribute="centerY" secondItem="HuY-j7-0qq" secondAttribute="centerY" id="pgQ-16-VrW"/>
                                                             <constraint firstItem="fB5-ht-scW" firstAttribute="centerX" secondItem="HuY-j7-0qq" secondAttribute="centerX" id="qoH-mT-N6c"/>
                                                             <constraint firstItem="G12-Gl-393" firstAttribute="centerX" secondItem="HuY-j7-0qq" secondAttribute="centerX" id="s55-lf-KFt"/>
+                                                            <constraint firstItem="k75-4a-ZmB" firstAttribute="centerX" secondItem="HuY-j7-0qq" secondAttribute="centerX" id="xX7-Qe-TZ1"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -780,7 +797,6 @@
                                                                         </state>
                                                                         <connections>
                                                                             <action selector="frontPencilButtonTapped:" destination="JKu-Cx-uhV" eventType="touchUpInside" id="Qsl-x4-Pxk"/>
-                                                                            <segue destination="3vv-W8-IG8" kind="show" identifier="toPencilKitView" id="PLv-KW-Da8"/>
                                                                         </connections>
                                                                     </button>
                                                                 </subviews>
@@ -795,7 +811,7 @@
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rectangle.on.rectangle.angled" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="LRa-Uv-zZu">
                                                                 <rect key="frame" x="38" y="26" width="193" height="193"/>
-                                                                <color key="tintColor" white="0.78417522829999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="tintColor" red="0.92156862745098034" green="0.91764705882352937" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="LRa-Uv-zZu" secondAttribute="height" multiplier="1:1" id="DXk-iy-Txw"/>
                                                                 </constraints>
@@ -806,20 +822,35 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="Hwi-Jr-t6H" secondAttribute="height" multiplier="1:1" id="kqD-iz-L6V"/>
                                                                 </constraints>
-                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                                 <state key="normal" title="Select Image">
-                                                                    <color key="titleColor" red="0.02888428535" green="0.061768546010000001" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                    <color key="titleColor" red="0.027450980392156862" green="0.062745098039215685" blue="0.49803921568627452" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 </state>
                                                                 <connections>
                                                                     <action selector="frontSelectImageTapped:" destination="JKu-Cx-uhV" eventType="touchUpInside" id="zS0-ru-2sX"/>
                                                                 </connections>
                                                             </button>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hGz-jE-zKu">
-                                                                <rect key="frame" x="65.5" y="31.5" width="138" height="183.5"/>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scribble" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hGz-jE-zKu">
+                                                                <rect key="frame" x="65.5" y="30.5" width="138" height="181.5"/>
+                                                                <color key="tintColor" red="0.92156862745098034" green="0.91764705882352937" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="hGz-jE-zKu" secondAttribute="height" multiplier="3:4" id="UQH-zN-GxC"/>
                                                                 </constraints>
                                                             </imageView>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Oo-qC-7sh">
+                                                                <rect key="frame" x="43" y="31.5" width="183" height="183.5"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="8Oo-qC-7sh" secondAttribute="height" multiplier="3:3" id="Sfe-0i-lJi"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                                <state key="normal" title="Draw Something">
+                                                                    <color key="titleColor" red="0.02888428535" green="0.061768546010000001" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="frontDrawSomethingTapped:" destination="JKu-Cx-uhV" eventType="touchUpInside" id="8IB-f8-ZQS"/>
+                                                                    <segue destination="3vv-W8-IG8" kind="show" identifier="toPencilKitView" id="MJu-gp-64I"/>
+                                                                </connections>
+                                                            </button>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xel-FW-9zT">
                                                                 <rect key="frame" x="5" y="0.0" width="259" height="246.5"/>
                                                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -829,14 +860,17 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
+                                                            <constraint firstItem="8Oo-qC-7sh" firstAttribute="height" secondItem="1BV-ur-IZg" secondAttribute="height" multiplier="0.743271" id="2G5-Pn-E38"/>
                                                             <constraint firstItem="LRa-Uv-zZu" firstAttribute="height" secondItem="1BV-ur-IZg" secondAttribute="height" multiplier="0.780538" id="2Xe-Wz-z9M"/>
                                                             <constraint firstItem="Hwi-Jr-t6H" firstAttribute="width" secondItem="1BV-ur-IZg" secondAttribute="width" multiplier="0.7" id="3Gg-6A-tMw"/>
                                                             <constraint firstItem="hGz-jE-zKu" firstAttribute="centerX" secondItem="1BV-ur-IZg" secondAttribute="centerX" id="3nz-tm-qez"/>
+                                                            <constraint firstItem="8Oo-qC-7sh" firstAttribute="centerX" secondItem="1BV-ur-IZg" secondAttribute="centerX" id="8PY-4K-ACW"/>
                                                             <constraint firstItem="Hwi-Jr-t6H" firstAttribute="centerX" secondItem="1BV-ur-IZg" secondAttribute="centerX" id="Itd-2C-L6a"/>
                                                             <constraint firstItem="LRa-Uv-zZu" firstAttribute="centerX" secondItem="1BV-ur-IZg" secondAttribute="centerX" id="VQJ-5d-tXH"/>
                                                             <constraint firstItem="hGz-jE-zKu" firstAttribute="centerY" secondItem="1BV-ur-IZg" secondAttribute="centerY" id="VRu-QL-Rnl"/>
                                                             <constraint firstAttribute="bottom" secondItem="xel-FW-9zT" secondAttribute="bottom" id="ZlY-6M-INg"/>
                                                             <constraint firstItem="hGz-jE-zKu" firstAttribute="height" secondItem="1BV-ur-IZg" secondAttribute="height" multiplier="0.743271" id="a7q-W4-fNJ"/>
+                                                            <constraint firstItem="8Oo-qC-7sh" firstAttribute="centerY" secondItem="1BV-ur-IZg" secondAttribute="centerY" id="bBd-q1-XAw"/>
                                                             <constraint firstItem="Hwi-Jr-t6H" firstAttribute="centerY" secondItem="1BV-ur-IZg" secondAttribute="centerY" id="bea-IV-AVW"/>
                                                             <constraint firstAttribute="trailing" secondItem="xel-FW-9zT" secondAttribute="trailing" constant="5" id="cXg-4w-G8v"/>
                                                             <constraint firstItem="xel-FW-9zT" firstAttribute="top" secondItem="1BV-ur-IZg" secondAttribute="top" id="egz-he-8RB"/>
@@ -902,16 +936,18 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="backDrawSomethingButton" destination="k75-4a-ZmB" id="dj5-3r-QqC"/>
                         <outlet property="backImageView" destination="G12-Gl-393" id="0ll-Dy-MQ0"/>
-                        <outlet property="backPencilButtonOutlet" destination="FA2-2S-QRB" id="fQu-T9-u6v"/>
+                        <outlet property="backPencilButtonOutlet" destination="FA2-2S-QRB" id="Juc-tq-Kau"/>
                         <outlet property="backPencilKitImageView" destination="fR4-4V-yHP" id="WwL-Wu-Jcm"/>
                         <outlet property="backPictureButtonOutlet" destination="xPT-mF-95D" id="PQK-Rz-zNS"/>
                         <outlet property="backSelectImageLabel" destination="fB5-ht-scW" id="QTi-F4-4S7"/>
                         <outlet property="backTextButtonOutlet" destination="miS-dE-S1C" id="p2r-Os-9gI"/>
                         <outlet property="backTextView" destination="VVR-U6-BSV" id="HjL-aq-qtY"/>
                         <outlet property="backViewView" destination="HuY-j7-0qq" id="Y5m-Fs-Vk6"/>
+                        <outlet property="frontDrawSomethingButton" destination="8Oo-qC-7sh" id="30X-3F-cUl"/>
                         <outlet property="frontImageView" destination="LRa-Uv-zZu" id="FpL-x0-o56"/>
-                        <outlet property="frontPencilButtonOutlet" destination="CL0-bZ-12s" id="kqq-AS-P70"/>
+                        <outlet property="frontPencilButtonOutlet" destination="CL0-bZ-12s" id="ysJ-EJ-EJm"/>
                         <outlet property="frontPencilKitImageView" destination="hGz-jE-zKu" id="5mC-ST-Ppl"/>
                         <outlet property="frontPictureButtonOutlet" destination="WFC-c1-gRk" id="S7F-cX-cnm"/>
                         <outlet property="frontSelectImageLabel" destination="Hwi-Jr-t6H" id="mSe-WU-tZm"/>
@@ -1047,7 +1083,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="PLv-KW-Da8"/>
+        <segue reference="MJu-gp-64I"/>
         <segue reference="ea1-eu-IIi"/>
         <segue reference="4qt-WR-YND"/>
     </inferredMetricsTieBreakers>
@@ -1056,6 +1092,7 @@
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="photo" catalog="system" width="128" height="93"/>
         <image name="rectangle.on.rectangle.angled" catalog="system" width="128" height="101"/>
+        <image name="scribble" catalog="system" width="128" height="109"/>
         <image name="textformat" catalog="system" width="128" height="80"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="bgTan">
