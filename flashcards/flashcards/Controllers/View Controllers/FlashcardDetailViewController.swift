@@ -62,10 +62,6 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
-        guard let flashcard = flashcard else {return}
-        print(flashcard.frontIsPKImage)
-        print(flashcard.backIsPKImage)
     }
     
     override func viewDidLoad() {

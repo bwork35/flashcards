@@ -385,64 +385,15 @@
                                 <rect key="frame" x="12" y="114" width="390" height="2"/>
                                 <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </progressView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gv1-Ao-ntg" userLabel="finishView">
-                                <rect key="frame" x="41.5" y="227.5" width="331" height="448"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="62" translatesAutoresizingMaskIntoConstraints="NO" id="vPx-Hq-5P3">
-                                        <rect key="frame" x="12" y="284" width="307" height="41"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vc3-b1-Hhm" customClass="FlashButton" customModule="flashcards" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="122.5" height="41"/>
-                                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="21"/>
-                                                <state key="normal" title="Restart"/>
-                                                <connections>
-                                                    <action selector="restartButtonTapped:" destination="enc-vl-aj7" eventType="touchUpInside" id="IEa-jD-DxZ"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgh-F4-FxD" customClass="FlashButton" customModule="flashcards" customModuleProvider="target">
-                                                <rect key="frame" x="184.5" y="0.0" width="122.5" height="41"/>
-                                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="21"/>
-                                                <state key="normal" title="Home"/>
-                                                <connections>
-                                                    <segue destination="Rex-oz-PlR" kind="unwind" unwindAction="unwindToHome:" id="rrV-0Z-H24"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DZg-hy-EPw">
-                                        <rect key="frame" x="20" y="20" width="291" height="224"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You made it through all flashcards in this pile!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4St-vP-oVR" customClass="FlashLabel" customModule="flashcards" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="69" width="275" height="41"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                                <size key="shadowOffset" width="0.0" height="0.0"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <constraints>
-                                            <constraint firstItem="4St-vP-oVR" firstAttribute="centerY" secondItem="DZg-hy-EPw" secondAttribute="centerY" multiplier="0.8" id="3Nj-DP-T0b"/>
-                                            <constraint firstItem="4St-vP-oVR" firstAttribute="leading" secondItem="DZg-hy-EPw" secondAttribute="leading" constant="8" id="Cqq-4Q-KrU"/>
-                                            <constraint firstAttribute="trailing" secondItem="4St-vP-oVR" secondAttribute="trailing" constant="8" id="uae-cO-cyC"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" name="bgTan"/>
-                                <constraints>
-                                    <constraint firstItem="DZg-hy-EPw" firstAttribute="top" secondItem="Gv1-Ao-ntg" secondAttribute="top" constant="20" id="B4i-Qm-lfG"/>
-                                    <constraint firstAttribute="trailing" secondItem="DZg-hy-EPw" secondAttribute="trailing" constant="20" id="BD2-FE-lxh"/>
-                                    <constraint firstItem="DZg-hy-EPw" firstAttribute="height" secondItem="Gv1-Ao-ntg" secondAttribute="height" multiplier="0.5" id="BZH-AM-j14"/>
-                                    <constraint firstAttribute="trailing" secondItem="vPx-Hq-5P3" secondAttribute="trailing" constant="12" id="J30-nb-x8r"/>
-                                    <constraint firstItem="vPx-Hq-5P3" firstAttribute="top" secondItem="DZg-hy-EPw" secondAttribute="bottom" constant="40" id="Opa-KG-JEj"/>
-                                    <constraint firstItem="vPx-Hq-5P3" firstAttribute="leading" secondItem="Gv1-Ao-ntg" secondAttribute="leading" constant="12" id="R2C-zY-d9D"/>
-                                    <constraint firstItem="DZg-hy-EPw" firstAttribute="leading" secondItem="Gv1-Ao-ntg" secondAttribute="leading" constant="20" id="q1W-vr-Ndx"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UFg-Oo-4ev" userLabel="frontView">
                                 <rect key="frame" x="62" y="166" width="290" height="232"/>
                                 <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6dP-hs-OBB">
+                                        <rect key="frame" x="65.5" y="25" width="159" height="159"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="6dP-hs-OBB" secondAttribute="height" multiplier="1:1" id="c5w-jM-Iet"/>
+                                        </constraints>
+                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(front)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zI-Tv-uSw" customClass="QuizLabel" customModule="flashcards" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="75" width="290" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -474,29 +425,29 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6dP-hs-OBB">
-                                        <rect key="frame" x="65.5" y="13" width="159" height="159"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="6dP-hs-OBB" secondAttribute="height" multiplier="1:1" id="c5w-jM-Iet"/>
-                                        </constraints>
-                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="Zpg-52-UuJ" secondAttribute="bottom" id="942-Lh-xVW"/>
+                                    <constraint firstItem="6dP-hs-OBB" firstAttribute="centerY" secondItem="UFg-Oo-4ev" secondAttribute="centerY" multiplier="0.9" id="BZO-DO-J0O"/>
                                     <constraint firstItem="6dP-hs-OBB" firstAttribute="centerX" secondItem="UFg-Oo-4ev" secondAttribute="centerX" id="DoD-4n-ciR"/>
                                     <constraint firstItem="2zI-Tv-uSw" firstAttribute="top" secondItem="UFg-Oo-4ev" secondAttribute="top" constant="75" id="FAO-kV-0bZ"/>
+                                    <constraint firstItem="6dP-hs-OBB" firstAttribute="height" secondItem="UFg-Oo-4ev" secondAttribute="height" multiplier="0.685345" id="HZQ-EM-n7M"/>
                                     <constraint firstAttribute="trailing" secondItem="2zI-Tv-uSw" secondAttribute="trailing" id="XbZ-wa-tNe"/>
-                                    <constraint firstItem="6dP-hs-OBB" firstAttribute="width" secondItem="UFg-Oo-4ev" secondAttribute="width" multiplier="0.55" id="at6-Hw-8bt"/>
                                     <constraint firstItem="2zI-Tv-uSw" firstAttribute="leading" secondItem="UFg-Oo-4ev" secondAttribute="leading" id="rX6-TV-kfN"/>
                                     <constraint firstItem="Zpg-52-UuJ" firstAttribute="leading" secondItem="UFg-Oo-4ev" secondAttribute="leading" constant="12" id="tyf-Vi-SMd"/>
-                                    <constraint firstItem="Zpg-52-UuJ" firstAttribute="top" secondItem="6dP-hs-OBB" secondAttribute="bottom" constant="20" id="yQy-xr-BR0"/>
                                     <constraint firstAttribute="trailing" secondItem="Zpg-52-UuJ" secondAttribute="trailing" constant="12" id="yYx-hm-k60"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mf3-Dd-rbb" userLabel="backView">
                                 <rect key="frame" x="62" y="458" width="290" height="232.5"/>
                                 <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JWY-CZ-b1i">
+                                        <rect key="frame" x="65.5" y="25" width="159" height="159.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="JWY-CZ-b1i" secondAttribute="height" multiplier="1:1" id="nws-LD-4Dm"/>
+                                        </constraints>
+                                    </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="rOn-FA-ElD">
                                         <rect key="frame" x="0.0" y="184.5" width="290" height="48"/>
                                         <subviews>
@@ -522,12 +473,6 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JWY-CZ-b1i">
-                                        <rect key="frame" x="65.5" y="5" width="159" height="159.5"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="JWY-CZ-b1i" secondAttribute="height" multiplier="1:1" id="nws-LD-4Dm"/>
-                                        </constraints>
-                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(back)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vEn-2a-rgV" customClass="QuizLabel" customModule="flashcards" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="75" width="290" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -537,15 +482,70 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="JWY-CZ-b1i" firstAttribute="centerY" secondItem="Mf3-Dd-rbb" secondAttribute="centerY" multiplier="0.9" id="B8t-XJ-0QE"/>
                                     <constraint firstItem="JWY-CZ-b1i" firstAttribute="centerX" secondItem="Mf3-Dd-rbb" secondAttribute="centerX" id="Duf-Zh-NvT"/>
                                     <constraint firstAttribute="trailing" secondItem="rOn-FA-ElD" secondAttribute="trailing" id="I72-KZ-5RP"/>
                                     <constraint firstItem="rOn-FA-ElD" firstAttribute="leading" secondItem="Mf3-Dd-rbb" secondAttribute="leading" id="K52-Nv-4SV"/>
                                     <constraint firstItem="vEn-2a-rgV" firstAttribute="leading" secondItem="Mf3-Dd-rbb" secondAttribute="leading" id="K5P-DN-cqe"/>
                                     <constraint firstItem="vEn-2a-rgV" firstAttribute="top" secondItem="Mf3-Dd-rbb" secondAttribute="top" constant="75" id="ceo-UD-3Bd"/>
+                                    <constraint firstItem="JWY-CZ-b1i" firstAttribute="height" secondItem="Mf3-Dd-rbb" secondAttribute="height" multiplier="0.686022" id="dU4-8N-e0G"/>
                                     <constraint firstAttribute="bottom" secondItem="rOn-FA-ElD" secondAttribute="bottom" id="e3x-TC-aJy"/>
-                                    <constraint firstItem="rOn-FA-ElD" firstAttribute="top" secondItem="JWY-CZ-b1i" secondAttribute="bottom" constant="20" id="gaJ-5y-n2i"/>
                                     <constraint firstAttribute="trailing" secondItem="vEn-2a-rgV" secondAttribute="trailing" id="pi8-rK-H4d"/>
-                                    <constraint firstItem="JWY-CZ-b1i" firstAttribute="width" secondItem="Mf3-Dd-rbb" secondAttribute="width" multiplier="0.55" id="zb7-GK-r3e"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gv1-Ao-ntg" userLabel="finishView">
+                                <rect key="frame" x="41.5" y="227.5" width="331" height="448"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="62" translatesAutoresizingMaskIntoConstraints="NO" id="vPx-Hq-5P3">
+                                        <rect key="frame" x="12" y="284" width="307" height="41"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vc3-b1-Hhm" customClass="FlashButton" customModule="flashcards" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="122.5" height="41"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="21"/>
+                                                <state key="normal" title="Restart"/>
+                                                <connections>
+                                                    <action selector="restartButtonTapped:" destination="enc-vl-aj7" eventType="touchUpInside" id="IEa-jD-DxZ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgh-F4-FxD" customClass="FlashButton" customModule="flashcards" customModuleProvider="target">
+                                                <rect key="frame" x="184.5" y="0.0" width="122.5" height="41"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="21"/>
+                                                <state key="normal" title="Home"/>
+                                                <connections>
+                                                    <segue destination="Rex-oz-PlR" kind="unwind" unwindAction="unwindToHome:" id="rrV-0Z-H24"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DZg-hy-EPw">
+                                        <rect key="frame" x="20" y="20" width="291" height="224"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You made it through all flashcards in this pile!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4St-vP-oVR" customClass="FlashLabel" customModule="flashcards" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="91.5" width="275" height="41"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstItem="4St-vP-oVR" firstAttribute="centerY" secondItem="DZg-hy-EPw" secondAttribute="centerY" id="3Nj-DP-T0b"/>
+                                            <constraint firstItem="4St-vP-oVR" firstAttribute="leading" secondItem="DZg-hy-EPw" secondAttribute="leading" constant="8" id="Cqq-4Q-KrU"/>
+                                            <constraint firstAttribute="trailing" secondItem="4St-vP-oVR" secondAttribute="trailing" constant="8" id="uae-cO-cyC"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" name="bgTan"/>
+                                <constraints>
+                                    <constraint firstItem="DZg-hy-EPw" firstAttribute="top" secondItem="Gv1-Ao-ntg" secondAttribute="top" constant="20" id="B4i-Qm-lfG"/>
+                                    <constraint firstAttribute="trailing" secondItem="DZg-hy-EPw" secondAttribute="trailing" constant="20" id="BD2-FE-lxh"/>
+                                    <constraint firstItem="DZg-hy-EPw" firstAttribute="height" secondItem="Gv1-Ao-ntg" secondAttribute="height" multiplier="0.5" id="BZH-AM-j14"/>
+                                    <constraint firstAttribute="trailing" secondItem="vPx-Hq-5P3" secondAttribute="trailing" constant="12" id="J30-nb-x8r"/>
+                                    <constraint firstItem="vPx-Hq-5P3" firstAttribute="top" secondItem="DZg-hy-EPw" secondAttribute="bottom" constant="40" id="Opa-KG-JEj"/>
+                                    <constraint firstItem="vPx-Hq-5P3" firstAttribute="leading" secondItem="Gv1-Ao-ntg" secondAttribute="leading" constant="12" id="R2C-zY-d9D"/>
+                                    <constraint firstItem="DZg-hy-EPw" firstAttribute="leading" secondItem="Gv1-Ao-ntg" secondAttribute="leading" constant="20" id="q1W-vr-Ndx"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -580,6 +580,7 @@
                         <outlet property="finishViewView" destination="Gv1-Ao-ntg" id="Kug-58-37p"/>
                         <outlet property="finishedLabelView" destination="DZg-hy-EPw" id="qJN-fq-qJj"/>
                         <outlet property="frontViewView" destination="UFg-Oo-4ev" id="BsP-xI-7fD"/>
+                        <outlet property="homeButton" destination="hgh-F4-FxD" id="gyy-fb-cEa"/>
                         <outlet property="incorrectButtonLabel" destination="4ns-09-sQb" id="Mj8-kx-dig"/>
                         <outlet property="quizBackImageView" destination="JWY-CZ-b1i" id="7cp-zb-KlK"/>
                         <outlet property="quizBackLabel" destination="vEn-2a-rgV" id="GRJ-8q-WQt"/>
@@ -587,6 +588,7 @@
                         <outlet property="quizFrontLabel" destination="2zI-Tv-uSw" id="0MW-OV-KYs"/>
                         <outlet property="quizProgressBar" destination="aZO-qz-iAR" id="ZgZ-lE-cl9"/>
                         <outlet property="redProgressBar" destination="wPl-BN-g2i" id="O42-Qh-BqT"/>
+                        <outlet property="restartButton" destination="vc3-b1-Hhm" id="fnE-tE-V36"/>
                         <outlet property="skipButtonLabel" destination="I0c-KA-0VP" id="3db-I5-J4k"/>
                     </connections>
                 </viewController>

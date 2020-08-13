@@ -25,6 +25,8 @@ class QuizViewController: UIViewController {
     @IBOutlet weak var frontViewView: UIView!
     @IBOutlet weak var backViewView: UIView!
     @IBOutlet weak var finishedLabelView: UIView!
+    @IBOutlet weak var restartButton: FlashButton!
+    @IBOutlet weak var homeButton: FlashButton!
     
     
     //MARK: - Properties
@@ -46,8 +48,60 @@ class QuizViewController: UIViewController {
         print(FlashcardController.shared.totalFlashcards.shuffled().count)
         print(quizCards.count)
         print(FlashcardController.shared.totalFlashcards.shuffled().count)
-        layoutSubviews()
+        //layoutSubviews()
         updateViews()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        finishedLabelView.layer.cornerRadius = 20.0
+        finishedLabelView.clipsToBounds = true
+        finishedLabelView.layer.shadowColor = UIColor.gray.cgColor
+        finishedLabelView.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        finishedLabelView.layer.shadowRadius = 2.0
+        finishedLabelView.layer.shadowOpacity = 1.0
+        finishedLabelView.layer.masksToBounds = false
+        finishedLabelView.layer.shadowPath = UIBezierPath(roundedRect: finishedLabelView.bounds, cornerRadius: finishedLabelView.layer.cornerRadius).cgPath
+        
+        
+        frontViewView.layer.cornerRadius = 15.0
+        frontViewView.clipsToBounds = true
+        //frontViewView.layer.borderWidth = 5.0
+        //frontViewView.layer.borderColor = UIColor.clear.cgColor
+        frontViewView.layer.shadowColor = UIColor.gray.cgColor
+        frontViewView.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        frontViewView.layer.shadowRadius = 2.0
+        frontViewView.layer.shadowOpacity = 1.0
+        frontViewView.layer.masksToBounds = false
+        frontViewView.layer.shadowPath = UIBezierPath(roundedRect: frontViewView.bounds, cornerRadius: frontViewView.layer.cornerRadius).cgPath
+        //print(frontViewView.bounds.height)
+        
+        
+        backViewView.layer.cornerRadius = 15.0
+        backViewView.layer.masksToBounds = true
+        //backViewView.layer.borderWidth = 5.0
+        //backViewView.layer.borderColor = UIColor.clear.cgColor
+        backViewView.layer.shadowColor = UIColor.gray.cgColor
+        backViewView.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        backViewView.layer.shadowRadius = 2.0
+        backViewView.layer.shadowOpacity = 1.0
+        backViewView.layer.masksToBounds = false
+        backViewView.layer.shadowPath = UIBezierPath(roundedRect: backViewView.bounds, cornerRadius: backViewView.layer.cornerRadius).cgPath
+        
+        restartButton.layer.shadowColor = UIColor.gray.cgColor
+        restartButton.layer.shadowOffset = CGSize(width: 0, height: 1.5)
+        restartButton.layer.shadowRadius = 2.0
+        restartButton.layer.shadowOpacity = 1.0
+        restartButton.layer.masksToBounds = false
+        restartButton.layer.shadowPath = UIBezierPath(roundedRect: restartButton.bounds, cornerRadius: restartButton.layer.cornerRadius).cgPath
+        
+        homeButton.layer.shadowColor = UIColor.gray.cgColor
+        homeButton.layer.shadowOffset = CGSize(width: 0, height: 1.5)
+        homeButton.layer.shadowRadius = 2.0
+        homeButton.layer.shadowOpacity = 1.0
+        homeButton.layer.masksToBounds = false
+        homeButton.layer.shadowPath = UIBezierPath(roundedRect: homeButton.bounds, cornerRadius: homeButton.layer.cornerRadius).cgPath
     }
     
     func layoutSubviews() {

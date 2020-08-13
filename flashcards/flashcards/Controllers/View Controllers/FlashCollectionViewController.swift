@@ -43,6 +43,10 @@ class FlashCollectionViewController: UICollectionViewController {
         fetchFlashpiles()
         collectionView.reloadData()
         FlashcardController.shared.totalFlashcards = []
+        
+        //setEditing(false, animated: true)
+       // isEditing = false
+        
     }
     //MARK: - Actions
      @IBAction func unwindToHome(_ sender: UIStoryboardSegue) {}
