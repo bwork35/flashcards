@@ -181,40 +181,27 @@ extension FlashCollectionViewController: FlashpileCellDelegate {
     func delete(cell: FlashpileCollectionViewCell) {
         if let indexPath = collectionView?.indexPath(for: cell) {
             let flashpileToDelete = FlashpileController.shared.totalFlashpiles[indexPath.row]
-            //let tempArray: [Flashcard] = []
-            FlashcardController.shared.fetchFlashcards(for: flashpileToDelete) { (result) in
-                switch result {
-                case .success(_):
-                    
-                    for flashcard in flashpileToDelete.flashcards {
-                        FlashcardController.shared.deleteFlashcard(flashcard: flashcard) { (result) in
-                            switch result {
-                            case .success(_):
-                                print("Deleted all flashcards from this flashpile")
-                            case .failure(let error):
-                                print("There was an error deleting a flashcard from this flashpile -- \(error) -- \(error.localizedDescription)")
-                            }
+            
+            let alertController = UIAlertController(title: "Delete", message: "Are you sure you want to delete the flashpile \"\(flashpileToDelete.subject)\" ?", preferredStyle: .alert)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (_) in
+                FlashpileController.shared.deleteFlashpile(flashpile: flashpileToDelete) { (result) in
+                    DispatchQueue.main.async {
+                        switch result {
+                        case .success(_):
+                            //self.collectionView?.deleteItems(at: [indexPath])
+                            
+                            self.fetchFlashpiles()
+                        case .failure(let error):
+                            print("There was an error deleting the flashpile -- \(error) -- \(error.localizedDescription)")
                         }
                     }
-                    
-                case .failure(let error):
-                    print("There was an error fetching these flashcards -- \(error) -- \(error.localizedDescription)")
                 }
             }
-            
-            
-            FlashpileController.shared.deleteFlashpile(flashpile: flashpileToDelete) { (result) in
-                DispatchQueue.main.async {
-                    switch result {
-                    case .success(_):
-                        //self.collectionView?.deleteItems(at: [indexPath])
-                        
-                        self.fetchFlashpiles()
-                    case .failure(let error):
-                        print("There was an error deleting the flashpile -- \(error) -- \(error.localizedDescription)")
-                    }
-                }
-            }
+            alertController.addAction(cancelAction)
+            alertController.addAction(deleteAction)
+            self.present(alertController, animated: true)
         }
     }
 } //End of Extension
