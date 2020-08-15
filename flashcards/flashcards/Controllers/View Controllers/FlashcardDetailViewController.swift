@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import VisionKit
 
 class FlashcardDetailViewController: UIViewController, UINavigationControllerDelegate, UITextViewDelegate {
     
@@ -241,10 +242,17 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
             self.present(imagePickerController, animated: true, completion: nil)
         }
         
+        let scanDocAction = UIAlertAction(title: "Scan Document", style: .default) { (_) in
+            let scanningDocumentVC = VNDocumentCameraViewController()
+            scanningDocumentVC.delegate = self
+            self.present(scanningDocumentVC, animated: true, completion: nil)
+        }
+        
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
         alertController.addAction(cameraAction)
         alertController.addAction(libraryAction)
+        alertController.addAction(scanDocAction)
         alertController.addAction(cancelAction)
         present(alertController, animated: true)
     }
@@ -267,10 +275,17 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
             self.present(imagePickerController, animated: true, completion: nil)
         }
         
+        let scanDocAction = UIAlertAction(title: "Scan Document", style: .default) { (_) in
+            let scanningDocumentVC = VNDocumentCameraViewController()
+            scanningDocumentVC.delegate = self
+            self.present(scanningDocumentVC, animated: true, completion: nil)
+        }
+        
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
         alertController.addAction(cameraAction)
         alertController.addAction(libraryAction)
+        alertController.addAction(scanDocAction)
         alertController.addAction(cancelAction)
         present(alertController, animated: true)
     }
@@ -353,6 +368,15 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
                 backDrawSomethingButton.setTitle("", for: .normal)
             }
         }
+        
+//        func configureDocumentView() {
+//
+//            let scanningDocumentVC = VNDocumentCameraViewController()
+//            scanningDocumentVC.delegate = self
+//            self.present(scanningDocumentVC, animated: true, completion: nil)
+//
+//
+//        }
         
 //        if let frontString = flashcard.frontString {
 //            frontTextSelected()
@@ -542,4 +566,20 @@ extension FlashcardDetailViewController: UIImagePickerControllerDelegate {
     }
 } //End of extension
 
-
+extension FlashcardDetailViewController: VNDocumentCameraViewControllerDelegate {
+    func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFinishWith scan: VNDocumentCameraScan) {
+        for pageNumber in 0..<scan.pageCount {
+            let image = scan.imageOfPage(at: pageNumber)
+            
+            //print(image)
+            if frontImagePickerSelected {
+                frontSelectImageLabel.setTitle("", for: .normal)
+                frontImageView.image = image
+            } else {
+                backSelectImageLabel.setTitle("", for: .normal)
+                backImageView.image = image
+            }
+        }
+        controller.dismiss(animated: true, completion: nil)
+    }
+} //End of extension
