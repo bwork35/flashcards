@@ -20,7 +20,9 @@ class QuizViewController: UIViewController {
     @IBOutlet weak var incorrectButtonLabel: UIButton!
     @IBOutlet weak var correctButtonLabel: UIButton!
     @IBOutlet weak var quizProgressBar: UIProgressView!
+    @IBOutlet weak var yellowProgressNums: UILabel!
     @IBOutlet weak var redProgressBar: UIProgressView!
+    @IBOutlet weak var redProgressNums: UILabel!
     @IBOutlet weak var finishViewView: UIView!
     @IBOutlet weak var frontViewView: UIView!
     @IBOutlet weak var backViewView: UIView!
@@ -36,18 +38,17 @@ class QuizViewController: UIViewController {
     var quizCount = 0
     var cardCount = 0
     var totalCount = FlashcardController.shared.totalFlashcards.count
+    var finalCount = FlashcardController.shared.totalFlashcards.count
     var skippedCards: [Flashcard] = []
     var incorrectCards: [Flashcard] = []
     var round = 1
     var redProgressBarIsOn = false
+    var redCount = 0
     
     //MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .bgTan
-        print(FlashcardController.shared.totalFlashcards.shuffled().count)
-        print(quizCards.count)
-        print(FlashcardController.shared.totalFlashcards.shuffled().count)
         //layoutSubviews()
         updateViews()
     }
@@ -104,44 +105,44 @@ class QuizViewController: UIViewController {
         homeButton.layer.shadowPath = UIBezierPath(roundedRect: homeButton.bounds, cornerRadius: homeButton.layer.cornerRadius).cgPath
     }
     
-    func layoutSubviews() {
-        //super.layoutSubviews()
-        
-        finishedLabelView.layer.cornerRadius = 20.0
-        finishedLabelView.clipsToBounds = true
-        finishedLabelView.layer.shadowColor = UIColor.gray.cgColor
-        finishedLabelView.layer.shadowOffset = CGSize(width: 0, height: 2.0)
-        finishedLabelView.layer.shadowRadius = 2.0
-        finishedLabelView.layer.shadowOpacity = 1.0
-        finishedLabelView.layer.masksToBounds = false
-        finishedLabelView.layer.shadowPath = UIBezierPath(roundedRect: finishedLabelView.bounds, cornerRadius: finishedLabelView.layer.cornerRadius).cgPath
-        
-        
-        frontViewView.layer.cornerRadius = 15.0
-        frontViewView.clipsToBounds = true
-        //frontViewView.layer.borderWidth = 5.0
-        //frontViewView.layer.borderColor = UIColor.clear.cgColor
-        frontViewView.layer.shadowColor = UIColor.gray.cgColor
-        frontViewView.layer.shadowOffset = CGSize(width: 0, height: 2.0)
-        frontViewView.layer.shadowRadius = 2.0
-        frontViewView.layer.shadowOpacity = 1.0
-        frontViewView.layer.masksToBounds = false
-        frontViewView.layer.shadowPath = UIBezierPath(roundedRect: frontViewView.bounds, cornerRadius: frontViewView.layer.cornerRadius).cgPath
-        //print(frontViewView.bounds.height)
-        
-        
-        backViewView.layer.cornerRadius = 15.0
-        backViewView.layer.masksToBounds = true
-        //backViewView.layer.borderWidth = 5.0
-        //backViewView.layer.borderColor = UIColor.clear.cgColor
-        backViewView.layer.shadowColor = UIColor.gray.cgColor
-        backViewView.layer.shadowOffset = CGSize(width: 0, height: 2.0)
-        backViewView.layer.shadowRadius = 2.0
-        backViewView.layer.shadowOpacity = 1.0
-        backViewView.layer.masksToBounds = false
-        backViewView.layer.shadowPath = UIBezierPath(roundedRect: backViewView.bounds, cornerRadius: backViewView.layer.cornerRadius).cgPath
-        
-    }
+//    func layoutSubviews() {
+//        //super.layoutSubviews()
+//
+//        finishedLabelView.layer.cornerRadius = 20.0
+//        finishedLabelView.clipsToBounds = true
+//        finishedLabelView.layer.shadowColor = UIColor.gray.cgColor
+//        finishedLabelView.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+//        finishedLabelView.layer.shadowRadius = 2.0
+//        finishedLabelView.layer.shadowOpacity = 1.0
+//        finishedLabelView.layer.masksToBounds = false
+//        finishedLabelView.layer.shadowPath = UIBezierPath(roundedRect: finishedLabelView.bounds, cornerRadius: finishedLabelView.layer.cornerRadius).cgPath
+//
+//
+//        frontViewView.layer.cornerRadius = 15.0
+//        frontViewView.clipsToBounds = true
+//        //frontViewView.layer.borderWidth = 5.0
+//        //frontViewView.layer.borderColor = UIColor.clear.cgColor
+//        frontViewView.layer.shadowColor = UIColor.gray.cgColor
+//        frontViewView.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+//        frontViewView.layer.shadowRadius = 2.0
+//        frontViewView.layer.shadowOpacity = 1.0
+//        frontViewView.layer.masksToBounds = false
+//        frontViewView.layer.shadowPath = UIBezierPath(roundedRect: frontViewView.bounds, cornerRadius: frontViewView.layer.cornerRadius).cgPath
+//        //print(frontViewView.bounds.height)
+//
+//
+//        backViewView.layer.cornerRadius = 15.0
+//        backViewView.layer.masksToBounds = true
+//        //backViewView.layer.borderWidth = 5.0
+//        //backViewView.layer.borderColor = UIColor.clear.cgColor
+//        backViewView.layer.shadowColor = UIColor.gray.cgColor
+//        backViewView.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+//        backViewView.layer.shadowRadius = 2.0
+//        backViewView.layer.shadowOpacity = 1.0
+//        backViewView.layer.masksToBounds = false
+//        backViewView.layer.shadowPath = UIBezierPath(roundedRect: backViewView.bounds, cornerRadius: backViewView.layer.cornerRadius).cgPath
+//
+//    }
     
     
     
@@ -173,6 +174,9 @@ class QuizViewController: UIViewController {
         nextCard()
     }
     @IBAction func correctButtonTapped(_ sender: Any) {
+        if redProgressBarIsOn {
+            redCount -= 1
+        }
         cardCount += 1
         nextCard()
     }
@@ -200,7 +204,6 @@ class QuizViewController: UIViewController {
     
     //MARK: Helper Methods
     func updateViews() {
-        print(FlashcardController.shared.totalFlashcards.count)
         if quizCards[quizCount].frontString != nil {
             quizFrontLabel.isHidden = false
             quizFrontImageView.isHidden = true
@@ -266,6 +269,7 @@ class QuizViewController: UIViewController {
         case 3:
             print("Round 3")
             quizCards = incorrectCards.shuffled()
+            redCount = incorrectCards.count
             incorrectCards = []
             quizCount = 0
             round = 1
@@ -293,6 +297,9 @@ class QuizViewController: UIViewController {
             quizProgressBar.progress = 1.0
             redProgressBar.progress = 0.0
         }
+        
+        redProgressNums.text = "0"
+        
         quizFrontImageView.isHidden = true
         quizBackImageView.isHidden = true
         quizFrontLabel.isHidden = true
@@ -308,10 +315,15 @@ class QuizViewController: UIViewController {
     }
     
     func updateProgressBar() {
+        
         if redProgressBarIsOn == false {
+            yellowProgressNums.text = "\(quizCount) / \(finalCount)"
+            redProgressNums.text = "\(incorrectCards.count)"
             redProgressBar.progress = 0.0
             quizProgressBar.progress = (Float(cardCount))/(Float(totalCount))
         } else {
+            yellowProgressNums.text = "\(finalCount) / \(finalCount)"
+            redProgressNums.text = "\(redCount)"
             redProgressBar.progress = (Float(cardCount))/(Float(totalCount))
         }
     }
