@@ -44,6 +44,7 @@ class FlashCollectionViewController: UICollectionViewController {
         collectionView.reloadData()
         FlashcardController.shared.totalFlashcards = []
         
+        print(FlashpileController.shared.totalFlashpiles.count)
         //setEditing(false, animated: true)
        // isEditing = false
         

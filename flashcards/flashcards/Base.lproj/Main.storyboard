@@ -350,11 +350,18 @@
                                 <action selector="saveButtonTapped:" destination="90n-uL-X3k" id="AZR-gA-d0o"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="vOB-iU-SUK">
-                            <connections>
-                                <segue destination="JKu-Cx-uhV" kind="show" identifier="toAddFC" id="ea1-eu-IIi"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="vOB-iU-SUK">
+                                <connections>
+                                    <segue destination="JKu-Cx-uhV" kind="show" identifier="toAddFC" id="ea1-eu-IIi"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" id="aIj-3a-CTm">
+                                <connections>
+                                    <action selector="buttonButtonTapped:" destination="90n-uL-X3k" id="O9o-8Z-tzs"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="editButtonLabel" destination="yta-Fz-CZI" id="Xib-fn-1m9"/>

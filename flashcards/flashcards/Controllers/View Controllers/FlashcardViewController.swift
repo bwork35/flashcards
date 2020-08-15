@@ -82,6 +82,12 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     //MARK: - Actions
+    @IBAction func buttonButtonTapped(_ sender: Any) {
+        guard let flashpile = flashpile else {return}
+        for flashcard in flashpile.flashcards {
+            print(flashcard.frontString ?? "nil")
+        }
+    }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
 //        guard let text = flashpileSubjectTextField.text, !text.isEmpty else {return}

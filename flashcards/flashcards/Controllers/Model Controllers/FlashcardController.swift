@@ -71,10 +71,11 @@ class FlashcardController {
             print("Fetched Flashcard Records Successfully")
             
             let fetchedFlashcards = records.compactMap { Flashcard(ckRecord: $0) }
+            let sortedFlashcards = fetchedFlashcards.sorted(by: { $0.timestamp < $1.timestamp })
             
-            flashpile.flashcards.append(contentsOf: fetchedFlashcards)
+            flashpile.flashcards.append(contentsOf: sortedFlashcards)
             
-            completion(.success(fetchedFlashcards))
+            completion(.success(sortedFlashcards))
         }
     }
     

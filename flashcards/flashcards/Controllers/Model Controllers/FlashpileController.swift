@@ -97,8 +97,9 @@ class FlashpileController {
             guard let records = records else {return completion(.failure(.couldNotUnwrap))}
             
             let fetchedFlashpiles: [Flashpile] = records.compactMap { Flashpile(ckRecord: $0) }
+            let sortedFlashpiles = fetchedFlashpiles.sorted(by: { $0.timestamp > $1.timestamp })
     
-            self.totalFlashpiles = fetchedFlashpiles
+            self.totalFlashpiles = sortedFlashpiles
             completion(.success(true))
         }
     }
