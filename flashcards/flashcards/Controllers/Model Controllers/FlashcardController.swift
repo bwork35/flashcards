@@ -80,7 +80,14 @@ class FlashcardController {
     }
     
     //Update
-    func updateFlashcard(flashcard: Flashcard, completion: @escaping (Result<Flashcard, FlashError>) -> Void) {
+    func updateFlashcard(flashcard: Flashcard, frontString: String?, backString: String?, frontIsPKImage: Bool, backIsPKImage: Bool, frontPhoto: UIImage?, backPhoto: UIImage?, completion: @escaping (Result<Flashcard, FlashError>) -> Void) {
+        
+        flashcard.frontString = frontString
+        flashcard.backString = backString
+        flashcard.frontPhoto = frontPhoto
+        flashcard.backPhoto = backPhoto
+        flashcard.frontIsPKImage = frontIsPKImage
+        flashcard.backIsPKImage = backIsPKImage
         
         let record = CKRecord(flashcard: flashcard)
         

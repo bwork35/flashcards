@@ -162,14 +162,14 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         }
         
         if let flashcard = flashcard {
-            flashcard.frontString = frontString
-            flashcard.backString = backString
-            flashcard.frontPhoto = frontPhoto
-            flashcard.backPhoto = backPhoto
-            flashcard.frontIsPKImage = frontIsPKImage
-            flashcard.backIsPKImage = backIsPKImage
+//            flashcard.frontString = frontString
+//            flashcard.backString = backString
+//            flashcard.frontPhoto = frontPhoto
+//            flashcard.backPhoto = backPhoto
+//            flashcard.frontIsPKImage = frontIsPKImage
+//            flashcard.backIsPKImage = backIsPKImage
             
-            FlashcardController.shared.updateFlashcard(flashcard: flashcard) { (result) in
+            FlashcardController.shared.updateFlashcard(flashcard: flashcard, frontString: frontString, backString: backString, frontIsPKImage: frontIsPKImage, backIsPKImage: backIsPKImage, frontPhoto: frontPhoto, backPhoto: backPhoto) { (result) in
                 DispatchQueue.main.async {
                     switch result {
                     case .success(_):

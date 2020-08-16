@@ -128,7 +128,7 @@ extension Flashcard {
             }
         }
         
-        self.init(frontString: frontString, backString: backString, frontIsPKImage: frontIsPKImage, backIsPKImage: backIsPKImage, frontPhoto: frontPhoto, backPhoto: backPhoto, timestamp: timestamp, pileReference: pileReference)
+        self.init(frontString: frontString, backString: backString, frontIsPKImage: frontIsPKImage, backIsPKImage: backIsPKImage, frontPhoto: frontPhoto, backPhoto: backPhoto, timestamp: timestamp, recordID: ckRecord.recordID, pileReference: pileReference)
     }
 } //End of extension
 
