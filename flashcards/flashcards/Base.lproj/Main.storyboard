@@ -391,7 +391,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="337.5" height="20.5"/>
                                         <subviews>
                                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" verticalCompressionResistancePriority="751" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="aZO-qz-iAR">
-                                                <rect key="frame" x="0.0" y="5.5" width="331.5" height="10"/>
+                                                <rect key="frame" x="10" y="5.5" width="331.5" height="10"/>
                                                 <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="10" id="Ncx-AI-08F"/>
@@ -402,7 +402,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20.5" id="irf-ec-BjN"/>
                                             <constraint firstItem="aZO-qz-iAR" firstAttribute="centerY" secondItem="1R8-YW-AaZ" secondAttribute="centerY" id="sSi-zu-2iS"/>
-                                            <constraint firstItem="aZO-qz-iAR" firstAttribute="leading" secondItem="1R8-YW-AaZ" secondAttribute="leading" id="sUY-PV-1Xj"/>
+                                            <constraint firstItem="aZO-qz-iAR" firstAttribute="leading" secondItem="1R8-YW-AaZ" secondAttribute="leading" constant="10" id="sUY-PV-1Xj"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0v-EU-cFE" userLabel="yellowNums">
@@ -410,7 +410,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44.5" id="f39-Wy-3lf"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -591,7 +591,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="337.5" height="20.5"/>
                                         <subviews>
                                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wPl-BN-g2i">
-                                                <rect key="frame" x="0.0" y="5.5" width="331.5" height="10"/>
+                                                <rect key="frame" x="10" y="5.5" width="331.5" height="10"/>
                                                 <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="10" id="i3a-is-y6A"/>
@@ -601,7 +601,7 @@
                                         <color key="backgroundColor" name="bgTan"/>
                                         <constraints>
                                             <constraint firstItem="wPl-BN-g2i" firstAttribute="centerY" secondItem="13j-Ez-V6o" secondAttribute="centerY" id="oLv-pi-LHs"/>
-                                            <constraint firstItem="wPl-BN-g2i" firstAttribute="leading" secondItem="13j-Ez-V6o" secondAttribute="leading" id="xQH-6t-D9t"/>
+                                            <constraint firstItem="wPl-BN-g2i" firstAttribute="leading" secondItem="13j-Ez-V6o" secondAttribute="leading" constant="10" id="xQH-6t-D9t"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="62X-wN-PKC" userLabel="redNums">
@@ -609,7 +609,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44.5" id="3uP-bN-l4V"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -648,12 +648,10 @@
                     <connections>
                         <outlet property="answerButtonLabel" destination="hok-nJ-UVS" id="ErZ-eD-WE8"/>
                         <outlet property="backViewView" destination="Mf3-Dd-rbb" id="p66-8k-e1S"/>
-                        <outlet property="correctButtonLabel" destination="vem-HL-E1M" id="v7S-Yw-qXM"/>
                         <outlet property="finishViewView" destination="Gv1-Ao-ntg" id="Kug-58-37p"/>
                         <outlet property="finishedLabelView" destination="DZg-hy-EPw" id="qJN-fq-qJj"/>
                         <outlet property="frontViewView" destination="UFg-Oo-4ev" id="BsP-xI-7fD"/>
                         <outlet property="homeButton" destination="hgh-F4-FxD" id="gyy-fb-cEa"/>
-                        <outlet property="incorrectButtonLabel" destination="4ns-09-sQb" id="Mj8-kx-dig"/>
                         <outlet property="quizBackImageView" destination="JWY-CZ-b1i" id="7cp-zb-KlK"/>
                         <outlet property="quizBackLabel" destination="vEn-2a-rgV" id="GRJ-8q-WQt"/>
                         <outlet property="quizFrontImageView" destination="6dP-hs-OBB" id="esu-Nk-eaA"/>

@@ -17,8 +17,6 @@ class QuizViewController: UIViewController {
     @IBOutlet weak var quizBackImageView: UIImageView!
     @IBOutlet weak var answerButtonLabel: UIButton!
     @IBOutlet weak var skipButtonLabel: UIButton!
-    @IBOutlet weak var incorrectButtonLabel: UIButton!
-    @IBOutlet weak var correctButtonLabel: UIButton!
     @IBOutlet weak var quizProgressBar: UIProgressView!
     @IBOutlet weak var yellowProgressNums: UILabel!
     @IBOutlet weak var redProgressBar: UIProgressView!
@@ -92,6 +90,18 @@ class QuizViewController: UIViewController {
         homeButton.layer.shadowOpacity = 1.0
         homeButton.layer.masksToBounds = false
         homeButton.layer.shadowPath = UIBezierPath(roundedRect: homeButton.bounds, cornerRadius: homeButton.layer.cornerRadius).cgPath
+        
+        yellowProgressNums.layer.shadowColor = UIColor.gray.cgColor
+        yellowProgressNums.layer.shadowRadius = 0.10
+        yellowProgressNums.layer.shadowOpacity = 1.0
+        yellowProgressNums.layer.shadowOffset = CGSize(width: 0, height: 0.2)
+        yellowProgressNums.layer.masksToBounds = false
+        
+        redProgressNums.layer.shadowColor = UIColor.gray.cgColor
+        redProgressNums.layer.shadowRadius = 0.10
+        redProgressNums.layer.shadowOpacity = 1.0
+        redProgressNums.layer.shadowOffset = CGSize(width: 0, height: 0.2)
+        redProgressNums.layer.masksToBounds = false
     }
     
     //MARK: - Actions
@@ -106,8 +116,6 @@ class QuizViewController: UIViewController {
         answerButtonLabel.isEnabled = false
         skipButtonLabel.isEnabled = false
         backViewView.isHidden = false
-        incorrectButtonLabel.isHidden = false
-        correctButtonLabel.isHidden = false
     }
     
     @IBAction func skipButtonTapped(_ sender: Any) {
@@ -182,8 +190,6 @@ class QuizViewController: UIViewController {
         skipButtonLabel.isEnabled = true
         quizBackLabel.isHidden = true
         quizBackImageView.isHidden = true
-        incorrectButtonLabel.isHidden = true
-        correctButtonLabel.isHidden = true
         backViewView.isHidden = true
         finishViewView.isHidden = true
     }
@@ -240,6 +246,7 @@ class QuizViewController: UIViewController {
     
     func finishQuiz() {
         if redProgressBarIsOn == false {
+            yellowProgressNums.text = "\(finalCount) / \(finalCount)"
             quizProgressBar.progress = 1.0
             redProgressBar.progress = 0.0
         }
@@ -250,8 +257,6 @@ class QuizViewController: UIViewController {
         quizBackLabel.isHidden = true
         answerButtonLabel.isHidden = true
         skipButtonLabel.isHidden = true
-        incorrectButtonLabel.isHidden = true
-        correctButtonLabel.isHidden = true
         finishViewView.isHidden = false
         frontViewView.isHidden = true
         backViewView.isHidden = true

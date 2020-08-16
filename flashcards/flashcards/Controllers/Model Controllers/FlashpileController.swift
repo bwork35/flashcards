@@ -21,7 +21,7 @@ class FlashpileController {
     //MARK: - CRUD
     
     //Create
-    func createFlashpile(subject: String, completion: @escaping (Result<Bool, FlashError>) -> Void) {
+    func createFlashpile(subject: String, completion: @escaping (Result<Flashpile, FlashError>) -> Void) {
         
         let newFlashpile = Flashpile(subject: subject)
         let newFlashRecord = CKRecord(flashpile: newFlashpile)
@@ -36,7 +36,7 @@ class FlashpileController {
                 let savedFlashpile = Flashpile(ckRecord: record) else {return completion(.failure(.couldNotUnwrap))}
             
             self.totalFlashpiles.append(savedFlashpile)
-            completion(.success(true))
+            completion(.success(savedFlashpile))
         }
     }
     

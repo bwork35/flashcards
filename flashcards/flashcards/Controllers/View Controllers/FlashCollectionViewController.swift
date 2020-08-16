@@ -36,7 +36,6 @@ class FlashCollectionViewController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         fetchFlashpiles()
-        collectionView.reloadData()
         FlashcardController.shared.totalFlashcards = []
     }
     

@@ -23,6 +23,7 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
 
     let searchController = UISearchController(searchResultsController: nil)
     var filteredFlashcards: [Flashcard] = []
+    var titleIsEditing = false
     
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
@@ -49,8 +50,8 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
             FlashpileController.shared.createFlashpile(subject: "") { (result) in
                 DispatchQueue.main.async {
                     switch result {
-                    case .success(_):
-                        self.flashpile = FlashpileController.shared.totalFlashpiles.last
+                    case .success(let flashpile):
+                        self.flashpile = flashpile
                         self.enableQuizButton()
                     case .failure(let error):
                         print("There was an error creating a new flashpile -- \(error) -- \(error.localizedDescription)")
@@ -75,9 +76,16 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.separatorColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 0.2607020548)
         tableView.layer.cornerRadius = 15.0
         tableView.clipsToBounds = true
-        quizButtonOutlet.layer.cornerRadius = 22.0
-        quizButtonOutlet.clipsToBounds = true
         
+        quizButtonOutlet.layer.cornerRadius = 20.0
+        quizButtonOutlet.clipsToBounds = true
+        quizButtonOutlet.layer.shadowColor = UIColor.gray.cgColor
+        quizButtonOutlet.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        quizButtonOutlet.layer.shadowRadius = 2.0
+        quizButtonOutlet.layer.shadowOpacity = 1.0
+        quizButtonOutlet.layer.masksToBounds = false
+        quizButtonOutlet.layer.shadowPath = UIBezierPath(roundedRect: quizButtonOutlet.bounds, cornerRadius: quizButtonOutlet.layer.cornerRadius).cgPath
+    
         let containerView:UIView = UIView(frame: self.tableView.frame)
         self.view.addSubview(containerView)
         self.view.addSubview(subjectViewView)
@@ -123,9 +131,9 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBAction func editButtonTapped(_ sender: Any) {
         guard let flashpile = flashpile else {return}
-        tableView.isEditing = !tableView.isEditing
+        titleIsEditing = !titleIsEditing
         
-        if tableView.isEditing {
+        if titleIsEditing {
             editButtonLabel.setTitle("Done", for: .normal)
             flashpileSubjectTextField.isHidden = false
             if flashpile.subject == "Subject" {
@@ -261,14 +269,6 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
             }
             FlashcardController.shared.totalFlashcards = flashpile.flashcards
         }
-    }
-    
-    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        guard let flashpile = flashpile else {return}
-        
-        let movedObject = flashpile.flashcards[sourceIndexPath.row]
-        flashpile.flashcards.remove(at: sourceIndexPath.row)
-        flashpile.flashcards.insert(movedObject, at: destinationIndexPath.row)
     }
     
     // MARK: - Navigation
