@@ -12,6 +12,4 @@ struct Element: Codable {
     var name: String
     var symbol: String
     var atomicNumber: String
-}
-
- 
+} //End of struct

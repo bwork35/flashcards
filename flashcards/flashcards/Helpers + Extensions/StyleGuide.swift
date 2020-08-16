@@ -13,4 +13,4 @@ extension UIColor {
     static let topYellow = UIColor(named: "topYellow")
     static let titleRed = UIColor(named: "titleRed")
     static let buttonGray = UIColor(named: "buttonGray")
-}
+} //End of extension

@@ -35,6 +35,17 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
     var flashcard: Flashcard?
     var flashpile: Flashpile?
     
+    var frontTextIsSelected = false
+    var frontPictureIsSelected = false
+    var frontPencilIsSelected = false
+    var backTextIsSelected = false
+    var backPictureIsSelected = false
+    var backPencilIsSelected = false
+    var frontImagePickerSelected = true
+    var isFrontPencil = true
+    var frontPKImageSelected = false
+    var backPKImageSelected = false
+    
     var frontImg = UIImage() {
         didSet {
             frontPencilIsSelected = true
@@ -47,36 +58,14 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
             backPKImageSelected = true
         }
     }
-    var isFrontPencil = true
-    
-    var frontTextIsSelected = false
-    var frontPictureIsSelected = false
-    var frontPencilIsSelected = false
-    var backTextIsSelected = false
-    var backPictureIsSelected = false
-    var backPencilIsSelected = false
-    var frontImagePickerSelected = true
-    
-    var frontPKImageSelected = false
-    var backPKImageSelected = false
-    
-    
+
     //MARK: - Lifecycles
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .bgTan
         
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
          view.addGestureRecognizer(tap)
-        
-//         NotificationCenter.default.addObserver(self, selector: #selector(FlashcardDetailViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-//
-//         NotificationCenter.default.addObserver(self, selector: #selector(FlashcardDetailViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         if let flashcard = flashcard {
             updateViews(flashcard: flashcard)
@@ -106,11 +95,6 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         backViewView.layer.shadowOpacity = 1.0
         backViewView.layer.masksToBounds = false
         backViewView.layer.shadowPath = UIBezierPath(roundedRect: backViewView.bounds, cornerRadius: backViewView.layer.cornerRadius).cgPath
-        
-//        frontTextView.layer.cornerRadius = 40.0
-//        frontTextView.clipsToBounds = true
-//        backTextView.layer.cornerRadius = 40.0
-//        backTextView.clipsToBounds = true
     }
     
     //MARK: - Actions
@@ -162,13 +146,6 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         }
         
         if let flashcard = flashcard {
-//            flashcard.frontString = frontString
-//            flashcard.backString = backString
-//            flashcard.frontPhoto = frontPhoto
-//            flashcard.backPhoto = backPhoto
-//            flashcard.frontIsPKImage = frontIsPKImage
-//            flashcard.backIsPKImage = backIsPKImage
-            
             FlashcardController.shared.updateFlashcard(flashcard: flashcard, frontString: frontString, backString: backString, frontIsPKImage: frontIsPKImage, backIsPKImage: backIsPKImage, frontPhoto: frontPhoto, backPhoto: backPhoto) { (result) in
                 DispatchQueue.main.async {
                     switch result {
@@ -256,6 +233,7 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         alertController.addAction(cancelAction)
         present(alertController, animated: true)
     }
+    
     @IBAction func backSelectImageTapped(_ sender: Any) {
         frontImagePickerSelected = false
         
@@ -291,52 +269,7 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
     }
     
     //MARK: - Helper Methods
-    
-    func setupTextViews() {
-        frontTextView.delegate = self
-        backTextView.delegate = self
-        
-        if frontTextView.text.isEmpty {
-            frontTextView.text = "front text..."
-            frontTextView.textColor = UIColor.lightGray
-        }
-        if backTextView.text.isEmpty {
-            backTextView.text = "back text..."
-            backTextView.textColor = UIColor.lightGray
-        }
-    }
-    
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        
-        if textView.textColor == UIColor.lightGray {
-            textView.text = nil
-            textView.textColor = UIColor.black
-        }
-    }
-    func textViewDidEndEditing(_ textView: UITextView) {
-        
-        if textView.text.isEmpty {
-            if textView == frontTextView {
-                textView.text = "front text..."
-            } else if textView == backTextView {
-                textView.text = "back text..."
-            }
-            textView.textColor = UIColor.lightGray
-        }
-    }
-    
-//    @objc func keyboardWillShow(notification: NSNotification) {
-//        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {return}
-//
-//        self.view.frame.origin.y = 0 - keyboardSize.height
-//    }
-//
-//    @objc func keyboardWillHide(notification: NSNotification) {
-//      self.view.frame.origin.y = 0
-//    }
-    
     func updateViews(flashcard: Flashcard) {
-        
         if let frontString = flashcard.frontString {
             frontTextSelected()
             frontTextView.text = frontString
@@ -368,40 +301,38 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
                 backDrawSomethingButton.setTitle("", for: .normal)
             }
         }
+    }
+    
+    func setupTextViews() {
+        frontTextView.delegate = self
+        backTextView.delegate = self
         
-//        func configureDocumentView() {
-//
-//            let scanningDocumentVC = VNDocumentCameraViewController()
-//            scanningDocumentVC.delegate = self
-//            self.present(scanningDocumentVC, animated: true, completion: nil)
-//
-//
-//        }
-        
-//        if let frontString = flashcard.frontString {
-//            frontTextSelected()
-//            frontTextView.text = frontString
-//        } else if let frontPhoto = flashcard.frontPhoto {
-//            frontPictureSelected()
-//            frontSelectImageLabel.setTitle("", for: .normal)
-//            frontImageView.image = frontPhoto
-//        } else {
-//            frontPencilSelected()
-//            frontPencilKitImageView.image = flashcard.frontPhoto
-//        }
-//
-//        if let backString = flashcard.backString {
-//            backTextSelected()
-//            backTextView.text = backString
-//        } else if let backPhoto = flashcard.backPhoto {
-//            backPictureSelected()
-//            backSelectImageLabel.setTitle("", for: .normal)
-//            backImageView.image = backPhoto
-//        } else {
-//            backPencilSelected()
-//            backPencilKitImageView.image = flashcard.backPhoto
-//        }
-        
+        if frontTextView.text.isEmpty {
+            frontTextView.text = "front text..."
+            frontTextView.textColor = UIColor.lightGray
+        }
+        if backTextView.text.isEmpty {
+            backTextView.text = "back text..."
+            backTextView.textColor = UIColor.lightGray
+        }
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            if textView == frontTextView {
+                textView.text = "front text..."
+            } else if textView == backTextView {
+                textView.text = "back text..."
+            }
+            textView.textColor = UIColor.lightGray
+        }
     }
     
     func frontTextSelected() {
@@ -417,15 +348,14 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         frontPencilKitImageView.isHidden = true
         frontDrawSomethingButton.isHidden = true
         
-        //frontTextButtonOutlet = FlashSelectTypeButtonBold()
         frontTextButtonOutlet.tintColor = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
         frontTextButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 25.0, weight: .bold), forImageIn: .normal)
         frontPictureButtonOutlet.tintColor = .systemBlue
-        frontPictureButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 21.0, weight: .unspecified), forImageIn: .normal
-        )
+        frontPictureButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 21.0, weight: .unspecified), forImageIn: .normal)
         frontPencilButtonOutlet.tintColor = .systemBlue
         frontPencilButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 22.0, weight: .unspecified), forImageIn: .normal)
     }
+    
     func frontPictureSelected() {
         frontTextIsSelected = false
         frontPictureIsSelected = true
@@ -442,11 +372,11 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         frontTextButtonOutlet.tintColor = .systemBlue
         frontTextButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 22.0, weight: .unspecified), forImageIn: .normal)
         frontPictureButtonOutlet.tintColor = #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)
-        frontPictureButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 25.0, weight: .bold), forImageIn: .normal
-        )
+        frontPictureButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 25.0, weight: .bold), forImageIn: .normal)
         frontPencilButtonOutlet.tintColor = .systemBlue
         frontPencilButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 22.0, weight: .unspecified), forImageIn: .normal)
     }
+    
     func frontPencilSelected() {
         frontTextIsSelected = false
         frontPictureIsSelected = false
@@ -463,11 +393,11 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         frontTextButtonOutlet.tintColor = .systemBlue
         frontTextButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 22.0, weight: .unspecified), forImageIn: .normal)
         frontPictureButtonOutlet.tintColor = .systemBlue
-        frontPictureButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 21.0, weight: .unspecified), forImageIn: .normal
-        )
+        frontPictureButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 21.0, weight: .unspecified), forImageIn: .normal)
         frontPencilButtonOutlet.tintColor = #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)
         frontPencilButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 25.0, weight: .bold), forImageIn: .normal)
     }
+    
     func backTextSelected() {
         backTextIsSelected = true
         backPictureIsSelected = false
@@ -484,11 +414,11 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         backTextButtonOutlet.tintColor = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
         backTextButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 25.0, weight: .bold), forImageIn: .normal)
         backPictureButtonOutlet.tintColor = .systemBlue
-        backPictureButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 21.0, weight: .unspecified), forImageIn: .normal
-        )
+        backPictureButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 21.0, weight: .unspecified), forImageIn: .normal)
         backPencilButtonOutlet.tintColor = .systemBlue
         backPencilButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 22.0, weight: .unspecified), forImageIn: .normal)
     }
+    
     func backPictureSelected() {
         backTextIsSelected = false
         backPictureIsSelected = true
@@ -505,11 +435,11 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         backTextButtonOutlet.tintColor = .systemBlue
         backTextButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 22.0, weight: .unspecified), forImageIn: .normal)
         backPictureButtonOutlet.tintColor = #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)
-        backPictureButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 25.0, weight: .bold), forImageIn: .normal
-        )
+        backPictureButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 25.0, weight: .bold), forImageIn: .normal)
         backPencilButtonOutlet.tintColor = .systemBlue
         backPencilButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 22.0, weight: .unspecified), forImageIn: .normal)
     }
+    
     func backPencilSelected() {
         backTextIsSelected = false
         backPictureIsSelected = false
@@ -526,33 +456,23 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         backTextButtonOutlet.tintColor = .systemBlue
         backTextButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 22.0, weight: .unspecified), forImageIn: .normal)
         backPictureButtonOutlet.tintColor = .systemBlue
-        backPictureButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 21.0, weight: .unspecified), forImageIn: .normal
-        )
+        backPictureButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 21.0, weight: .unspecified), forImageIn: .normal)
         backPencilButtonOutlet.tintColor = #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)
         backPencilButtonOutlet.setPreferredSymbolConfiguration(.init(pointSize: 25.0, weight: .bold), forImageIn: .normal)
     }
     
-    
     //MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if segue.identifier == "toPencilKitView" {
             guard let destinationVC = segue.destination as? PencilViewController else {return}
             destinationVC.isFrontPencil = isFrontPencil
         }
-        
-        //guard let flashpile = flashpile else {return}
-        //print(flashpile.flashcards.count)
-        //guard let destinationVC = segue.destination as? FlashcardViewController else {return}
-        //destinationVC.flashpile = flashpile
     }
-    
     
 } //End of class
 
 extension FlashcardDetailViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
         guard let selectedImage = info[.originalImage] as? UIImage else {return}
         
         if frontImagePickerSelected {
@@ -571,7 +491,6 @@ extension FlashcardDetailViewController: VNDocumentCameraViewControllerDelegate 
         for pageNumber in 0..<scan.pageCount {
             let image = scan.imageOfPage(at: pageNumber)
             
-            //print(image)
             if frontImagePickerSelected {
                 frontSelectImageLabel.setTitle("", for: .normal)
                 frontImageView.image = image

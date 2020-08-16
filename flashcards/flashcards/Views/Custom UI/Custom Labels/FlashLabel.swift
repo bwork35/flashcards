@@ -24,19 +24,15 @@ class FlashLabel: UILabel {
 } //End of class
 
 class TextLabel: FlashLabel {
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        //self.textColor = .titleRed
         self.font = UIFont.boldSystemFont(ofSize: 25.0)
     }
 } //End of class
 
 class QuizLabel: UILabel {
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        //self.textColor = .titleRed
         self.font = UIFont(name: "Gill Sans", size: 22.0)
         
         self.layer.shadowColor = UIColor.black.cgColor

@@ -14,7 +14,6 @@ class FlashButton: UIButton {
         super.awakeFromNib()
         setupView()
     }
-    
     func setupView() {
         self.layer.cornerRadius = 20.0
         self.clipsToBounds = true

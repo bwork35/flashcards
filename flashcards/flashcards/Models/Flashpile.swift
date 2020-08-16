@@ -14,7 +14,7 @@ struct FlashStrings {
     fileprivate static let subjectKey = "subject"
     fileprivate static let flashcardKey = "flashcards"
     fileprivate static let timestampKey = "timestamp"
-}
+} //End of struct
 
 class Flashpile {
     var subject: String

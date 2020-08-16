@@ -10,7 +10,7 @@ import Foundation
 
 struct SStringConstants {
     fileprivate static let baseURLString = "https://periodic-table-api.herokuapp.com"
-}
+} //End of struct
 
 class ElementController {
     
@@ -43,8 +43,6 @@ class ElementController {
             } catch {
                 return completion(.failure(.thrownError(error)))
             }
-
         }.resume()
     }
-    
-} //End class
+} //End of class

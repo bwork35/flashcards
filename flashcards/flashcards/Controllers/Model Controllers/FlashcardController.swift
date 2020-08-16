@@ -52,13 +52,7 @@ class FlashcardController {
         
         let predicate = NSPredicate(format: "%K == %@", CardStrings.pileReferenceKey, pileReference)
         
-        let flashcardIDs = flashpile.flashcards.compactMap({$0.recordID})
-        
-        let predicate2 = NSPredicate(format: "NOT(recordID IN %@)", flashcardIDs)
-        
-        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, predicate2])
-        
-        let query = CKQuery(recordType: CardStrings.recordTypeKey, predicate: compoundPredicate)
+        let query = CKQuery(recordType: CardStrings.recordTypeKey, predicate: predicate)
         
         privateDB.perform(query, inZoneWith: nil) { (records, error) in
             if let error = error {
@@ -114,7 +108,6 @@ class FlashcardController {
         
         let operation = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: [flashcard.recordID])
         
-        operation.savePolicy = .changedKeys
         operation.qualityOfService = .userInteractive
         operation.modifyRecordsCompletionBlock = {(records, _, error) in
             if let error = error {
@@ -131,29 +124,4 @@ class FlashcardController {
         }
         privateDB.add(operation)
     }
-    
-    
-    
-    
-    
-    //Create
-//    func createTempFlashcard(front: Any, back: Any) {
-//        //let newFlashcard = Flashcard(front: front, back: back)
-//        let newFlashcard = Flashcard(front: front, back: back, pileReference: <#T##CKRecord.Reference?#>)
-//        totalFlashcards.append(newFlashcard)
-//    }
-//
-//    //Update
-//    func updateFlashcard(flashcardToUpdate: Flashcard, front: Any, back: Any) {
-//        flashcardToUpdate.front = front
-//        flashcardToUpdate.back = back
-//    }
-//
-//    //Delete
-//    func deleteFlashcard(flashcardToDelete: Flashcard) {
-//        if let index = totalFlashcards.firstIndex(of: flashcardToDelete){
-//            totalFlashcards.remove(at: index)
-//        }
-//    }
-    
 } //End of class

@@ -22,9 +22,24 @@ class FlashpileCollectionViewCell: UICollectionViewCell {
     //MARK: - Properties
     weak var delegate: FlashpileCellDelegate?
     
+    var flashpile: Flashpile? {
+          didSet {
+              updateViews()
+              deleteButtonBackgroundView.layer.cornerRadius = deleteButtonBackgroundView.bounds.width / 2.0
+              deleteButtonBackgroundView.layer.masksToBounds = true
+              deleteButtonBackgroundView.isHidden = !isEditing
+              
+          }
+      }
+      var isEditing: Bool = false {
+          didSet {
+              deleteButtonBackgroundView.isHidden = !isEditing
+          }
+      }
+    
+    //MARK: - Lifecycles
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         flashCoverImageView.layer.cornerRadius = flashCoverImageView.bounds.width / 8.0
         flashCoverImageView.clipsToBounds = true
         
@@ -41,21 +56,6 @@ class FlashpileCollectionViewCell: UICollectionViewCell {
         self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.contentView.layer.cornerRadius).cgPath
     }
     
-    var flashpile: Flashpile? {
-        didSet {
-            updateViews()
-            deleteButtonBackgroundView.layer.cornerRadius = deleteButtonBackgroundView.bounds.width / 2.0
-            deleteButtonBackgroundView.layer.masksToBounds = true
-            deleteButtonBackgroundView.isHidden = !isEditing
-            
-        }
-    }
-    var isEditing: Bool = false {
-        didSet {
-            deleteButtonBackgroundView.isHidden = !isEditing
-        }
-    }
-    
     //MARK: - Actions
     @IBAction func deleteButtonTapped(_ sender: Any) {
         delegate?.delete(cell: self)
@@ -65,31 +65,6 @@ class FlashpileCollectionViewCell: UICollectionViewCell {
     func updateViews() {
         guard let flashpile = flashpile else {return}
         flashpileNameLabel.text = flashpile.subject
-        
-//        if flashpile.flashcards.count != 0 {
-//            guard let flashcard = flashpile.flashcards.first else {return}
-//            if let frontString = flashcard.frontString {
-//                flashpileCoverLabel.isHidden = false
-//                flashpileCoverImageView.isHidden = true
-//
-//                let coverTitle = frontString
-//                flashpileCoverLabel.text = coverTitle
-//            } else if let frontPhoto = flashcard.frontPhoto {
-//                flashpileCoverLabel.isHidden = true
-//                flashpileCoverImageView.isHidden = false
-//
-//                let coverImage = frontPhoto
-//                flashpileCoverImageView.image = coverImage
-//            } else {
-//                flashpileCoverLabel.isHidden = true
-//                flashpileCoverImageView.isHidden = true
-//            }
-//        } else {
-//            flashpileCoverLabel.isHidden = true
-//            flashpileCoverImageView.isHidden = true
-//            //flashpileCoverLabel.text = ""
-//        }
-        
     }
     
 } //End of class

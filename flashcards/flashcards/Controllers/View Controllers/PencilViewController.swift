@@ -27,9 +27,7 @@ class PencilViewController: UIViewController, PKCanvasViewDelegate, PKToolPicker
         super.viewDidLoad()
         canvasView.delegate = self
         canvasView.drawing = drawing
-        
         self.navigationController?.isToolbarHidden = false
-        
         canvasView.alwaysBounceVertical = true
         canvasView.allowsFingerDrawing = true
         
@@ -37,7 +35,6 @@ class PencilViewController: UIViewController, PKCanvasViewDelegate, PKToolPicker
             let toolPicker = PKToolPicker.shared(for: window) {
             toolPicker.setVisible(true, forFirstResponder: canvasView)
             toolPicker.addObserver(canvasView)
-            
             canvasView.becomeFirstResponder()
         }
     }
@@ -53,16 +50,13 @@ class PencilViewController: UIViewController, PKCanvasViewDelegate, PKToolPicker
         canvasView.minimumZoomScale = canvasScale
         canvasView.maximumZoomScale = canvasScale
         canvasView.zoomScale = canvasScale
-        
         updateContentSizeForDrawing()
         canvasView.contentOffset = CGPoint(x: 0, y: -canvasView.adjustedContentInset.top)
-        
     }
     
     //MARK: - Actions
     @IBAction func saveButtonTapped(_ sender: Any) {
     }
-    
     @IBAction func cancelButtonTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -76,14 +70,11 @@ class PencilViewController: UIViewController, PKCanvasViewDelegate, PKToolPicker
     }
     
     //MARK: - Methods
-
     func setupDrawing() {
-        //let canvasView = PKCanvasView(frame: self.view.bounds)
         guard let window = view.window, let toolPicker = PKToolPicker.shared(for: window) else {return}
         toolPicker.setVisible(true, forFirstResponder: canvasView)
         toolPicker.addObserver(canvasView)
         canvasView.becomeFirstResponder()
-        //view.addSubview(canvasView)
     }
     
     func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
@@ -99,34 +90,26 @@ class PencilViewController: UIViewController, PKCanvasViewDelegate, PKToolPicker
         } else {
             contentHeight = canvasView.bounds.height
         }
-        
         canvasView.contentSize = CGSize(width: canvasWidth * canvasView.zoomScale, height: contentHeight)
-        
     }
   
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         ButtonView.isHidden = true
-        
-        //let setBounds = view.safeAreaLayoutGuide.layoutFrame
         let topBounds = canvasView.bounds.offsetBy(dx: 0, dy: 90)
         let bottomBounds = canvasView.bounds.offsetBy(dx: 0, dy: -65)
         let setBounds = topBounds.intersection(bottomBounds)
         
         let img = UIGraphicsImageRenderer(bounds: setBounds).image { _ in
             view.drawHierarchy(in: canvasView.bounds, afterScreenUpdates: true)
-            
         }
+        
         guard let isFrontPencil = isFrontPencil else {return}
         guard let destinationVC = segue.destination as? FlashcardDetailViewController else {return}
-        
         if isFrontPencil {
             destinationVC.frontImg = img
         } else {
             destinationVC.backImg = img
         }
-        
     }
-    
-
 } //End of class

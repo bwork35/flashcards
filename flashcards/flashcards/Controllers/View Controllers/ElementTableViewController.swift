@@ -9,15 +9,14 @@
 import UIKit
 
 class ElementTableViewController: UITableViewController {
-
-    //MARK: - Properties
     
     //MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchPeriodicTable()
     }
-
+    
+    //MARK: - Helper Methods
     func fetchPeriodicTable() {
         ElementController.fetchElements { (result) in
             DispatchQueue.main.async {
@@ -47,5 +46,4 @@ class ElementTableViewController: UITableViewController {
         return cell
     }
     
-
 } //End class

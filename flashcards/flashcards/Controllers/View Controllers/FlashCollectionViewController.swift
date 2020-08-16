@@ -28,27 +28,18 @@ class FlashCollectionViewController: UICollectionViewController {
     //MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.collectionView.backgroundColor = .bgTan
         navigationItem.leftBarButtonItem = editButtonItem
-        
-//        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
-//        view.addGestureRecognizer(tap)
-        
         setupSearchBar()
-//        fetchFlashpiles()
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         fetchFlashpiles()
         collectionView.reloadData()
         FlashcardController.shared.totalFlashcards = []
-        
-        print(FlashpileController.shared.totalFlashpiles.count)
-        //setEditing(false, animated: true)
-       // isEditing = false
-        
     }
+    
     //MARK: - Actions
      @IBAction func unwindToHome(_ sender: UIStoryboardSegue) {}
     
@@ -66,6 +57,7 @@ class FlashCollectionViewController: UICollectionViewController {
         }
     }
     
+    //Search functions
     func setupSearchBar() {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -83,7 +75,6 @@ class FlashCollectionViewController: UICollectionViewController {
     }
     
     //MARK: - Delete Items
-    
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         addButtonOutlet.isEnabled = !editing
@@ -136,38 +127,6 @@ class FlashCollectionViewController: UICollectionViewController {
             destinationVC.flashpile = flashpile
         }
     }
-    
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
-
 } //End of Class
 
 extension FlashCollectionViewController: UISearchResultsUpdating {
@@ -184,15 +143,12 @@ extension FlashCollectionViewController: FlashpileCellDelegate {
             let flashpileToDelete = FlashpileController.shared.totalFlashpiles[indexPath.row]
             
             let alertController = UIAlertController(title: "Delete", message: "Are you sure you want to delete the flashpile \"\(flashpileToDelete.subject)\" ?", preferredStyle: .alert)
-            
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
             let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (_) in
                 FlashpileController.shared.deleteFlashpile(flashpile: flashpileToDelete) { (result) in
                     DispatchQueue.main.async {
                         switch result {
                         case .success(_):
-                            //self.collectionView?.deleteItems(at: [indexPath])
-                            
                             self.fetchFlashpiles()
                         case .failure(let error):
                             print("There was an error deleting the flashpile -- \(error) -- \(error.localizedDescription)")

@@ -16,3 +16,30 @@ enum MultiplicationTables {
     
 } //End of enum
 
+//func createMultTables(){
+//     createFlashpile(subject: "Multiplication") { (result) in
+//         DispatchQueue.main.async {
+//             switch result {
+//             case .success(_):
+//                 print("")
+//             case .failure(let error):
+//                 print("There was an error creating new flashpile -- \(error) -- \(error.localizedDescription)")
+//             }
+//         }
+//     }
+//
+//     guard let lastFlash = self.totalFlashpiles.last else {return}
+//
+//     for prompt in MultiplicationTables.prompts {
+//         guard let index = MultiplicationTables.prompts.firstIndex(of: prompt) else {return}
+//         let answer = MultiplicationTables.answers[index]
+//         FlashcardController.shared.createFlashcard(frontString: prompt, backString: answer, frontIsPKImage: false, backIsPKImage: false, frontPhoto: nil, backPhoto: nil, flashpile: lastFlash) { (result) in
+//             switch result {
+//             case .success(_):
+//                 print("yes")
+//             case .failure(let error):
+//                 print("There was an error creating a new flashcard -- \(error) -- \(error.localizedDescription)")
+//             }
+//         }
+//     }
+// }

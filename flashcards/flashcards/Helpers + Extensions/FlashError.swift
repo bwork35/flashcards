@@ -23,4 +23,4 @@ enum FlashError: LocalizedError {
             return "There was an error deleting a record from CloudKit."
         }
     }
-}
+} //End of enum

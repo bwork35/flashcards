@@ -18,47 +18,6 @@ class FlashpileController {
     
     let privateDB = CKContainer.default().privateCloudDatabase
     
-    init() {
-        //createMultTables()
-       
-
-       // let statesTables = createColorTables()
-        //totalFlashpiles.append(statesTables)
-
-        //let periodicTables = createFruitTables()
-        //totalFlashpiles.append(periodicTables)
-    }
-
-    func createMultTables(){
-        createFlashpile(subject: "Multiplication") { (result) in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(_):
-                    print("")
-                case .failure(let error):
-                    print("There was an error creating new flashpile -- \(error) -- \(error.localizedDescription)")
-                }
-            }
-        }
-        
-        guard let lastFlash = self.totalFlashpiles.last else {return}
-        
-        for prompt in MultiplicationTables.prompts {
-            guard let index = MultiplicationTables.prompts.firstIndex(of: prompt) else {return}
-            let answer = MultiplicationTables.answers[index]
-            FlashcardController.shared.createFlashcard(frontString: prompt, backString: answer, frontIsPKImage: false, backIsPKImage: false, frontPhoto: nil, backPhoto: nil, flashpile: lastFlash) { (result) in
-                switch result {
-                case .success(_):
-                    print("yes")
-                case .failure(let error):
-                    print("There was an error creating a new flashcard -- \(error) -- \(error.localizedDescription)")
-                }
-            }
-        }
-    }
-
-
-    
     //MARK: - CRUD
     
     //Create
@@ -122,7 +81,7 @@ class FlashpileController {
             guard let record = records?.first,
                 let updatedFlashpile = Flashpile(ckRecord: record) else {return completion(.failure(.couldNotUnwrap))}
             
-            print("Successfully updated the flashpile with ID: \(updatedFlashpile.recordID)")
+            print("Successfully updated the flashpile")
             completion(.success(updatedFlashpile))
         }
         privateDB.add(operation)
@@ -132,7 +91,7 @@ class FlashpileController {
     func deleteFlashpile(flashpile: Flashpile, completion: @escaping (Result<Bool, FlashError>) -> Void) {
         
         let operation = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: [flashpile.recordID])
-        operation.savePolicy = .changedKeys
+
         operation.qualityOfService = .userInteractive
         operation.modifyRecordsCompletionBlock = {(records, _, error) in
             if let error = error {
@@ -149,26 +108,4 @@ class FlashpileController {
         }
         privateDB.add(operation)
     }
-    
-    
-    
-    //Create
-//    func createFlashpile(subject: String, flashcards: [Flashcard]) {
-//        let newFlashpile = Flashpile(subject: subject, flashcards: flashcards)
-//        totalFlashpiles.append(newFlashpile)
-//    }
-    
-//    //Update
-//    func updateFlashpile(flashpileToUpdate: Flashpile, subject: String, flashcards: [Flashcard]) {
-//        flashpileToUpdate.subject = subject
-//        flashpileToUpdate.flashcards = flashcards
-//    }
-//
-//    //Delete
-//    func deleteFlashpile(flashpileToDelete: Flashpile) {
-//        if let index = totalFlashpiles.firstIndex(of: flashpileToDelete) {
-//            totalFlashpiles.remove(at: index)
-//        }
-//    }
-    
 } // End of class

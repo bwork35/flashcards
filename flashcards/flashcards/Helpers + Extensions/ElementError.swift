@@ -13,5 +13,4 @@ enum ElementError: LocalizedError {
     case thrownError(Error)
     case noData
     case unableToDecode
-    
-}
+} //End of enum
