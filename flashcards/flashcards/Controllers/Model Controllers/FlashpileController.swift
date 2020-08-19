@@ -93,13 +93,15 @@ class FlashpileController {
         let operation = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: [flashpile.recordID])
 
         operation.qualityOfService = .userInteractive
-        operation.modifyRecordsCompletionBlock = {(records, _, error) in
+        operation.modifyRecordsCompletionBlock = {(_, recordIDs, error) in
             if let error = error {
                 print("There was an error deleting the flashpile -- \(error) -- \(error.localizedDescription)")
                 return completion(.failure(.ckError(error)))
             }
             
-            if records?.count == 0 {
+            guard let recordIDs = recordIDs else { return completion(.failure(.couldNotUnwrap))}
+            
+            if recordIDs.count > 0 {
                 print("Successfully deleted flashpile from CloudKit.")
                 completion(.success(true))
             } else {

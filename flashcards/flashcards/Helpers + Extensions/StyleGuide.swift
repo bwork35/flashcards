@@ -10,7 +10,7 @@ import UIKit
 
 extension UIColor {
     static let bgTan = UIColor(named: "bgTan")
-    static let topYellow = UIColor(named: "topYellow")
     static let titleRed = UIColor(named: "titleRed")
     static let buttonGray = UIColor(named: "buttonGray")
+    static let canvaBlue = UIColor(named: "canvaBlue")
 }

@@ -15,31 +15,3 @@ enum MultiplicationTables {
     static var answers = ["4", "6", "8", "10", "12", "14", "16", "18", "20", "22", "24", "9", "12", "15", "18", "21", "24", "27", "30", "33", "36", "16", "20", "24", "28", "32", "36", "40", "44", "48", "25", "30", "35", "40", "45", "50", "55", "60", "36", "42", "48", "54", "60", "66", "72", "49", "56", "63", "70", "77", "84", "64", "72", "80", "88", "96", "81", "90", "99", "108","100", "110", "120", "121", "132", "144"]
     
 } //End of enum
-
-//func createMultTables(){
-//     createFlashpile(subject: "Multiplication") { (result) in
-//         DispatchQueue.main.async {
-//             switch result {
-//             case .success(_):
-//                 print("")
-//             case .failure(let error):
-//                 print("There was an error creating new flashpile -- \(error) -- \(error.localizedDescription)")
-//             }
-//         }
-//     }
-//
-//     guard let lastFlash = self.totalFlashpiles.last else {return}
-//
-//     for prompt in MultiplicationTables.prompts {
-//         guard let index = MultiplicationTables.prompts.firstIndex(of: prompt) else {return}
-//         let answer = MultiplicationTables.answers[index]
-//         FlashcardController.shared.createFlashcard(frontString: prompt, backString: answer, frontIsPKImage: false, backIsPKImage: false, frontPhoto: nil, backPhoto: nil, flashpile: lastFlash) { (result) in
-//             switch result {
-//             case .success(_):
-//                 print("yes")
-//             case .failure(let error):
-//                 print("There was an error creating a new flashcard -- \(error) -- \(error.localizedDescription)")
-//             }
-//         }
-//     }
-// }

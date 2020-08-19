@@ -95,6 +95,13 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         backViewView.layer.shadowOpacity = 1.0
         backViewView.layer.masksToBounds = false
         backViewView.layer.shadowPath = UIBezierPath(roundedRect: backViewView.bounds, cornerRadius: backViewView.layer.cornerRadius).cgPath
+        
+//        frontViewView.layer.borderWidth = 1.0
+//        guard let canvaBlue = UIColor.canvaBlue else {return}
+//        frontViewView.layer.borderColor = canvaBlue.cgColor
+//        
+//        backViewView.layer.borderWidth = 1.0
+//        backViewView.layer.borderColor = canvaBlue.cgColor
     }
     
     //MARK: - Actions
@@ -160,8 +167,8 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
             FlashcardController.shared.createFlashcard(frontString: frontString, backString: backString, frontIsPKImage: frontIsPKImage, backIsPKImage: backIsPKImage, frontPhoto: frontPhoto, backPhoto: backPhoto, flashpile: flashpile) { (result) in
                 DispatchQueue.main.async {
                     switch result {
-                    case .success(_):
-                        guard let flashcard = flashpile.flashcards.last else {return}
+                    case .success(let flashcard):
+                        flashpile.flashcards.append(flashcard)
                         FlashcardController.shared.totalFlashcards.append(flashcard)
                         self.navigationController?.popViewController(animated: true)
                     case .failure(let error):

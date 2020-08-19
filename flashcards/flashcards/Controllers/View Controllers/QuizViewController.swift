@@ -30,6 +30,7 @@ class QuizViewController: UIViewController {
     
     //MARK: - Properties
     var quizCards = FlashcardController.shared.totalFlashcards.shuffled()
+    var finalCards = FlashcardController.shared.totalFlashcards
     var quizCount = 0
     var cardCount = 0
     var totalCount = FlashcardController.shared.totalFlashcards.count
@@ -102,6 +103,16 @@ class QuizViewController: UIViewController {
         redProgressNums.layer.shadowOpacity = 1.0
         redProgressNums.layer.shadowOffset = CGSize(width: 0, height: 0.2)
         redProgressNums.layer.masksToBounds = false
+        
+//        frontViewView.layer.borderWidth = 2.0
+//        guard let canvaBlue = UIColor.canvaBlue else {return}
+//        frontViewView.layer.borderColor = canvaBlue.cgColor
+//        
+//        backViewView.layer.borderWidth = 2.0
+//        backViewView.layer.borderColor = canvaBlue.cgColor
+//        
+//        finishedLabelView.layer.borderWidth = 2.0
+//        finishedLabelView.layer.borderColor = canvaBlue.cgColor
     }
     
     //MARK: - Actions
@@ -140,10 +151,10 @@ class QuizViewController: UIViewController {
     }
     
     @IBAction func restartButtonTapped(_ sender: Any) {
-        quizCards = FlashcardController.shared.totalFlashcards.shuffled()
+        quizCards = finalCards.shuffled()
         quizCount = 0
         cardCount = 0
-        totalCount = FlashcardController.shared.totalFlashcards.count
+        totalCount = finalCards.count
         skippedCards = []
         incorrectCards = []
         round = 1
@@ -153,6 +164,8 @@ class QuizViewController: UIViewController {
         frontViewView.isHidden = false
         backViewView.isHidden = false
         finishViewView.isHidden = true
+        quizProgressBar.progress = 0.0
+        redProgressBar.progress = 0.0
         updateViews()
     }
     
@@ -212,14 +225,12 @@ class QuizViewController: UIViewController {
         case 1:
             updateViews()
         case 2:
-            print("Round 2")
             quizCards = skippedCards
             skippedCards = []
             quizCount = 0
             round = 1
             updateViews()
         case 3:
-            print("Round 3")
             quizCards = incorrectCards.shuffled()
             redCount = incorrectCards.count
             incorrectCards = []
@@ -231,7 +242,6 @@ class QuizViewController: UIViewController {
             totalCount = quizCards.count
             updateViews()
         case 4:
-            print("Round 4")
             quizCards = incorrectCards.shuffled()
             incorrectCards = []
             quizCount = 0
@@ -239,7 +249,6 @@ class QuizViewController: UIViewController {
             updateViews()
         default:
             redProgressBar.progress = 1.0
-            print("Round 5")
             finishQuiz()
         }
     }

@@ -67,6 +67,8 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewWillAppear(true)
         self.tableView.reloadData()
         enableQuizButton()
+        guard let flashpile = flashpile else {return}
+        print(flashpile.flashcards.count)
     }
     
     override func viewDidLayoutSubviews() {
@@ -80,7 +82,7 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
         quizButtonOutlet.layer.cornerRadius = 20.0
         quizButtonOutlet.clipsToBounds = true
         quizButtonOutlet.layer.shadowColor = UIColor.gray.cgColor
-        quizButtonOutlet.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        quizButtonOutlet.layer.shadowOffset = CGSize(width: 0, height: 1.5)
         quizButtonOutlet.layer.shadowRadius = 2.0
         quizButtonOutlet.layer.shadowOpacity = 1.0
         quizButtonOutlet.layer.masksToBounds = false
@@ -91,6 +93,10 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
         self.view.addSubview(subjectViewView)
         self.view.addSubview(tableView)
         self.view.addSubview(quizButtonOutlet)
+        
+//        tableView.layer.borderWidth = 1.5
+//        guard let canvaBlue = UIColor.canvaBlue else {return}
+//        tableView.layer.borderColor = canvaBlue.cgColor
     }
     
     //MARK: - Actions
@@ -158,7 +164,17 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBAction func quizButtonTapped(_ sender: Any) {
         guard let flashpile = flashpile else {return}
-        FlashcardController.shared.totalFlashcards = flashpile.flashcards
+        
+        FlashpileController.shared.updateFlashpile(flashpile: flashpile) { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(_):
+                    FlashcardController.shared.totalFlashcards = flashpile.flashcards
+                case .failure(_):
+                    print("Error updating flashpile")
+                }
+            }
+        }
     }
     
     //MARK: - Helper Methods
@@ -261,13 +277,13 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
                     case .success(_):
                         flashpile.flashcards.remove(at: index)
                         self.enableQuizButton()
+                        FlashcardController.shared.totalFlashcards = flashpile.flashcards
                         self.tableView.reloadData()
                     case .failure(let error):
                         print("There was an error deleting this flashcard -- \(error) -- \(error.localizedDescription)")
                     }
                 }
             }
-            FlashcardController.shared.totalFlashcards = flashpile.flashcards
         }
     }
     

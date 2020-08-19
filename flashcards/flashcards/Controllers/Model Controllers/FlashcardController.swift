@@ -39,8 +39,8 @@ class FlashcardController {
             guard let record = record,
                 let flashcard = Flashcard(ckRecord: record) else {return completion(.failure(.couldNotUnwrap))}
             
-            print("Flashcard Successfully Saved")
-            flashpile.flashcards.append(flashcard)
+            //print("Flashcard Successfully Saved")
+            //flashpile.flashcards.append(flashcard)
             completion(.success(flashcard))
         }
     }
@@ -109,13 +109,15 @@ class FlashcardController {
         let operation = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: [flashcard.recordID])
         
         operation.qualityOfService = .userInteractive
-        operation.modifyRecordsCompletionBlock = {(records, _, error) in
+        operation.modifyRecordsCompletionBlock = {(_, recordIDs, error) in
             if let error = error {
                 print("There was an error deleting the flashcard -- \(error) -- \(error.localizedDescription)")
                 return completion(.failure(.ckError(error)))
             }
             
-            if records?.count == 0 {
+            guard let recordIDs = recordIDs else { return completion(.failure(.couldNotUnwrap))}
+            
+            if recordIDs.count > 0 {
                 print("Successfully deleted flashcard from CloudKit")
                 completion(.success(true))
             } else {

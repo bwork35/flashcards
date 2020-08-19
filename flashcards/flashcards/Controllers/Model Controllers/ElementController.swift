@@ -16,11 +16,7 @@ class ElementController {
     
     static let shared = ElementController()
 
-    var elements: [Element] = [] {
-        didSet {
-            print("Science :)")
-        }
-    }
+    var elements: [Element] = []
 
     static func fetchElements(completion: @escaping (Result<Bool, ElementError>) -> Void) {
         guard let url = URL(string: SStringConstants.baseURLString) else {return completion(.failure(.invalidURL))}
@@ -35,9 +31,9 @@ class ElementController {
 
             do {
                 let topLevelArray = try JSONDecoder().decode([Element].self, from: data)
-
+    
                 ElementController.shared.elements = topLevelArray
-
+                print("elements: \(ElementController.shared.elements.count)")
                 completion(.success(true))
 
             } catch {
