@@ -67,6 +67,11 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewWillAppear(true)
         self.tableView.reloadData()
         enableQuizButton()
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
         guard let flashpile = flashpile else {return}
         print(flashpile.flashcards.count)
     }
@@ -93,10 +98,6 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
         self.view.addSubview(subjectViewView)
         self.view.addSubview(tableView)
         self.view.addSubview(quizButtonOutlet)
-        
-//        tableView.layer.borderWidth = 1.5
-//        guard let canvaBlue = UIColor.canvaBlue else {return}
-//        tableView.layer.borderColor = canvaBlue.cgColor
     }
     
     //MARK: - Actions

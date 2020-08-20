@@ -54,11 +54,6 @@ class FlashpileCollectionViewCell: UICollectionViewCell {
         self.layer.shadowOpacity = 1.0
         self.layer.masksToBounds = false
         self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.contentView.layer.cornerRadius).cgPath
-        
-//        self.layer.borderWidth = 2.0
-//        self.layer.cornerRadius = 15.0
-//        guard let canvaBlue = UIColor.canvaBlue else {return}
-//        self.layer.borderColor = canvaBlue.cgColor
     }
     
     //MARK: - Actions

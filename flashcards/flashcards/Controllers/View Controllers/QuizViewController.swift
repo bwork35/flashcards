@@ -103,16 +103,6 @@ class QuizViewController: UIViewController {
         redProgressNums.layer.shadowOpacity = 1.0
         redProgressNums.layer.shadowOffset = CGSize(width: 0, height: 0.2)
         redProgressNums.layer.masksToBounds = false
-        
-//        frontViewView.layer.borderWidth = 2.0
-//        guard let canvaBlue = UIColor.canvaBlue else {return}
-//        frontViewView.layer.borderColor = canvaBlue.cgColor
-//        
-//        backViewView.layer.borderWidth = 2.0
-//        backViewView.layer.borderColor = canvaBlue.cgColor
-//        
-//        finishedLabelView.layer.borderWidth = 2.0
-//        finishedLabelView.layer.borderColor = canvaBlue.cgColor
     }
     
     //MARK: - Actions

@@ -95,13 +95,6 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
         backViewView.layer.shadowOpacity = 1.0
         backViewView.layer.masksToBounds = false
         backViewView.layer.shadowPath = UIBezierPath(roundedRect: backViewView.bounds, cornerRadius: backViewView.layer.cornerRadius).cgPath
-        
-//        frontViewView.layer.borderWidth = 1.0
-//        guard let canvaBlue = UIColor.canvaBlue else {return}
-//        frontViewView.layer.borderColor = canvaBlue.cgColor
-//        
-//        backViewView.layer.borderWidth = 1.0
-//        backViewView.layer.borderColor = canvaBlue.cgColor
     }
     
     //MARK: - Actions

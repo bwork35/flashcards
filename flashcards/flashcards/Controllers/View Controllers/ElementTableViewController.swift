@@ -41,7 +41,7 @@ class ElementTableViewController: UITableViewController {
         let element = ElementController.shared.elements[indexPath.row]
         
         cell.textLabel?.text = element.name
-        cell.detailTextLabel?.text = element.atomicNumber
+        cell.detailTextLabel?.text = "\(element.atomicNumber) \(element.symbol)"
 
         return cell
     }

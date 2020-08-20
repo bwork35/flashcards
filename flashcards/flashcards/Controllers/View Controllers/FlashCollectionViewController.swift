@@ -34,15 +34,15 @@ class FlashCollectionViewController: UICollectionViewController {
         navigationItem.leftBarButtonItem = editButtonItem
         setupSearchBar()
         
-        //createMultiplication()
-        //createPeriodicTable()
-        //createStatesAndCapitals()
+       // FlashpileController.shared.createMultiplication(completion: collectionView.reloadData)
+       //FlashpileController.shared.createPeriodicTable(completion: collectionView.reloadData)
+        //FlashpileController.shared.createStatesAndCapitals(completion: collectionView.reloadData)
         
 //        if defaults.bool(forKey: "First Launch") == false {
-//            createMultiplication()
-//            createPeriodicTable()
-//            createStatesAndCapitals()
-//            defaults.set(true, forKey: "First Launch")
+//            //FlashpileController.shared.createMultiplication()
+//            //FlashpileController.shared.createPeriodicTable()
+//            //FlashpileController.shared.createStatesAndCapitals()
+//            defaults.set(false, forKey: "First Launch")
 //        }
     }
 
@@ -66,109 +66,6 @@ class FlashCollectionViewController: UICollectionViewController {
                     print("There was an error fetching flashpiles -- \(error) -- \(error.localizedDescription)")
                 }
             }
-        }
-    }
-    
-    //MARK: - First Launch
-    func createMultiplication() {
-        FlashpileController.shared.createFlashpile(subject: "Multiplication") { (result) in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let flashpile):
-                    self.createMultCards(flashpile: flashpile)
-                    self.collectionView.reloadData()
-                case .failure(_):
-                    print("Failed to create Multiplication Flashpile.")
-                }
-            }
-        }
-    }
-    
-    func createMultCards(flashpile: Flashpile) {
-        let group = DispatchGroup()
-        for prompt in MultiplicationTables.prompts {
-            group.enter()
-            guard let index = MultiplicationTables.prompts.firstIndex(of: prompt) else {return}
-            let answer = MultiplicationTables.answers[index]
-            FlashcardController.shared.createFlashcard(frontString: prompt, backString: answer, frontIsPKImage: false, backIsPKImage: false, frontPhoto: nil, backPhoto: nil, flashpile: flashpile) { (result) in
-            }
-            group.leave()
-        }
-        group.notify(queue: .main){
-            self.collectionView.reloadData()
-            //flashpile.flashcards = []
-        }
-    }
-    
-    func createPeriodicTable() {
-        FlashpileController.shared.createFlashpile(subject: "Periodic Table of Elements") { (result) in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let flashpile):
-                    print(ElementController.shared.elements.count)
-                    self.createElementCards(flashpile: flashpile)
-                    self.collectionView.reloadData()
-                case .failure(_):
-                    print("Error creating Periodic Table Flashpile")
-                }
-            }
-        }
-    }
-    
-    func createElementCards(flashpile: Flashpile) {
-        ElementController.fetchElements { (result) in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(_):
-                    createCards()
-                case .failure(_):
-                    print("Error fetching Periodic Table.")
-                }
-            }
-        }
-        
-        func createCards() {
-            let group = DispatchGroup()
-            for element in ElementController.shared.elements {
-                group.enter()
-                FlashcardController.shared.createFlashcard(frontString: element.symbol, backString: "\(element.atomicNumber)  \(element.name)", frontIsPKImage: false, backIsPKImage: false, frontPhoto: nil, backPhoto: nil, flashpile: flashpile) { (result) in
-                }
-                group.leave()
-            }
-            group.notify(queue: .main) {
-                self.collectionView.reloadData()
-                //flashpile.flashcards = []
-            }
-        }
-    }
-    
-    func createStatesAndCapitals() {
-        FlashpileController.shared.createFlashpile(subject: "States and Capitals") { (result) in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let flashpile):
-                    self.createCapitalCards(flashpile: flashpile)
-                    self.collectionView.reloadData()
-                case .failure(_):
-                    print("Error creating State Capitals flashpile.")
-                }
-            }
-        }
-    }
-    
-    func createCapitalCards(flashpile: Flashpile) {
-        let group = DispatchGroup()
-        for state in StatesAndCapitals.states {
-            group.enter()
-            guard let index = StatesAndCapitals.states.firstIndex(of: state) else {return}
-            let capital = StatesAndCapitals.capitals[index]
-            FlashcardController.shared.createFlashcard(frontString: state, backString: capital, frontIsPKImage: false, backIsPKImage: false, frontPhoto: nil, backPhoto: nil, flashpile: flashpile) { (result) in
-            }
-            group.leave()
-        }
-        group.notify(queue: .main) {
-            self.collectionView.reloadData()
-            //flashpile.flashcards = []
         }
     }
     

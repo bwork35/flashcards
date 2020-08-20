@@ -110,4 +110,122 @@ class FlashpileController {
         }
         privateDB.add(operation)
     }
+    
+    //MARK: - First Launch
+    func createMultiplication(completion: @escaping () -> Void) {
+        FlashpileController.shared.createFlashpile(subject: "Multiplication") { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let flashpile):
+                    self.createMultCards(flashpile: flashpile, completion: completion)
+                    //self.collectionView.reloadData()
+                case .failure(_):
+                    print("Failed to create Multiplication Flashpile.")
+                }
+            }
+        }
+    }
+    
+    func createMultCards(flashpile: Flashpile, completion: @escaping () -> Void) {
+        let group = DispatchGroup()
+        for prompt in MultiplicationTables.prompts {
+            group.enter()
+            guard let index = MultiplicationTables.prompts.firstIndex(of: prompt) else {return}
+            let answer = MultiplicationTables.answers[index]
+            FlashcardController.shared.createFlashcard(frontString: prompt, backString: answer, frontIsPKImage: false, backIsPKImage: false, frontPhoto: nil, backPhoto: nil, flashpile: flashpile) { (result) in
+                switch result {
+                case .success(let flashcard):
+                    flashpile.flashcards.append(flashcard)
+                case .failure(_):
+                    print("error")
+                }
+                group.leave()
+            }
+        }
+        group.notify(queue: .main){
+            return completion()
+        }
+    }
+    
+    func createPeriodicTable(completion: @escaping () -> Void) {
+        FlashpileController.shared.createFlashpile(subject: "Periodic Table") { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let flashpile):
+                    self.createElementCards(flashpile: flashpile, completion: completion)
+                    //self.collectionView.reloadData()
+                case .failure(_):
+                    print("Error creating Periodic Table Flashpile")
+                }
+            }
+        }
+    }
+
+    func createElementCards(flashpile: Flashpile, completion: @escaping () -> Void) {
+        ElementController.fetchElements { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(_):
+                    createCards(completion: completion)
+                case .failure(_):
+                    print("Error fetching Periodic Table.")
+                }
+            }
+        }
+
+        func createCards(completion: @escaping () -> Void) {
+            let group = DispatchGroup()
+            print(ElementController.shared.elements.count)
+            for element in ElementController.shared.elements {
+                group.enter()
+                FlashcardController.shared.createFlashcard(frontString: element.symbol, backString: "\(element.atomicNumber)  \(element.name)", frontIsPKImage: false, backIsPKImage: false, frontPhoto: nil, backPhoto: nil, flashpile: flashpile) { (result) in
+                    switch result {
+                    case .success(let flashcard):
+                        flashpile.flashcards.append(flashcard)
+                    case .failure(_):
+                        print("error")
+                    }
+                    group.leave()
+                }
+            }
+            group.notify(queue: .main) {
+                completion()
+            }
+        }
+    }
+
+    func createStatesAndCapitals(completion: @escaping () -> Void) {
+        FlashpileController.shared.createFlashpile(subject: "States and Capitals") { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let flashpile):
+                    self.createCapitalCards(flashpile: flashpile, completion: completion)
+                    //self.collectionView.reloadData()
+                case .failure(_):
+                    print("Error creating State Capitals flashpile.")
+                }
+            }
+        }
+    }
+
+    func createCapitalCards(flashpile: Flashpile, completion: @escaping () -> Void) {
+        let group = DispatchGroup()
+        for state in StatesAndCapitals.states {
+            group.enter()
+            guard let index = StatesAndCapitals.states.firstIndex(of: state) else {return}
+            let capital = StatesAndCapitals.capitals[index]
+            FlashcardController.shared.createFlashcard(frontString: state, backString: capital, frontIsPKImage: false, backIsPKImage: false, frontPhoto: nil, backPhoto: nil, flashpile: flashpile) { (result) in
+                switch result {
+                case .success(let flashcard):
+                    flashpile.flashcards.append(flashcard)
+                case .failure(_):
+                    print("error")
+                }
+                group.leave()
+            }
+        }
+        group.notify(queue: .main) {
+            return completion()
+        }
+    }
 } // End of class
