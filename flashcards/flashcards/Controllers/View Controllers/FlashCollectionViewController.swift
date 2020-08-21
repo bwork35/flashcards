@@ -34,15 +34,11 @@ class FlashCollectionViewController: UICollectionViewController {
         navigationItem.leftBarButtonItem = editButtonItem
         setupSearchBar()
         
-       // FlashpileController.shared.createMultiplication(completion: collectionView.reloadData)
-       //FlashpileController.shared.createPeriodicTable(completion: collectionView.reloadData)
-        //FlashpileController.shared.createStatesAndCapitals(completion: collectionView.reloadData)
+        //createFirstLaunchFlashpiles()
         
 //        if defaults.bool(forKey: "First Launch") == false {
-//            //FlashpileController.shared.createMultiplication()
-//            //FlashpileController.shared.createPeriodicTable()
-//            //FlashpileController.shared.createStatesAndCapitals()
-//            defaults.set(false, forKey: "First Launch")
+//            createFirstLaunchFlashpiles()
+//            defaults.set(true, forKey: "First Launch")
 //        }
     }
 
@@ -65,6 +61,36 @@ class FlashCollectionViewController: UICollectionViewController {
                 case .failure(let error):
                     print("There was an error fetching flashpiles -- \(error) -- \(error.localizedDescription)")
                 }
+            }
+        }
+    }
+    
+    func createFirstLaunchFlashpiles() {
+        FlashpileController.shared.createMultPile { (result) in
+            switch result {
+            case .success(let flashpile):
+                self.collectionView.reloadData()
+                FlashpileController.shared.createMultCards(flashpile: flashpile, completion: self.collectionView.reloadData)
+            case .failure(_):
+                print("Error creating flashpile.")
+            }
+        }
+        FlashpileController.shared.createElementPile { (result) in
+            switch result {
+            case .success(let flashpile):
+                self.collectionView.reloadData()
+                FlashpileController.shared.createElementCards(flashpile: flashpile, completion: self.collectionView.reloadData)
+            case .failure(_):
+                print("Error creating flashpile.")
+            }
+        }
+        FlashpileController.shared.createCapitalPile { (result) in
+            switch result {
+            case .success(let flashpile):
+                self.collectionView.reloadData()
+                FlashpileController.shared.createCapitalCards(flashpile: flashpile, completion: self.collectionView.reloadData)
+            case .failure(_):
+                print("Error creating flashpile.")
             }
         }
     }

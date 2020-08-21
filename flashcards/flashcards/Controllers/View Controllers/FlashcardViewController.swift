@@ -17,6 +17,7 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var editButtonLabel: UIButton!
     @IBOutlet weak var quizButtonOutlet: UIButton! 
     @IBOutlet weak var subjectViewView: UIView!
+    @IBOutlet weak var loadingView: UIView!
     
     //MARK: - Properties
     var flashpile: Flashpile?
@@ -39,6 +40,7 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.dataSource = self
         setupSearchBar()
         fetchFlashcards()
+        loadingView.isHidden = false
         
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
@@ -51,6 +53,7 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
                 DispatchQueue.main.async {
                     switch result {
                     case .success(let flashpile):
+                        //self.loadingView.isHidden = true
                         self.flashpile = flashpile
                         self.enableQuizButton()
                     case .failure(let error):
@@ -93,11 +96,21 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
         quizButtonOutlet.layer.masksToBounds = false
         quizButtonOutlet.layer.shadowPath = UIBezierPath(roundedRect: quizButtonOutlet.bounds, cornerRadius: quizButtonOutlet.layer.cornerRadius).cgPath
     
+        loadingView.layer.cornerRadius = 20.0
+        loadingView.clipsToBounds = true
+        
+        tableView.layer.borderWidth = 2.0
+        tableView.layer.cornerRadius = 15.0
+        guard let canvaBlue = UIColor.canvaBlue else {return}
+        tableView.layer.borderColor = canvaBlue.cgColor
+        
+        
         let containerView:UIView = UIView(frame: self.tableView.frame)
         self.view.addSubview(containerView)
         self.view.addSubview(subjectViewView)
         self.view.addSubview(tableView)
         self.view.addSubview(quizButtonOutlet)
+        self.view.addSubview(loadingView)
     }
     
     //MARK: - Actions
@@ -194,6 +207,7 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
             DispatchQueue.main.async {
                 switch result {
                 case .success(_):
+                    self.loadingView.isHidden = true
                     self.tableView.reloadData()
                     FlashcardController.shared.totalFlashcards = flashpile.flashcards
                     self.enableQuizButton()

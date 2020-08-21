@@ -112,13 +112,12 @@ class FlashpileController {
     }
     
     //MARK: - First Launch
-    func createMultiplication(completion: @escaping () -> Void) {
+    func createMultPile(completion: @escaping (Result<Flashpile, Error>) -> Void) {
         FlashpileController.shared.createFlashpile(subject: "Multiplication") { (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let flashpile):
-                    self.createMultCards(flashpile: flashpile, completion: completion)
-                    //self.collectionView.reloadData()
+                    completion(.success(flashpile))
                 case .failure(_):
                     print("Failed to create Multiplication Flashpile.")
                 }
@@ -147,13 +146,12 @@ class FlashpileController {
         }
     }
     
-    func createPeriodicTable(completion: @escaping () -> Void) {
+    func createElementPile(completion: @escaping (Result<Flashpile, Error>) -> Void) {
         FlashpileController.shared.createFlashpile(subject: "Periodic Table") { (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let flashpile):
-                    self.createElementCards(flashpile: flashpile, completion: completion)
-                    //self.collectionView.reloadData()
+                    completion(.success(flashpile))
                 case .failure(_):
                     print("Error creating Periodic Table Flashpile")
                 }
@@ -194,13 +192,12 @@ class FlashpileController {
         }
     }
 
-    func createStatesAndCapitals(completion: @escaping () -> Void) {
+    func createCapitalPile(completion: @escaping (Result<Flashpile, Error>) -> Void) {
         FlashpileController.shared.createFlashpile(subject: "States and Capitals") { (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let flashpile):
-                    self.createCapitalCards(flashpile: flashpile, completion: completion)
-                    //self.collectionView.reloadData()
+                    completion(.success(flashpile))
                 case .failure(_):
                     print("Error creating State Capitals flashpile.")
                 }
