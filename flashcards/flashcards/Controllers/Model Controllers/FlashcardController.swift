@@ -54,23 +54,58 @@ class FlashcardController {
         
         let query = CKQuery(recordType: CardStrings.recordTypeKey, predicate: predicate)
         
-        privateDB.perform(query, inZoneWith: nil) { (records, error) in
+        let operation = CKQueryOperation(query: query)
+        operation.resultsLimit = 100
+        
+       // let queue = OperationQueue()
+        
+        var flashRecords = [CKRecord]()
+        
+        operation.recordFetchedBlock = { record in
+            flashRecords.append(record)
+        }
+        
+        operation.queryCompletionBlock = { (cursor: CKQueryOperation.Cursor?, error) -> Void in
             if let error = error {
-                print("There was an error fetching flashcards -- \(error) -- \(error.localizedDescription)")
+                print("errrror :(")
                 completion(.failure(.ckError(error)))
             }
-            
-            guard let records = records else {return completion(.failure(.couldNotUnwrap))}
-            
-            print("Fetched Flashcard Records Successfully")
-            
-            let fetchedFlashcards = records.compactMap { Flashcard(ckRecord: $0) }
-            let sortedFlashcards = fetchedFlashcards.sorted(by: { $0.timestamp < $1.timestamp })
-            
-            flashpile.flashcards = sortedFlashcards
-            
-            completion(.success(sortedFlashcards))
+            if let cursor = cursor {
+                let nextOperation = CKQueryOperation(cursor: cursor)
+                nextOperation.recordFetchedBlock = { record in
+                    flashRecords.append(record)
+                }
+                nextOperation.queryCompletionBlock = operation.queryCompletionBlock
+                nextOperation.resultsLimit = operation.resultsLimit
+                self.privateDB.add(nextOperation)
+            }
+            else {
+                let fetchedFlashcards = flashRecords.compactMap { Flashcard(ckRecord: $0) }
+                let sortedFlashcards = fetchedFlashcards.sorted(by: { $0.timestamp < $1.timestamp })
+                flashpile.flashcards = sortedFlashcards
+                completion(.success(sortedFlashcards))
+            }
         }
+        privateDB.add(operation)
+    
+        
+//        privateDB.perform(query, inZoneWith: nil) { (records, error) in
+//            if let error = error {
+//                print("There was an error fetching flashcards -- \(error) -- \(error.localizedDescription)")
+//                completion(.failure(.ckError(error)))
+//            }
+//
+//            guard let records = records else {return completion(.failure(.couldNotUnwrap))}
+//
+//            print("Fetched Flashcard Records Successfully")
+//
+//            let fetchedFlashcards = records.compactMap { Flashcard(ckRecord: $0) }
+//            let sortedFlashcards = fetchedFlashcards.sorted(by: { $0.timestamp < $1.timestamp })
+//
+//            flashpile.flashcards = sortedFlashcards
+//
+//            completion(.success(sortedFlashcards))
+//        }
     }
     
     //Update

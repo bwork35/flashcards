@@ -66,15 +66,15 @@ class FlashCollectionViewController: UICollectionViewController {
     }
     
     func createFirstLaunchFlashpiles() {
-        FlashpileController.shared.createMultPile { (result) in
-            switch result {
-            case .success(let flashpile):
-                self.collectionView.reloadData()
-                FlashpileController.shared.createMultCards(flashpile: flashpile, completion: self.collectionView.reloadData)
-            case .failure(_):
-                print("Error creating flashpile.")
-            }
-        }
+//        FlashpileController.shared.createMultPile { (result) in
+//            switch result {
+//            case .success(let flashpile):
+//                self.collectionView.reloadData()
+//                FlashpileController.shared.createMultCards(flashpile: flashpile, completion: self.collectionView.reloadData)
+//            case .failure(_):
+//                print("Error creating flashpile.")
+//            }
+//        }
         FlashpileController.shared.createElementPile { (result) in
             switch result {
             case .success(let flashpile):
@@ -84,15 +84,15 @@ class FlashCollectionViewController: UICollectionViewController {
                 print("Error creating flashpile.")
             }
         }
-        FlashpileController.shared.createCapitalPile { (result) in
-            switch result {
-            case .success(let flashpile):
-                self.collectionView.reloadData()
-                FlashpileController.shared.createCapitalCards(flashpile: flashpile, completion: self.collectionView.reloadData)
-            case .failure(_):
-                print("Error creating flashpile.")
-            }
-        }
+//        FlashpileController.shared.createCapitalPile { (result) in
+//            switch result {
+//            case .success(let flashpile):
+//                self.collectionView.reloadData()
+//                FlashpileController.shared.createCapitalCards(flashpile: flashpile, completion: self.collectionView.reloadData)
+//            case .failure(_):
+//                print("Error creating flashpile.")
+//            }
+//        }
     }
     
     //Search functions
