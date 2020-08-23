@@ -32,7 +32,6 @@
 		93DE548124C4EC3600B4924F /* FlashpileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DE548024C4EC3600B4924F /* FlashpileController.swift */; };
 		93EFDCD324D7BC1600B15C5D /* FlashButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EFDCD224D7BC1600B15C5D /* FlashButton.swift */; };
 		93EFDD1724DE7C1900B15C5D /* StatesAndCapitals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EFDD1624DE7C1800B15C5D /* StatesAndCapitals.swift */; };
-		93EFDD1D24DF5EF400B15C5D /* ElementError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EFDD1C24DF5EF400B15C5D /* ElementError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,7 +63,6 @@
 		93DE548024C4EC3600B4924F /* FlashpileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashpileController.swift; sourceTree = "<group>"; };
 		93EFDCD224D7BC1600B15C5D /* FlashButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashButton.swift; sourceTree = "<group>"; };
 		93EFDD1624DE7C1800B15C5D /* StatesAndCapitals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatesAndCapitals.swift; sourceTree = "<group>"; };
-		93EFDD1C24DF5EF400B15C5D /* ElementError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +99,6 @@
 			children = (
 				93C6E5A724CE4D7400D613A3 /* FlashError.swift */,
 				93D8EBA824D61436003104CE /* StyleGuide.swift */,
-				93EFDD1C24DF5EF400B15C5D /* ElementError.swift */,
 			);
 			path = "Helpers + Extensions";
 			sourceTree = "<group>";
@@ -301,7 +298,6 @@
 				93D8EBA924D61436003104CE /* StyleGuide.swift in Sources */,
 				93DE548124C4EC3600B4924F /* FlashpileController.swift in Sources */,
 				93EFDCD324D7BC1600B15C5D /* FlashButton.swift in Sources */,
-				93EFDD1D24DF5EF400B15C5D /* ElementError.swift in Sources */,
 				93DE547D24C3B39200B4924F /* FlashcardDetailViewController.swift in Sources */,
 				93DE547224C1040F00B4924F /* FlashCollectionViewController.swift in Sources */,
 				938215F524C7CA5000535B04 /* QuizViewController.swift in Sources */,
