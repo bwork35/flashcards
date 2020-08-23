@@ -158,37 +158,25 @@ class FlashpileController {
             }
         }
     }
-
+    
     func createElementCards(flashpile: Flashpile, completion: @escaping () -> Void) {
-        ElementController.fetchElements { (result) in
-            DispatchQueue.main.async {
+        let group = DispatchGroup()
+        for symbol in PeriodicTable.symbol {
+            group.enter()
+            guard let index = PeriodicTable.symbol.firstIndex(of: symbol) else {return}
+            let numAndName = PeriodicTable.numberAndName[index]
+            FlashcardController.shared.createFlashcard(frontString: symbol, backString: numAndName, frontIsPKImage: false, backIsPKImage: false, frontPhoto: nil, backPhoto: nil, flashpile: flashpile) { (result) in
                 switch result {
-                case .success(_):
-                    createCards(completion: completion)
+                case .success(let flashcard):
+                    flashpile.flashcards.append(flashcard)
                 case .failure(_):
-                    print("Error fetching Periodic Table.")
+                    print("error")
                 }
+                group.leave()
             }
         }
-
-        func createCards(completion: @escaping () -> Void) {
-            let group = DispatchGroup()
-            print(ElementController.shared.elements.count)
-            for element in ElementController.shared.elements {
-                group.enter()
-                FlashcardController.shared.createFlashcard(frontString: element.symbol, backString: "\(element.atomicNumber)  \(element.name)", frontIsPKImage: false, backIsPKImage: false, frontPhoto: nil, backPhoto: nil, flashpile: flashpile) { (result) in
-                    switch result {
-                    case .success(let flashcard):
-                        flashpile.flashcards.append(flashcard)
-                    case .failure(_):
-                        print("error")
-                    }
-                    group.leave()
-                }
-            }
-            group.notify(queue: .main) {
-                completion()
-            }
+        group.notify(queue: .main) {
+            completion()
         }
     }
 
