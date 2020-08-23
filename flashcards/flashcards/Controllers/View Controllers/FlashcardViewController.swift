@@ -46,31 +46,13 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
         view.addGestureRecognizer(tap)
         tap.cancelsTouchesInView = false
        
-        if let flashpile = flashpile {
-            updateViews(flashpile: flashpile)
-        } else {
-            FlashpileController.shared.createFlashpile(subject: "") { (result) in
-                DispatchQueue.main.async {
-                    switch result {
-                    case .success(let flashpile):
-                        //self.loadingView.isHidden = true
-                        self.flashpile = flashpile
-                        self.enableQuizButton()
-                    case .failure(let error):
-                        print("There was an error creating a new flashpile -- \(error) -- \(error.localizedDescription)")
-                    }
-                }
-            }
-            flashpileSubjectTextField.isHidden = true
-            flashpileSubjectLabel.text = "Subject"
-        }
+        updateOrCreate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.tableView.reloadData()
         enableQuizButton()
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -104,7 +86,6 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
         guard let canvaBlue = UIColor.canvaBlue else {return}
         tableView.layer.borderColor = canvaBlue.cgColor
         
-        
         let containerView:UIView = UIView(frame: self.tableView.frame)
         self.view.addSubview(containerView)
         self.view.addSubview(subjectViewView)
@@ -114,13 +95,6 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     //MARK: - Actions
-    @IBAction func buttonButtonTapped(_ sender: Any) {
-        guard let flashpile = flashpile else {return}
-        for flashcard in flashpile.flashcards {
-            print(flashcard.frontString ?? "nil")
-        }
-    }
-    
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let flashpile = flashpile else {return}
         
@@ -192,6 +166,27 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     //MARK: - Helper Methods
+    func updateOrCreate() {
+        if let flashpile = flashpile {
+            updateViews(flashpile: flashpile)
+        } else {
+            FlashpileController.shared.createFlashpile(subject: "") { (result) in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let flashpile):
+                        self.loadingView.isHidden = true
+                        self.flashpile = flashpile
+                        self.enableQuizButton()
+                    case .failure(let error):
+                        print("There was an error creating a new flashpile -- \(error) -- \(error.localizedDescription)")
+                    }
+                }
+            }
+            flashpileSubjectTextField.isHidden = true
+            flashpileSubjectLabel.text = "Subject"
+        }
+    }
+    
     func enableQuizButton() {
         guard let flashpile = flashpile else {return}
         if flashpile.flashcards.count == 0 {

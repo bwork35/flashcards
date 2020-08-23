@@ -38,9 +38,7 @@ class FlashcardController {
             
             guard let record = record,
                 let flashcard = Flashcard(ckRecord: record) else {return completion(.failure(.couldNotUnwrap))}
-            
-            //print("Flashcard Successfully Saved")
-            //flashpile.flashcards.append(flashcard)
+    
             completion(.success(flashcard))
         }
     }
@@ -56,8 +54,6 @@ class FlashcardController {
         
         let operation = CKQueryOperation(query: query)
         operation.resultsLimit = 100
-        
-       // let queue = OperationQueue()
         
         var flashRecords = [CKRecord]()
         
@@ -87,25 +83,6 @@ class FlashcardController {
             }
         }
         privateDB.add(operation)
-    
-        
-//        privateDB.perform(query, inZoneWith: nil) { (records, error) in
-//            if let error = error {
-//                print("There was an error fetching flashcards -- \(error) -- \(error.localizedDescription)")
-//                completion(.failure(.ckError(error)))
-//            }
-//
-//            guard let records = records else {return completion(.failure(.couldNotUnwrap))}
-//
-//            print("Fetched Flashcard Records Successfully")
-//
-//            let fetchedFlashcards = records.compactMap { Flashcard(ckRecord: $0) }
-//            let sortedFlashcards = fetchedFlashcards.sorted(by: { $0.timestamp < $1.timestamp })
-//
-//            flashpile.flashcards = sortedFlashcards
-//
-//            completion(.success(sortedFlashcards))
-//        }
     }
     
     //Update

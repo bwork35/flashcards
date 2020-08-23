@@ -34,7 +34,6 @@
 		93EFDD1924DF5A3500B15C5D /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EFDD1824DF5A3400B15C5D /* Element.swift */; };
 		93EFDD1B24DF5E0400B15C5D /* ElementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EFDD1A24DF5E0400B15C5D /* ElementController.swift */; };
 		93EFDD1D24DF5EF400B15C5D /* ElementError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EFDD1C24DF5EF400B15C5D /* ElementError.swift */; };
-		93EFDD1F24DF7B7300B15C5D /* ElementTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EFDD1E24DF7B7300B15C5D /* ElementTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,7 +67,6 @@
 		93EFDD1824DF5A3400B15C5D /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		93EFDD1A24DF5E0400B15C5D /* ElementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementController.swift; sourceTree = "<group>"; };
 		93EFDD1C24DF5EF400B15C5D /* ElementError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementError.swift; sourceTree = "<group>"; };
-		93EFDD1E24DF7B7300B15C5D /* ElementTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,7 +178,6 @@
 				93DE547C24C3B39200B4924F /* FlashcardDetailViewController.swift */,
 				938215F424C7CA5000535B04 /* QuizViewController.swift */,
 				931441F424D1CB2E0005BE7B /* PencilViewController.swift */,
-				93EFDD1E24DF7B7300B15C5D /* ElementTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -304,7 +301,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93EFDD1F24DF7B7300B15C5D /* ElementTableViewController.swift in Sources */,
 				93D8EBA924D61436003104CE /* StyleGuide.swift in Sources */,
 				93DE548124C4EC3600B4924F /* FlashpileController.swift in Sources */,
 				93EFDCD324D7BC1600B15C5D /* FlashButton.swift in Sources */,
@@ -471,6 +467,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = flashcards/flashcards.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CYXP9477KA;
 				INFOPLIST_FILE = flashcards/Resources/Info.plist;
@@ -480,6 +477,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bryanworkman.flashcards;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -490,6 +488,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = flashcards/flashcards.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CYXP9477KA;
 				INFOPLIST_FILE = flashcards/Resources/Info.plist;
@@ -499,6 +498,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bryanworkman.flashcards;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
