@@ -35,7 +35,10 @@ class FlashCollectionViewController: UICollectionViewController {
         setupSearchBar()
         
         if defaults.bool(forKey: "First Launch") == false {
-            createFirstLaunchFlashpiles()
+            addButtonOutlet.isEnabled = false
+            editButtonItem.isEnabled = false
+            collectionView.allowsSelection = false 
+            createLoadingMessage()
             print("First")
             defaults.set(true, forKey: "First Launch")
         } else {
@@ -67,32 +70,87 @@ class FlashCollectionViewController: UICollectionViewController {
         }
     }
     
+    func createLoadingMessage() {
+        FlashpileController.shared.createLoadingPiles { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(_):
+                    self.collectionView.reloadData()
+                    self.createFirstLaunchFlashpiles()
+                case .failure(_):
+                    print("Error with loading message.")
+                }
+            }
+        }
+    }
+    
     func createFirstLaunchFlashpiles() {
+        let group = DispatchGroup()
+        group.enter()
         FlashpileController.shared.createMultPile { (result) in
             switch result {
             case .success(let flashpile):
-                self.collectionView.reloadData()
-                FlashpileController.shared.createMultCards(flashpile: flashpile, completion: self.collectionView.reloadData)
+                //self.collectionView.reloadData()
+                FlashpileController.shared.createMultCards(flashpile: flashpile) { (result) in
+                    switch result {
+                    case .success(_):
+                        group.leave()
+                    case .failure(_):
+                        print("No cards created.")
+                    }
+                }
             case .failure(_):
                 print("Error creating flashpile.")
             }
         }
+        group.enter()
         FlashpileController.shared.createElementPile { (result) in
             switch result {
             case .success(let flashpile):
-                self.collectionView.reloadData()
-                FlashpileController.shared.createElementCards(flashpile: flashpile, completion: self.collectionView.reloadData)
+                //self.collectionView.reloadData()
+                FlashpileController.shared.createElementCards(flashpile: flashpile) { (result) in
+                    switch result {
+                    case .success(_):
+                        group.leave()
+                    case .failure(_):
+                        print("No cards created.")
+                    }
+                }
             case .failure(_):
                 print("Error creating flashpile.")
             }
         }
+        group.enter()
         FlashpileController.shared.createCapitalPile { (result) in
             switch result {
             case .success(let flashpile):
-                self.collectionView.reloadData()
-                FlashpileController.shared.createCapitalCards(flashpile: flashpile, completion: self.collectionView.reloadData)
+                //self.collectionView.reloadData()
+                FlashpileController.shared.createCapitalCards(flashpile: flashpile) { (result) in
+                    switch result {
+                    case .success(_):
+                        group.leave()
+                    case .failure(_):
+                        print("No cards created.")
+                    }
+                }
             case .failure(_):
                 print("Error creating flashpile.")
+            }
+        }
+        group.notify(queue: .main) {
+            let group = DispatchGroup()
+            for i in 0...2 {
+                group.enter()
+                FlashpileController.shared.deleteFlashpile(flashpile: FlashpileController.shared.totalFlashpiles[i]) { (result) in
+                }
+                group.leave()
+            }
+            group.notify(queue: .main) {
+                FlashpileController.shared.totalFlashpiles.removeSubrange(0...2)
+                self.addButtonOutlet.isEnabled = true
+                self.editButtonItem.isEnabled = true
+                self.collectionView.allowsSelection = true
+                self.collectionView.reloadData()
             }
         }
     }

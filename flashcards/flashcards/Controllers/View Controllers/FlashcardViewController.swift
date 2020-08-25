@@ -152,6 +152,7 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBAction func quizButtonTapped(_ sender: Any) {
         guard let flashpile = flashpile else {return}
+        guard flashpile.flashcards.count > 0 else {return}
         
         FlashpileController.shared.updateFlashpile(flashpile: flashpile) { (result) in
             DispatchQueue.main.async {

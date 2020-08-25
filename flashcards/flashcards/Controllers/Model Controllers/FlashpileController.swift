@@ -112,6 +112,25 @@ class FlashpileController {
     }
     
     //MARK: - First Launch
+    func createLoadingPiles(completion: @escaping (Result<Bool, Error>) -> Void) {
+        let group = DispatchGroup()
+        group.enter()
+        FlashpileController.shared.createFlashpile(subject: "Loading...") { (result) in
+            group.leave()
+        }
+        group.enter()
+        FlashpileController.shared.createFlashpile(subject: "This shouldn't take long.") { (result) in
+            group.leave()
+        }
+        group.enter()
+        FlashpileController.shared.createFlashpile(subject: "Creating your \nfirst piles \nof flashcards") { (result) in
+            group.leave()
+        }
+        group.notify(queue: .main){
+            return completion(.success(true))
+        }
+    }
+    
     func createMultPile(completion: @escaping (Result<Flashpile, Error>) -> Void) {
         FlashpileController.shared.createFlashpile(subject: "Multiplication") { (result) in
             DispatchQueue.main.async {
@@ -125,7 +144,7 @@ class FlashpileController {
         }
     }
     
-    func createMultCards(flashpile: Flashpile, completion: @escaping () -> Void) {
+    func createMultCards(flashpile: Flashpile, completion: @escaping (Result<Bool, Error>) -> Void) {
         let group = DispatchGroup()
         for prompt in MultiplicationTables.prompts {
             group.enter()
@@ -142,7 +161,7 @@ class FlashpileController {
             }
         }
         group.notify(queue: .main){
-            return completion()
+            return completion(.success(true))
         }
     }
     
@@ -159,7 +178,7 @@ class FlashpileController {
         }
     }
     
-    func createElementCards(flashpile: Flashpile, completion: @escaping () -> Void) {
+    func createElementCards(flashpile: Flashpile, completion: @escaping (Result<Bool, Error>) -> Void) {
         let group = DispatchGroup()
         for symbol in PeriodicTable.symbol {
             group.enter()
@@ -176,7 +195,7 @@ class FlashpileController {
             }
         }
         group.notify(queue: .main) {
-            completion()
+            completion(.success(true))
         }
     }
 
@@ -193,7 +212,7 @@ class FlashpileController {
         }
     }
 
-    func createCapitalCards(flashpile: Flashpile, completion: @escaping () -> Void) {
+    func createCapitalCards(flashpile: Flashpile, completion: @escaping (Result<Bool, Error>) -> Void) {
         let group = DispatchGroup()
         for state in StatesAndCapitals.states {
             group.enter()
@@ -210,7 +229,7 @@ class FlashpileController {
             }
         }
         group.notify(queue: .main) {
-            return completion()
+            return completion(.success(true))
         }
     }
 } // End of class
