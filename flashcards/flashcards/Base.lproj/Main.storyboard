@@ -355,6 +355,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addButton" destination="vOB-iU-SUK" id="dgD-ub-M4b"/>
                         <outlet property="editButtonLabel" destination="yta-Fz-CZI" id="Xib-fn-1m9"/>
                         <outlet property="flashpileSubjectLabel" destination="5Va-cO-dOh" id="vYh-VM-qKj"/>
                         <outlet property="flashpileSubjectTextField" destination="bhP-g5-JeP" id="aWg-aQ-nkC"/>
@@ -1052,6 +1053,7 @@
                         <outlet property="frontTextButtonOutlet" destination="5qx-Se-M9K" id="MXW-3w-xBt"/>
                         <outlet property="frontTextView" destination="xel-FW-9zT" id="9YX-Tx-SXV"/>
                         <outlet property="frontViewView" destination="1BV-ur-IZg" id="DYU-mg-dhq"/>
+                        <outlet property="saveButton" destination="oWo-4g-AdZ" id="BeC-Hm-Qt9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TfL-hY-Jaz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1180,6 +1182,100 @@
             </objects>
             <point key="canvasLocation" x="649" y="167"/>
         </scene>
+        <!--AppleID View Controller-->
+        <scene sceneID="AYh-3x-GlI">
+            <objects>
+                <viewController storyboardIdentifier="AppleIDVC" id="Pht-Wc-Vlf" customClass="AppleIDViewController" customModule="flashcards" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4dj-8p-BPW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="ugB-iQ-H8H">
+                                <rect key="frame" x="103.5" y="213.5" width="207" height="207"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ugB-iQ-H8H" secondAttribute="height" multiplier="1:1" id="2sP-6F-J4N"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="AHV-cs-RuT">
+                                <rect key="frame" x="8" y="450.5" width="398" height="99"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iCloud account required." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phY-Q0-mm8">
+                                        <rect key="frame" x="0.0" y="0.0" width="398" height="21"/>
+                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="22"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <size key="shadowOffset" width="0.0" height="-2"/>
+                                        <variation key="heightClass=compact-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=compact">
+                                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
+                                        </variation>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="191-mF-AKz">
+                                        <rect key="frame" x="0.0" y="51" width="398" height="48"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please go to your Settings and log in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QFW-m4-yKj">
+                                                <rect key="frame" x="0.0" y="0.0" width="398" height="20"/>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="22"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="heightClass=compact-widthClass=regular">
+                                                    <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=compact">
+                                                    <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
+                                                </variation>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="to your iCloud account." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C3W-Xb-JeF">
+                                                <rect key="frame" x="0.0" y="28" width="398" height="20"/>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="22"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="heightClass=compact-widthClass=regular">
+                                                    <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=compact">
+                                                    <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
+                                                </variation>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="C3W-Xb-JeF" secondAttribute="bottom" id="1Ds-XT-DKn"/>
+                                            <constraint firstItem="QFW-m4-yKj" firstAttribute="leading" secondItem="191-mF-AKz" secondAttribute="leading" id="6oo-o5-jUD"/>
+                                            <constraint firstItem="C3W-Xb-JeF" firstAttribute="leading" secondItem="191-mF-AKz" secondAttribute="leading" id="Cop-PD-Gsl"/>
+                                            <constraint firstAttribute="trailing" secondItem="QFW-m4-yKj" secondAttribute="trailing" id="Lwi-1g-5Ts"/>
+                                            <constraint firstAttribute="trailing" secondItem="C3W-Xb-JeF" secondAttribute="trailing" id="TuH-PQ-PVI"/>
+                                            <constraint firstItem="QFW-m4-yKj" firstAttribute="top" secondItem="191-mF-AKz" secondAttribute="top" id="WpW-TA-IGR"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="phY-Q0-mm8" firstAttribute="leading" secondItem="AHV-cs-RuT" secondAttribute="leading" id="CF0-fz-hd8"/>
+                                    <constraint firstAttribute="trailing" secondItem="phY-Q0-mm8" secondAttribute="trailing" id="FPK-qw-Jbc"/>
+                                    <constraint firstItem="191-mF-AKz" firstAttribute="leading" secondItem="AHV-cs-RuT" secondAttribute="leading" id="NtD-Jy-kOO"/>
+                                    <constraint firstItem="phY-Q0-mm8" firstAttribute="top" secondItem="AHV-cs-RuT" secondAttribute="top" id="f94-qD-Rms"/>
+                                    <constraint firstAttribute="bottom" secondItem="191-mF-AKz" secondAttribute="bottom" id="jJM-0E-7cr"/>
+                                    <constraint firstAttribute="trailing" secondItem="191-mF-AKz" secondAttribute="trailing" id="mQu-54-6dI"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" name="bgTan"/>
+                        <constraints>
+                            <constraint firstItem="ugB-iQ-H8H" firstAttribute="centerX" secondItem="iNX-6k-Tdl" secondAttribute="centerX" id="5SX-cI-FbN"/>
+                            <constraint firstItem="AHV-cs-RuT" firstAttribute="leading" secondItem="iNX-6k-Tdl" secondAttribute="leading" constant="8" id="85C-b7-lE7"/>
+                            <constraint firstItem="iNX-6k-Tdl" firstAttribute="trailing" secondItem="AHV-cs-RuT" secondAttribute="trailing" constant="8" id="Mvp-L1-jXd"/>
+                            <constraint firstItem="ugB-iQ-H8H" firstAttribute="width" secondItem="4dj-8p-BPW" secondAttribute="width" multiplier="0.5" id="PUn-xH-dxS"/>
+                            <constraint firstItem="ugB-iQ-H8H" firstAttribute="centerY" secondItem="iNX-6k-Tdl" secondAttribute="centerY" multiplier="0.7" id="Uv6-Hh-zqI"/>
+                            <constraint firstItem="AHV-cs-RuT" firstAttribute="top" secondItem="ugB-iQ-H8H" secondAttribute="bottom" constant="30" id="uFo-VH-HDL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="iNX-6k-Tdl"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J1Z-Mq-0kW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1535" y="-567"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="MJu-gp-64I"/>
@@ -1188,6 +1284,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="flashcardClipArt4" width="200" height="150"/>
+        <image name="logo" width="1024" height="1024"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="photo" catalog="system" width="128" height="93"/>
         <image name="rectangle.on.rectangle.angled" catalog="system" width="128" height="101"/>

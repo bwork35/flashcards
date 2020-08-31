@@ -15,6 +15,8 @@ class FlashpileController {
     static let shared = FlashpileController()
     
     var totalFlashpiles: [Flashpile] = []
+    var fauxFlashpiles: [Flashpile] = []
+    var fauxFlashpileIDs: [CKRecord.ID] = []
     
     let privateDB = CKContainer.default().privateCloudDatabase
     
@@ -57,8 +59,9 @@ class FlashpileController {
             
             let fetchedFlashpiles: [Flashpile] = records.compactMap { Flashpile(ckRecord: $0) }
             let sortedFlashpiles = fetchedFlashpiles.sorted(by: { $0.timestamp > $1.timestamp })
-    
-            self.totalFlashpiles = sortedFlashpiles
+            
+            //self.totalFlashpiles.append(contentsOf: sortedFlashpiles)
+            self.totalFlashpiles = sortedFlashpiles + self.fauxFlashpiles
             completion(.success(true))
         }
     }
@@ -86,12 +89,12 @@ class FlashpileController {
         }
         privateDB.add(operation)
     }
-
+    
     //Delete
     func deleteFlashpile(flashpile: Flashpile, completion: @escaping (Result<Bool, FlashError>) -> Void) {
         
         let operation = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: [flashpile.recordID])
-
+        
         operation.qualityOfService = .userInteractive
         operation.modifyRecordsCompletionBlock = {(_, recordIDs, error) in
             if let error = error {
@@ -111,125 +114,43 @@ class FlashpileController {
         privateDB.add(operation)
     }
     
-    //MARK: - First Launch
-    func createLoadingPiles(completion: @escaping (Result<Bool, Error>) -> Void) {
-        let group = DispatchGroup()
-        group.enter()
-        FlashpileController.shared.createFlashpile(subject: "Loading...") { (result) in
-            group.leave()
-        }
-        group.enter()
-        FlashpileController.shared.createFlashpile(subject: "This shouldn't take long.") { (result) in
-            group.leave()
-        }
-        group.enter()
-        FlashpileController.shared.createFlashpile(subject: "Creating your \nfirst piles \nof flashcards") { (result) in
-            group.leave()
-        }
-        group.notify(queue: .main){
-            return completion(.success(true))
-        }
-    }
-    
+    //MARK: - PreLoaded Piles
     func createMultPile(completion: @escaping (Result<Flashpile, Error>) -> Void) {
-        FlashpileController.shared.createFlashpile(subject: "Multiplication") { (result) in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let flashpile):
-                    completion(.success(flashpile))
-                case .failure(_):
-                    print("Failed to create Multiplication Flashpile.")
-                }
-            }
-        }
-    }
-    
-    func createMultCards(flashpile: Flashpile, completion: @escaping (Result<Bool, Error>) -> Void) {
-        let group = DispatchGroup()
+        let newFlashpile = Flashpile(subject: "Multiplication")
         for prompt in MultiplicationTables.prompts {
-            group.enter()
             guard let index = MultiplicationTables.prompts.firstIndex(of: prompt) else {return}
             let answer = MultiplicationTables.answers[index]
-            FlashcardController.shared.createFlashcard(frontString: prompt, backString: answer, frontIsPKImage: false, backIsPKImage: false, frontPhoto: nil, backPhoto: nil, flashpile: flashpile) { (result) in
-                switch result {
-                case .success(let flashcard):
-                    flashpile.flashcards.append(flashcard)
-                case .failure(_):
-                    print("error")
-                }
-                group.leave()
-            }
+            let newFlashcard = Flashcard(frontString: prompt, backString: answer, frontIsPKImage: false, backIsPKImage: false, frontPhoto:  nil, backPhoto: nil, pileReference: nil)
+            newFlashpile.flashcards.append(newFlashcard)
         }
-        group.notify(queue: .main){
-            return completion(.success(true))
-        }
+        self.totalFlashpiles.append(newFlashpile)
+        self.fauxFlashpiles.append(newFlashpile)
+        self.fauxFlashpileIDs.append(newFlashpile.recordID)
     }
-    
+
     func createElementPile(completion: @escaping (Result<Flashpile, Error>) -> Void) {
-        FlashpileController.shared.createFlashpile(subject: "Periodic Table") { (result) in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let flashpile):
-                    completion(.success(flashpile))
-                case .failure(_):
-                    print("Error creating Periodic Table Flashpile")
-                }
-            }
+        let newFlashpile = Flashpile(subject: "Periodic Table")
+        for symbol in PeriodicTable.symbols {
+            guard let index = PeriodicTable.symbols.firstIndex(of: symbol) else {return}
+            let numAndName = PeriodicTable.numberAndName[index]
+            let newFlashcard = Flashcard(frontString: symbol, backString: numAndName, frontIsPKImage: false, backIsPKImage: false, frontPhoto: nil, backPhoto: nil, pileReference: nil)
+            newFlashpile.flashcards.append(newFlashcard)
         }
+        self.totalFlashpiles.append(newFlashpile)
+        self.fauxFlashpiles.append(newFlashpile)
+        self.fauxFlashpileIDs.append(newFlashpile.recordID)
     }
     
-    func createElementCards(flashpile: Flashpile, completion: @escaping (Result<Bool, Error>) -> Void) {
-        let group = DispatchGroup()
-        for symbol in PeriodicTable.symbol {
-            group.enter()
-            guard let index = PeriodicTable.symbol.firstIndex(of: symbol) else {return}
-            let numAndName = PeriodicTable.numberAndName[index]
-            FlashcardController.shared.createFlashcard(frontString: symbol, backString: numAndName, frontIsPKImage: false, backIsPKImage: false, frontPhoto: nil, backPhoto: nil, flashpile: flashpile) { (result) in
-                switch result {
-                case .success(let flashcard):
-                    flashpile.flashcards.append(flashcard)
-                case .failure(_):
-                    print("error")
-                }
-                group.leave()
-            }
-        }
-        group.notify(queue: .main) {
-            completion(.success(true))
-        }
-    }
-
-    func createCapitalPile(completion: @escaping (Result<Flashpile, Error>) -> Void) {
-        FlashpileController.shared.createFlashpile(subject: "States and Capitals") { (result) in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let flashpile):
-                    completion(.success(flashpile))
-                case .failure(_):
-                    print("Error creating State Capitals flashpile.")
-                }
-            }
-        }
-    }
-
-    func createCapitalCards(flashpile: Flashpile, completion: @escaping (Result<Bool, Error>) -> Void) {
-        let group = DispatchGroup()
+    func createCapitalsPile(completion: @escaping (Result<Flashpile, Error>) -> Void) {
+        let newFlashpile = Flashpile(subject: "States and Capitals")
         for state in StatesAndCapitals.states {
-            group.enter()
-            guard let index = StatesAndCapitals.states.firstIndex(of: state) else {return}
-            let capital = StatesAndCapitals.capitals[index]
-            FlashcardController.shared.createFlashcard(frontString: state, backString: capital, frontIsPKImage: false, backIsPKImage: false, frontPhoto: nil, backPhoto: nil, flashpile: flashpile) { (result) in
-                switch result {
-                case .success(let flashcard):
-                    flashpile.flashcards.append(flashcard)
-                case .failure(_):
-                    print("error")
-                }
-                group.leave()
-            }
+        guard let index = StatesAndCapitals.states.firstIndex(of: state) else {return}
+        let capital = StatesAndCapitals.capitals[index]
+            let newFlashcard = Flashcard(frontString: state, backString: capital, frontIsPKImage: false, backIsPKImage: false, frontPhoto: nil, backPhoto: nil, pileReference: nil)
+            newFlashpile.flashcards.append(newFlashcard)
         }
-        group.notify(queue: .main) {
-            return completion(.success(true))
-        }
+        self.totalFlashpiles.append(newFlashpile)
+        self.fauxFlashpiles.append(newFlashpile)
+        self.fauxFlashpileIDs.append(newFlashpile.recordID)
     }
 } // End of class

@@ -33,6 +33,7 @@ class QuizViewController: UIViewController {
     var finalCards = FlashcardController.shared.totalFlashcards
     var quizCount = 0
     var cardCount = 0
+    var correctCount = 0
     var totalCount = FlashcardController.shared.totalFlashcards.count
     var finalCount = FlashcardController.shared.totalFlashcards.count
     var skippedCards: [Flashcard] = []
@@ -157,6 +158,7 @@ class QuizViewController: UIViewController {
         quizCards = finalCards.shuffled()
         quizCount = 0
         cardCount = 0
+        correctCount = 0
         totalCount = finalCards.count
         skippedCards = []
         incorrectCards = []
@@ -228,6 +230,7 @@ class QuizViewController: UIViewController {
         case 1:
             updateViews()
         case 2:
+            correctCount += (quizCount - skippedCards.count)
             quizCards = skippedCards
             skippedCards = []
             quizCount = 0
@@ -276,10 +279,12 @@ class QuizViewController: UIViewController {
     
     func updateProgressBar() {
         if redProgressBarIsOn == false {
-            yellowProgressNums.text = "\(quizCount) / \(finalCount)"
+            if round == 1 {
+                yellowProgressNums.text = "\(correctCount + quizCount - skippedCards.count) / \(finalCount)"
+                quizProgressBar.progress = (Float(cardCount))/(Float(totalCount))
+            }
             redProgressNums.text = "\(incorrectCards.count)"
             redProgressBar.progress = 0.0
-            quizProgressBar.progress = (Float(cardCount))/(Float(totalCount))
         } else {
             yellowProgressNums.text = "\(finalCount) / \(finalCount)"
             redProgressNums.text = "\(redCount)"

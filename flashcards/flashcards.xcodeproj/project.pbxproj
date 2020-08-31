@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9303FEF524F9FF2100486F65 /* AppleIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9303FEF424F9FF2100486F65 /* AppleIDViewController.swift */; };
+		9303FEF724F9FFC900486F65 /* AppleUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9303FEF624F9FFC900486F65 /* AppleUserController.swift */; };
 		931441F524D1CB2E0005BE7B /* PencilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931441F424D1CB2E0005BE7B /* PencilViewController.swift */; };
 		93484A2E24C60EC0003850DD /* FlashcardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93484A2D24C60EBF003850DD /* FlashcardViewController.swift */; };
 		937A9F5324F316F900AE9067 /* PeriodicTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937A9F5224F316F900AE9067 /* PeriodicTable.swift */; };
@@ -35,6 +37,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9303FEF424F9FF2100486F65 /* AppleIDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleIDViewController.swift; sourceTree = "<group>"; };
+		9303FEF624F9FFC900486F65 /* AppleUserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleUserController.swift; sourceTree = "<group>"; };
 		931441F424D1CB2E0005BE7B /* PencilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PencilViewController.swift; sourceTree = "<group>"; };
 		93484A2D24C60EBF003850DD /* FlashcardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardViewController.swift; sourceTree = "<group>"; };
 		937A9F5224F316F900AE9067 /* PeriodicTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodicTable.swift; sourceTree = "<group>"; };
@@ -173,6 +177,7 @@
 				93DE547C24C3B39200B4924F /* FlashcardDetailViewController.swift */,
 				938215F424C7CA5000535B04 /* QuizViewController.swift */,
 				931441F424D1CB2E0005BE7B /* PencilViewController.swift */,
+				9303FEF424F9FF2100486F65 /* AppleIDViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -182,6 +187,7 @@
 			children = (
 				93DE548024C4EC3600B4924F /* FlashpileController.swift */,
 				93DE546F24C103C000B4924F /* FlashcardController.swift */,
+				9303FEF624F9FFC900486F65 /* AppleUserController.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -295,6 +301,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9303FEF524F9FF2100486F65 /* AppleIDViewController.swift in Sources */,
 				93D8EBA924D61436003104CE /* StyleGuide.swift in Sources */,
 				93DE548124C4EC3600B4924F /* FlashpileController.swift in Sources */,
 				93EFDCD324D7BC1600B15C5D /* FlashButton.swift in Sources */,
@@ -311,6 +318,7 @@
 				93DE547F24C4EB4A00B4924F /* Flashpile.swift in Sources */,
 				93EFDD1724DE7C1900B15C5D /* StatesAndCapitals.swift in Sources */,
 				93D6245424CC03F000A65642 /* FlashcardTableViewCell.swift in Sources */,
+				9303FEF724F9FFC900486F65 /* AppleUserController.swift in Sources */,
 				937A9F5324F316F900AE9067 /* PeriodicTable.swift in Sources */,
 				93C6E5A824CE4D7400D613A3 /* FlashError.swift in Sources */,
 				93484A2E24C60EC0003850DD /* FlashcardViewController.swift in Sources */,

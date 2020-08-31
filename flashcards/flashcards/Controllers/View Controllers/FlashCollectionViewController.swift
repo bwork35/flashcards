@@ -33,30 +33,67 @@ class FlashCollectionViewController: UICollectionViewController {
         self.collectionView.backgroundColor = .bgTan
         navigationItem.leftBarButtonItem = editButtonItem
         setupSearchBar()
+        addButtonOutlet.isEnabled = true
+        editButtonItem.isEnabled = true
         
-        if defaults.bool(forKey: "First Launch") == false {
-            addButtonOutlet.isEnabled = false
-            editButtonItem.isEnabled = false
-            collectionView.allowsSelection = false 
-            createLoadingMessage()
-            print("First")
-            defaults.set(true, forKey: "First Launch")
-        } else {
-            print("Second +")
-            defaults.set(true, forKey: "First Launch")
-        }
+        //defaults.set(false, forKey: "DidDeleteMultPile")
+        //defaults.set(false, forKey: "DidDeleteElementPile")
+        //defaults.set(false, forKey: "DidDeleteCapitalsPile")
+        createFauxPiles()
+        
+        fetchAppleUser()
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(fetchAppleUser),
+            name: UIApplication.willEnterForegroundNotification, object: nil)
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         fetchFlashpiles()
         FlashcardController.shared.totalFlashcards = []
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     //MARK: - Actions
-     @IBAction func unwindToHome(_ sender: UIStoryboardSegue) {}
+    @IBAction func unwindToHome(_ sender: UIStoryboardSegue) {}
     
     //MARK: - Helper Methods
+    @objc func fetchAppleUser() {
+        AppleUserController.shared.fetchAppleUserReference { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(_):
+                    print("Apple User fetch successfully.")
+                    self.addButtonOutlet.isEnabled = true
+                    self.editButtonItem.isEnabled = true
+                    self.fetchFlashpiles()
+                case .failure(_):
+                    self.addButtonOutlet.isEnabled = false
+                    self.editButtonItem.isEnabled = false
+                    self.removeApplePiles()
+                    self.presentAppleVC()
+                }
+            }
+        }
+    }
+    
+    func removeApplePiles() {
+        FlashpileController.shared.totalFlashpiles = FlashpileController.shared.fauxFlashpiles
+        self.collectionView.reloadData()
+    }
+    
+    func presentAppleVC() {
+        let FlashVC = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "AppleIDVC")
+        FlashVC.modalPresentationStyle = .automatic
+        self.present(FlashVC, animated: true, completion: nil)
+    }
+    
     func fetchFlashpiles() {
         FlashpileController.shared.fetchAllFlashpiles { (result) in
             DispatchQueue.main.async {
@@ -70,87 +107,35 @@ class FlashCollectionViewController: UICollectionViewController {
         }
     }
     
-    func createLoadingMessage() {
-        FlashpileController.shared.createLoadingPiles { (result) in
-            DispatchQueue.main.async {
+    func createFauxPiles() {
+        if defaults.bool(forKey: "DidDeleteMultPile") == false {
+            FlashpileController.shared.createMultPile { (result) in
                 switch result {
                 case .success(_):
                     self.collectionView.reloadData()
-                    self.createFirstLaunchFlashpiles()
                 case .failure(_):
-                    print("Error with loading message.")
+                    print("no mult pile created")
                 }
             }
         }
-    }
-    
-    func createFirstLaunchFlashpiles() {
-        let group = DispatchGroup()
-        group.enter()
-        FlashpileController.shared.createMultPile { (result) in
-            switch result {
-            case .success(let flashpile):
-                //self.collectionView.reloadData()
-                FlashpileController.shared.createMultCards(flashpile: flashpile) { (result) in
-                    switch result {
-                    case .success(_):
-                        group.leave()
-                    case .failure(_):
-                        print("No cards created.")
-                    }
+        if defaults.bool(forKey: "DidDeleteElementPile") == false {
+            FlashpileController.shared.createElementPile { (result) in
+                switch result {
+                case .success(_):
+                    self.collectionView.reloadData()
+                case .failure(_):
+                    print("no mult pile created")
                 }
-            case .failure(_):
-                print("Error creating flashpile.")
             }
         }
-        group.enter()
-        FlashpileController.shared.createElementPile { (result) in
-            switch result {
-            case .success(let flashpile):
-                //self.collectionView.reloadData()
-                FlashpileController.shared.createElementCards(flashpile: flashpile) { (result) in
-                    switch result {
-                    case .success(_):
-                        group.leave()
-                    case .failure(_):
-                        print("No cards created.")
-                    }
+        if defaults.bool(forKey: "DidDeleteCapitalsPile") == false {
+            FlashpileController.shared.createCapitalsPile { (result) in
+                switch result {
+                case .success(_):
+                    self.collectionView.reloadData()
+                case .failure(_):
+                    print("no mult pile created")
                 }
-            case .failure(_):
-                print("Error creating flashpile.")
-            }
-        }
-        group.enter()
-        FlashpileController.shared.createCapitalPile { (result) in
-            switch result {
-            case .success(let flashpile):
-                //self.collectionView.reloadData()
-                FlashpileController.shared.createCapitalCards(flashpile: flashpile) { (result) in
-                    switch result {
-                    case .success(_):
-                        group.leave()
-                    case .failure(_):
-                        print("No cards created.")
-                    }
-                }
-            case .failure(_):
-                print("Error creating flashpile.")
-            }
-        }
-        group.notify(queue: .main) {
-            let group = DispatchGroup()
-            for i in 0...2 {
-                group.enter()
-                FlashpileController.shared.deleteFlashpile(flashpile: FlashpileController.shared.totalFlashpiles[i]) { (result) in
-                }
-                group.leave()
-            }
-            group.notify(queue: .main) {
-                FlashpileController.shared.totalFlashpiles.removeSubrange(0...2)
-                self.addButtonOutlet.isEnabled = true
-                self.editButtonItem.isEnabled = true
-                self.collectionView.allowsSelection = true
-                self.collectionView.reloadData()
             }
         }
     }
@@ -189,16 +174,18 @@ class FlashCollectionViewController: UICollectionViewController {
         if isFiltering {
             return filteredFlashpiles.count
         }
+        //return FlashpileController.shared.totalFlashpiles.count
         return FlashpileController.shared.totalFlashpiles.count
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? FlashpileCollectionViewCell else {return UICollectionViewCell()}
-    
+        
         let flashpile: Flashpile
         if isFiltering {
             flashpile = filteredFlashpiles[indexPath.row]
         } else {
+            //flashpile = FlashpileController.shared.totalFlashpiles[indexPath.row]
             flashpile = FlashpileController.shared.totalFlashpiles[indexPath.row]
         }
         
@@ -242,18 +229,34 @@ extension FlashCollectionViewController: FlashpileCellDelegate {
     func delete(cell: FlashpileCollectionViewCell) {
         if let indexPath = collectionView?.indexPath(for: cell) {
             let flashpileToDelete = FlashpileController.shared.totalFlashpiles[indexPath.row]
-            
+            guard let index = FlashpileController.shared.totalFlashpiles.firstIndex(of: flashpileToDelete) else {return}
             let alertController = UIAlertController(title: "Delete", message: "Are you sure you want to delete the flashpile \"\(flashpileToDelete.subject)\" ?", preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
             let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (_) in
-                FlashpileController.shared.deleteFlashpile(flashpile: flashpileToDelete) { (result) in
-                    DispatchQueue.main.async {
-                        switch result {
-                        case .success(_):
-                            self.fetchFlashpiles()
-                        case .failure(let error):
-                            print("There was an error deleting the flashpile -- \(error) -- \(error.localizedDescription)")
+                if !FlashpileController.shared.fauxFlashpileIDs.contains(flashpileToDelete.recordID) {
+                    FlashpileController.shared.deleteFlashpile(flashpile: flashpileToDelete) { (result) in
+                        DispatchQueue.main.async {
+                            switch result {
+                            case .success(_):
+                                self.fetchFlashpiles()
+                            case .failure(let error):
+                                print("There was an error deleting the flashpile -- \(error) -- \(error.localizedDescription)")
+                            }
                         }
+                    }
+                } else {
+                    if flashpileToDelete.subject == "Multiplication" {
+                        FlashpileController.shared.totalFlashpiles.remove(at: index)
+                        self.collectionView.reloadData()
+                        self.defaults.set(true, forKey: "DidDeleteMultPile")
+                    } else if flashpileToDelete.subject == "Periodic Table" {
+                        FlashpileController.shared.totalFlashpiles.remove(at: index)
+                        self.collectionView.reloadData()
+                        self.defaults.set(true, forKey: "DidDeleteElementPile")
+                    } else if flashpileToDelete.subject == "States and Capitals" {
+                        FlashpileController.shared.totalFlashpiles.remove(at: index)
+                        self.collectionView.reloadData()
+                        self.defaults.set(true, forKey: "DidDeleteCapitalsPile")
                     }
                 }
             }

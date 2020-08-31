@@ -30,6 +30,7 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
     @IBOutlet weak var backDrawSomethingButton: UIButton!
     @IBOutlet weak var frontViewView: UIView!
     @IBOutlet weak var backViewView: UIView!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     
     //MARK: - Properties
     var flashcard: Flashcard?
@@ -63,6 +64,7 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .bgTan
+        saveButton.isEnabled = true
         
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
          view.addGestureRecognizer(tap)
@@ -119,6 +121,7 @@ class FlashcardDetailViewController: UIViewController, UINavigationControllerDel
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let flashpile = flashpile else {return}
+        saveButton.isEnabled = false
         var frontString: String?
         var backString: String?
         var frontPhoto: UIImage?
