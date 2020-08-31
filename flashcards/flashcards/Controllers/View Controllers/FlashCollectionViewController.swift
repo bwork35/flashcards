@@ -94,14 +94,29 @@ class FlashCollectionViewController: UICollectionViewController {
         self.present(FlashVC, animated: true, completion: nil)
     }
     
+    func presentCloudErrorVC() {
+        let ErrorVC = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "CloudErrorVC")
+        ErrorVC.modalPresentationStyle = .automatic
+        self.present(ErrorVC, animated: true, completion: nil)
+    }
+    
     func fetchFlashpiles() {
         FlashpileController.shared.fetchAllFlashpiles { (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(_):
+                    self.addButtonOutlet.isEnabled = true
+                    self.editButtonItem.isEnabled = true
                     self.collectionView.reloadData()
                 case .failure(let error):
                     print("There was an error fetching flashpiles -- \(error) -- \(error.localizedDescription)")
+                    if error.localizedDescription.contains("authentication") {
+                        self.addButtonOutlet.isEnabled = false
+                        self.editButtonItem.isEnabled = false
+                        self.removeApplePiles()
+                        self.presentCloudErrorVC()
+                    }
                 }
             }
         }
