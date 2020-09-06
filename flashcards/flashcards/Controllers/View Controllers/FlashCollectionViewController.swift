@@ -111,12 +111,10 @@ class FlashCollectionViewController: UICollectionViewController {
                     self.collectionView.reloadData()
                 case .failure(let error):
                     print("There was an error fetching flashpiles -- \(error) -- \(error.localizedDescription)")
-                    if error.localizedDescription.contains("authentication") {
-                        self.addButtonOutlet.isEnabled = false
-                        self.editButtonItem.isEnabled = false
-                        self.removeApplePiles()
-                        self.presentCloudErrorVC()
-                    }
+                    self.addButtonOutlet.isEnabled = false
+                    self.editButtonItem.isEnabled = false
+                    self.removeApplePiles()
+                    self.presentCloudErrorVC()
                 }
             }
         }

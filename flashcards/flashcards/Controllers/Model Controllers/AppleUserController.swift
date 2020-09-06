@@ -13,13 +13,26 @@ class AppleUserController {
     
     static let shared = AppleUserController()
     
+//    func fetchAppleUserReference(completion: @escaping (Result<Bool, FlashError>) -> Void) {
+//         CKContainer.default().fetchUserRecordID { (recordID, error) in
+//             if let error = error {
+//                 print("There was an error fetching the user's apple record id - \(error) - \(error.localizedDescription)")
+//                 return completion(.failure(.ckError(error)))
+//             }
+//
+//             if let recordID = recordID {
+//                 completion(.success(true))
+//             }
+//         }
+//     }
+    
     func fetchAppleUserReference(completion: @escaping (Result<CKRecord.Reference, FlashError>) -> Void) {
         CKContainer.default().fetchUserRecordID { (recordID, error) in
             if let error = error {
                 print("There was an error fetching the user's apple record id - \(error) - \(error.localizedDescription)")
                 return completion(.failure(.ckError(error)))
             }
-            
+
             if let recordID = recordID {
                 let reference = CKRecord.Reference(recordID: recordID, action: .deleteSelf)
                 completion(.success(reference))

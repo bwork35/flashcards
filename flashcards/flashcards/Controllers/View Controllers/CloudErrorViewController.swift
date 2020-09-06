@@ -9,7 +9,8 @@
 import UIKit
 
 class CloudErrorViewController: UIViewController {
-
+    
+    //MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
     }
