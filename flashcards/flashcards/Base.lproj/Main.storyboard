@@ -81,7 +81,7 @@
                                                     </variation>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="43L-lr-l8F" firstAttribute="centerY" secondItem="btS-af-ZaJ" secondAttribute="centerY" id="Cuk-VK-OXh"/>
                                                 <constraint firstItem="d19-4P-hdF" firstAttribute="top" secondItem="btS-af-ZaJ" secondAttribute="top" id="Jbu-Bx-K6A"/>
@@ -153,6 +153,8 @@
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Flashpile Subject..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bhP-g5-JeP">
                                         <rect key="frame" x="0.0" y="0.5" width="329" height="34"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <variation key="heightClass=compact-widthClass=regular">
@@ -196,7 +198,10 @@
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FHE-XP-CZH">
                                 <rect key="frame" x="12" y="136" width="390" height="663"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" name="flashWhite"/>
+                                <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexTrackingBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="flashCell" rowHeight="135" id="tJC-pF-6ol" customClass="FlashcardTableViewCell" customModule="quizcardz" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="390" height="135"/>
@@ -221,7 +226,7 @@
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(front)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cuh-v0-fjI">
                                                                     <rect key="frame" x="0.0" y="16.5" width="350" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                                    <nil key="textColor"/>
+                                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <variation key="heightClass=compact-widthClass=regular">
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -231,7 +236,7 @@
                                                                     </variation>
                                                                 </label>
                                                             </subviews>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="1YR-WR-PfO"/>
                                                                 <constraint firstItem="cuh-v0-fjI" firstAttribute="centerY" secondItem="S3e-E0-PhT" secondAttribute="centerY" id="5ut-4L-SaP"/>
@@ -254,7 +259,7 @@
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(back)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="col-Wd-qXT">
                                                                     <rect key="frame" x="0.0" y="16.5" width="350" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                                    <nil key="textColor"/>
+                                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <variation key="heightClass=compact-widthClass=regular">
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -264,7 +269,7 @@
                                                                     </variation>
                                                                 </label>
                                                             </subviews>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstItem="PDz-l9-qKh" firstAttribute="centerY" secondItem="T3J-si-9rU" secondAttribute="centerY" id="4X0-6X-OEL"/>
                                                                 <constraint firstItem="col-Wd-qXT" firstAttribute="centerY" secondItem="T3J-si-9rU" secondAttribute="centerY" id="XCN-jH-ImC"/>
@@ -275,8 +280,10 @@
                                                             </constraints>
                                                         </view>
                                                     </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </stackView>
                                             </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="KeK-io-U60" secondAttribute="trailing" constant="20" id="2mP-nx-vUg"/>
                                                 <constraint firstAttribute="bottom" secondItem="KeK-io-U60" secondAttribute="bottom" constant="10" id="6vo-ZV-W6j"/>
@@ -284,6 +291,7 @@
                                                 <constraint firstItem="KeK-io-U60" firstAttribute="leading" secondItem="Njo-cq-Giq" secondAttribute="leading" constant="20" id="xTx-tt-5gr"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="backImageView" destination="PDz-l9-qKh" id="1HT-H3-twb"/>
                                             <outlet property="backLabel" destination="col-Wd-qXT" id="OtA-8e-dol"/>
@@ -499,7 +507,7 @@
                                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="4St-vP-oVR" firstAttribute="centerY" secondItem="DZg-hy-EPw" secondAttribute="centerY" multiplier="0.9" id="3Nj-DP-T0b"/>
                                             <constraint firstItem="4St-vP-oVR" firstAttribute="leading" secondItem="DZg-hy-EPw" secondAttribute="leading" constant="8" id="Cqq-4Q-KrU"/>
@@ -530,7 +538,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(front)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zI-Tv-uSw" customClass="QuizLabel" customModule="quizcardz" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="74.5" width="290" height="25.5"/>
                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="35"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="heightClass=compact-widthClass=regular">
                                             <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="22"/>
@@ -615,7 +623,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(back)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vEn-2a-rgV" customClass="QuizLabel" customModule="quizcardz" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="74.5" width="290" height="25.5"/>
                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="35"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="heightClass=compact-widthClass=regular">
                                             <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="22"/>
@@ -1070,7 +1078,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GK8-fz-z1a" customClass="PKCanvasView">
                                 <rect key="frame" x="0.0" y="121" width="414" height="692"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g18-vV-SuI" userLabel="ButtonView">
                                 <rect key="frame" x="0.0" y="88" width="414" height="33"/>
@@ -1113,7 +1121,7 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="buttonGray"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="Ux1-OD-5Yu"/>
                                     <constraint firstItem="J0m-Qr-a8n" firstAttribute="centerX" secondItem="g18-vV-SuI" secondAttribute="centerX" id="XXr-gE-dzH"/>
@@ -1350,6 +1358,9 @@
         </namedColor>
         <namedColor name="buttonGray">
             <color red="0.91764705882352937" green="0.91764705882352937" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="flashWhite">
+            <color red="1" green="1" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
     </resources>
 </document>

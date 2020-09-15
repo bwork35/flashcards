@@ -84,8 +84,8 @@ class FlashcardViewController: UIViewController, UITableViewDelegate, UITableVie
         
         tableView.layer.borderWidth = 2.0
         tableView.layer.cornerRadius = 15.0
-        guard let canvaBlue = UIColor.canvaBlue else {return}
-        tableView.layer.borderColor = canvaBlue.cgColor
+        //guard let canvaBlue = UIColor.canvaBlue else {return}
+        tableView.layer.borderColor = UIColor.canvaBlue.cgColor
         
         let containerView:UIView = UIView(frame: self.tableView.frame)
         self.view.addSubview(containerView)

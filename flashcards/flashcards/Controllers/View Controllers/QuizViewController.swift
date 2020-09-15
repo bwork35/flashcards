@@ -107,16 +107,16 @@ class QuizViewController: UIViewController {
         
         frontViewView.layer.borderWidth = 2.0
         frontViewView.layer.cornerRadius = 15.0
-        guard let canvaBlue = UIColor.canvaBlue else {return}
-        frontViewView.layer.borderColor = canvaBlue.cgColor
+        //guard let canvaBlue = UIColor.canvaBlue else {return}
+        frontViewView.layer.borderColor = UIColor.canvaBlue.cgColor
         
         backViewView.layer.borderWidth = 2.0
         backViewView.layer.cornerRadius = 15.0
-        backViewView.layer.borderColor = canvaBlue.cgColor
+        backViewView.layer.borderColor = UIColor.canvaBlue.cgColor
         
         finishedLabelView.layer.borderWidth = 2.0
         finishedLabelView.layer.cornerRadius = 15.0
-        finishedLabelView.layer.borderColor = canvaBlue.cgColor
+        finishedLabelView.layer.borderColor = UIColor.canvaBlue.cgColor
     }
     
     //MARK: - Actions

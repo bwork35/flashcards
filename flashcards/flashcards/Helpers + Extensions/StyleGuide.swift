@@ -9,8 +9,9 @@
 import UIKit
 
 extension UIColor {
-    static let bgTan = UIColor(named: "bgTan")
-    static let titleRed = UIColor(named: "titleRed")
-    static let buttonGray = UIColor(named: "buttonGray")
-    static let canvaBlue = UIColor(named: "canvaBlue")
+    static let bgTan = UIColor(named: "bgTan")!
+    static let titleRed = UIColor(named: "titleRed")!
+    static let buttonGray = UIColor(named: "buttonGray")!
+    static let canvaBlue = UIColor(named: "canvaBlue")!
+    static let flashWhite = UIColor(named: "flashWhite")!
 }
