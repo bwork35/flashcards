@@ -477,14 +477,14 @@
 				CODE_SIGN_ENTITLEMENTS = flashcards/flashcards.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0;
+				CURRENT_PROJECT_VERSION = 2.1;
 				DEVELOPMENT_TEAM = CYXP9477KA;
 				INFOPLIST_FILE = flashcards/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bryanworkman.flashcards;
 				PRODUCT_NAME = quizcardz;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -500,14 +500,14 @@
 				CODE_SIGN_ENTITLEMENTS = flashcards/flashcards.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0;
+				CURRENT_PROJECT_VERSION = 2.1;
 				DEVELOPMENT_TEAM = CYXP9477KA;
 				INFOPLIST_FILE = flashcards/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bryanworkman.flashcards;
 				PRODUCT_NAME = quizcardz;
 				PROVISIONING_PROFILE_SPECIFIER = "";
